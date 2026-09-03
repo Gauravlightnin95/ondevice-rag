@@ -1,0 +1,33 @@
+# Python environment
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# OpenVINO models — ~9 GB, reproducible from the export commands in docs/hardware_notes.md
+models/
+
+# OpenVINO compile caches
+.npucache/
+.ovcache/
+
+# Corpus — PDFs and extracted text are not redistributed.
+# corpus/manifest.csv is committed; the documents themselves are not.
+corpus/raw/
+corpus/extracted/
+corpus/rejected/
+
+# Experiment outputs
+results/
+
+# Editor and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Scratch
+*.tmp
+*.log
+filled_passages_batch*.md
