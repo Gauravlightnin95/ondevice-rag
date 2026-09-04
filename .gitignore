@@ -18,6 +18,10 @@ corpus/raw/
 corpus/extracted/
 corpus/rejected/
 
+# Derived corpus text. chunks.jsonl carries verbatim extracted text, including the
+# personal data noted in README section 4 — it is not redistributed either.
+corpus/chunks.jsonl
+
 # Experiment outputs
 results/
 
