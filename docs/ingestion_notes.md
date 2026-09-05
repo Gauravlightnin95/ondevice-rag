@@ -1,7 +1,7 @@
-# Ingestion notes
+# Ingestion and retrieval notes
 
-Stage 1 (chunking) and Stage 2 (eval set loading). Both produce frozen artifacts, so the
-decisions here are recorded rather than left implicit in the code.
+Stages 1–4: chunking, eval set loading, passage validation, and the retriever. All produce frozen
+artifacts, so the decisions here are recorded rather than left implicit in the code.
 
 ---
 
@@ -409,3 +409,155 @@ and `chunk_ids` per passage, so Stage 4 can partition the two populations withou
 Nothing under `evalset/` or `corpus/` was modified. Passages were deliberately **not** edited to
 match extraction artifacts: writing PUA glyphs and missing spaces into the frozen eval set would
 encode extraction bugs into the artifact and make Oracle-RAG feed the model corrupted text.
+
+---
+
+# Stage 4 — retrieval pipeline
+
+Scripts: `src/retrieval/build_index.py`, `retrieve.py`, `evaluate_recall.py`.
+Artifacts: `index/` (gitignored), `results/retrieval_recall.json`.
+
+## Frozen parameters — every one fixed a priori
+
+| Parameter | Value |
+|---|---|
+| Embedding model | `BAAI/bge-small-en-v1.5` @ `5c38ec7c405ec4b44b94cc5a9bb96e735b38267a` |
+| Pooling | CLS token — bge's own recipe, **not** mean pooling |
+| Normalisation | L2, so inner product = cosine |
+| Max length | 512 tokens, truncation on |
+| Dense index | FAISS `IndexFlatIP` — exact, no approximation |
+| Sparse index | `rank_bm25.BM25Okapi`, k1 = 1.5, b = 0.75 |
+| BM25 tokenisation | lowercase `[0-9a-z]+`, no stemming, no stopword removal |
+| Fusion | RRF, `Σ 1/(60 + rank)`, rank 1-based, ties broken on chunk_id |
+| Candidate depth | top-100 from each retriever before fusion |
+
+Library versions are pinned in `requirements.txt`; `faiss-cpu` 1.15.0 installed cleanly against
+numpy 2.4.6, so the planned numpy fallback was not needed.
+
+## The query instruction prefix — a methodological statement, not just a setting
+
+Queries are embedded as `"Represent this sentence for searching relevant passages: " + question`.
+Chunks are embedded with no prefix.
+
+**The prefix was fixed a priori from the bge model card's guidance for asymmetric
+short-query-to-long-passage retrieval, before any Recall number existed. The no-prefix alternative
+was deliberately never measured.** Comparing the two and keeping the better would have selected the
+retriever using the eval set it is then scored on, which would void the frozen-retriever claim in
+README §6. That sentence is what makes the claim defensible, and it is the reason the number below
+should be read as a measurement rather than a tuned result.
+
+RRF's k = 60 is Cormack et al.'s conventional default, taken on the same a-priori basis.
+
+**The asymmetry is verified in both directions**, not merely asserted — applying the prefix to both
+sides is a bug that would still produce plausible numbers:
+
+- the query path's embedding equals a manually prefixed embedding, and differs from an unprefixed
+  one (cosine 0.977, so the prefix genuinely moves the vector)
+- no indexed chunk text contains the prefix string
+- a stored chunk vector equals the unprefixed embedding of that chunk and **not** the prefixed one
+
+## One chunk universe across both retrievers
+
+`chunks.jsonl` is read once into a single ordered list; dense row `i`, BM25 document `i` and
+`chunk_ids[i]` all come from it. `build_index.py` asserts equal lengths across FAISS, the BM25
+corpus and the id list, and `retrieve.py` re-checks the id-list SHA-256 against the manifest at
+load time. If the two sides ever indexed different chunk universes, RRF would fuse rankings over
+mismatched sets and still return chunk_ids that look perfectly valid — a wrong Recall number with
+nothing visibly broken.
+
+## Encoder truncation — the exception matters, but is empirically zero
+
+Stage 1 cut chunks at 512 bge tokens with `add_special_tokens=False`, so a full chunk plus
+`[CLS]`/`[SEP]` reaches 514 and the encoder drops 2 subword tokens from the tail of 462 chunks.
+For a non-final chunk those 2 tokens sit inside the next chunk's 64-token overlap and remain in the
+index. **For a document's final chunk there is no next chunk, so they would leave the index
+entirely** — so "nothing leaves the index" is not a true statement in general.
+
+Measured: **0 tokens are lost.** No document's final chunk is 512 tokens — all 29 are remainders
+between 71 and 443 tokens, so none is truncated. `build_index.py` asserts this, and fails loudly if
+a future corpus ever produces a full-length final chunk.
+
+## Recall@k — fused, any-hit (primary), 194 questions
+
+Type 5 excluded (no gold passage). Gold chunks come from Stage 3's aligner, not re-derived here.
+
+| Type | n | @1 | @3 | @5 | @10 |
+|---|---|---|---|---|---|
+| 1 single-hop extractive | 46 | 58.7% | 71.7% | 91.3% | 95.7% |
+| 2 multi-hop synthesis | 50 | 58.0% | 72.0% | 88.0% | 94.0% |
+| 3 numerical / tabular | 51 | 45.1% | 68.6% | 72.5% | **84.3%** |
+| 4 conflicting sources | 25 | 24.0% | 76.0% | 92.0% | 100.0% |
+| 6 long-form synthesis | 22 | 50.0% | 63.6% | 81.8% | 90.9% |
+
+**No aggregate row is reported.** An average over types would hide the type-3 result, which is the
+whole point of breaking it out.
+
+## Finding — fusion does not help uniformly, and hurts type 3
+
+Any-hit @10, by retriever:
+
+| Type | Dense | BM25 | Fused |
+|---|---|---|---|
+| 1 | 82.6% | 93.5% | **95.7%** |
+| 2 | 88.0% | **94.0%** | **94.0%** |
+| 3 | 70.6% | **94.1%** | 84.3% |
+| 4 | 96.0% | 92.0% | **100.0%** |
+| 6 | **95.5%** | 90.9% | 90.9% |
+
+RRF helps types 1 and 4, matches BM25 on type 2, and **costs almost 10 points on type 3** and 4.6
+on type 6. On numerical/tabular questions BM25 alone is the best retriever in the grid: dense
+embeddings are weak on figures and table rows, and fusion drags a strong sparse ranking down toward
+a weak dense one.
+
+**The retriever was not changed in response to this.** Switching to BM25-only for type 3 after
+seeing these numbers would be exactly the eval-set tuning the a-priori discipline above exists to
+prevent. It is reported as a result, and it is a genuine candidate for the paper: RRF is widely
+adopted as a default, and this is a concrete task type where it is worse than one of its inputs.
+
+## Supplementary — the multi-chunk populations
+
+**Composite passages (15, types 2/3/6)** — gold text spread across several locations:
+
+| | @1 | @3 | @5 | @10 |
+|---|---|---|---|---|
+| any-hit | 46.7% | 53.3% | 66.7% | 86.7% |
+| all-hit | 0.0% | 20.0% | 26.7% | **40.0%** |
+
+**Type 4 (25), both-sources hit** — the question needs both sides of the contradiction:
+
+| | n | @1 | @3 | @5 | @10 |
+|---|---|---|---|---|---|
+| all type 4 | 25 | 0.0% | 16.0% | 36.0% | 84.0% |
+| cross-document | 24 | 0.0% | 12.5% | 33.3% | 83.3% |
+| same document | 1 | 0.0% | 100% | 100% | 100% *(sample of one)* |
+
+Both tables show the same shape and it bears directly on **H2 and H3**: any-hit recall looks
+healthy while the evidence set needed for multi-hop reasoning is often incomplete. Type 4 reaches
+100% any-hit @10 but only 84% both-sources, and at k = 3 — a plausible operating point for a small
+model, per H3 — both-sources is 16% while any-hit is 76%. A model given k = 3 on a
+conflicting-sources question will usually see one side of the contradiction and no signal that a
+second exists. That is a retrieval limit, not a reasoning failure, and Oracle-RAG is what separates
+the two.
+
+## Verified at build time
+
+- 491 vectors × 384 dims, all L2 norms 1.0; `faiss.ntotal` = 491; BM25 165,583 tokens over a
+  10,941-term vocabulary
+- Determinism: index rebuilt, embedding and id-list SHA-256 identical
+  (`79564efe…`, `ad1c21c6…`)
+- **Sanity floor**: each chunk's own text used as a query returns that chunk at rank 1 —
+  40/40 on a fixed random sample. Without this, every recall figure could be measuring a
+  mis-wired index.
+- **The harness can report a low number.** With the gold map shuffled across questions (rankings
+  untouched), recall collapses from 84–100% to 9–20% per type, 12.9% overall. That sits above the
+  ~3.1% naive floor for 10 draws from 491 chunks because questions from the same document cluster,
+  so a shuffled gold chunk often still lands in a document the retriever surfaced. A recall harness
+  that cannot produce a low number is not measuring anything.
+
+## Context for reading these numbers
+
+Retrieval is from a pool of **491 chunks** — a far smaller haystack than the web-scale settings of
+the work this project compares against. A high Recall@10 here is not evidence that retrieval is
+solved, and it should be stated that way in the paper. H3's question about the optimal `k` for
+small models matters more than the absolute recall value, and the @1/@3 columns above are the ones
+that speak to it.

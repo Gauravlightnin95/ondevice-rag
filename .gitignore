@@ -30,6 +30,10 @@ evalset/evalset_v1.jsonl
 # Stage 3 passage->chunk map. Derived from both gitignored artifacts above.
 evalset/passage_locations.jsonl
 
+# Frozen retriever artifacts — embeddings, FAISS and BM25 indexes. Rebuildable from
+# chunks.jsonl via src/retrieval/build_index.py, and they embed corpus text.
+index/
+
 # Experiment outputs
 results/
 
