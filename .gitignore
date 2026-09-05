@@ -30,9 +30,19 @@ evalset/evalset_v1.jsonl
 # Stage 3 passage->chunk map. Derived from both gitignored artifacts above.
 evalset/passage_locations.jsonl
 
-# Frozen retriever artifacts — embeddings, FAISS and BM25 indexes. Rebuildable from
-# chunks.jsonl via src/retrieval/build_index.py, and they embed corpus text.
-index/
+# Retriever artifacts — embeddings, FAISS and BM25 indexes. They embed corpus text
+# (bm25.pkl stores the tokenised corpus outright), so they stay out of git and are
+# rebuilt from chunks.jsonl via src/retrieval/build_index.py.
+#
+# Ignored by FILE PATTERN, not as a directory: git cannot re-include anything under an
+# excluded directory, and the frozen retriever's contract — index/frozen/*/FREEZE.md
+# and fixture.json — must stay trackable so the retriever-vN tag can pin it.
+index/**/*.npy
+index/**/*.index
+index/**/*.pkl
+index/**/*.jsonl
+index/**/chunk_ids.json
+index/*.json
 
 # Experiment outputs
 results/

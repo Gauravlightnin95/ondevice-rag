@@ -24,23 +24,52 @@ import torch
 from transformers import AutoModel, AutoTokenizer
 
 INDEX = Path("index")
+FROZEN_ROOT = INDEX / "frozen"
 
 # Fixed a priori, not tuned on Recall. RRF constant is Cormack et al.'s conventional 60.
 CANDIDATE_DEPTH = 100
 RRF_K = 60
 
 
-@lru_cache(maxsize=1)
-def _load():
-    manifest = json.loads((INDEX / "manifest.json").read_text(encoding="utf-8"))
-    chunk_ids = json.loads((INDEX / "chunk_ids.json").read_text(encoding="utf-8"))
-    index = faiss.read_index(str(INDEX / "faiss.index"))
-    bm25 = pickle.loads((INDEX / "bm25.pkl").read_bytes())
+def resolve_index_dir():
+    """Prefer the highest frozen version, fall back to the working index.
+
+    Once a freeze exists it IS the retriever, so the grid must not be able to read the
+    working index by omission. Callers that need a specific directory — the verifier
+    checking a particular freeze — pass index_dir explicitly.
+    """
+    if FROZEN_ROOT.is_dir():
+        versions = sorted((d for d in FROZEN_ROOT.iterdir()
+                           if d.is_dir() and (d / "faiss.index").exists()),
+                          key=lambda d: d.name)
+        if versions:
+            return versions[-1]
+    return INDEX
+
+
+@lru_cache(maxsize=4)
+def _load(index_dir=None):
+    index_dir = Path(index_dir) if index_dir else resolve_index_dir()
+    # A frozen directory carries fixture.json instead of manifest.json; the embedding
+    # settings live under "embedding" there.
+    if (index_dir / "manifest.json").exists():
+        manifest = json.loads((index_dir / "manifest.json").read_text(encoding="utf-8"))
+    else:
+        fx = json.loads((index_dir / "fixture.json").read_text(encoding="utf-8"))
+        manifest = {"embed_model": fx["embedding"]["model"],
+                    "embed_revision": fx["embedding"]["revision"],
+                    "max_length": fx["embedding"]["max_length"],
+                    "query_prefix": fx["query_prefix"],
+                    "chunk_ids_sha256": None}
+    chunk_ids = json.loads((index_dir / "chunk_ids.json").read_text(encoding="utf-8"))
+    index = faiss.read_index(str(index_dir / "faiss.index"))
+    bm25 = pickle.loads((index_dir / "bm25.pkl").read_bytes())
 
     import hashlib
     got = hashlib.sha256("\n".join(chunk_ids).encode()).hexdigest()
-    assert got == manifest["chunk_ids_sha256"], \
-        "chunk_ids.json does not match the manifest hash — rebuild the index"
+    if manifest["chunk_ids_sha256"] is not None:
+        assert got == manifest["chunk_ids_sha256"], \
+            "chunk_ids.json does not match the manifest hash — rebuild the index"
     assert index.ntotal == len(chunk_ids) == bm25.corpus_size, (
         f"chunk universe mismatch at load: faiss={index.ntotal} "
         f"ids={len(chunk_ids)} bm25={bm25.corpus_size}")
@@ -52,9 +81,9 @@ def _load():
     return manifest, chunk_ids, index, bm25, tok, model
 
 
-def embed_query(text):
+def embed_query(text, index_dir=None):
     """Embed a query WITH the instruction prefix. Chunks are embedded without it."""
-    manifest, _, _, _, tok, model = _load()
+    manifest, _, _, _, tok, model = _load(index_dir)
     enc = tok([manifest["query_prefix"] + text], padding=True, truncation=True,
               max_length=manifest["max_length"], return_tensors="pt")
     with torch.no_grad():
@@ -68,15 +97,15 @@ def _ranked(scores, depth):
     return top[np.argsort(-scores[top])]
 
 
-def search(query, k=10, depth=CANDIDATE_DEPTH):
+def search(query, k=10, depth=CANDIDATE_DEPTH, index_dir=None):
     """Fused retrieval.
 
     Returns [(chunk_id, rrf_score, dense_rank, sparse_rank)] best first, length <= k.
     Ranks are 1-based; None means the chunk was outside that retriever's candidate list.
     """
-    _, chunk_ids, index, bm25, _, _ = _load()
+    _, chunk_ids, index, bm25, _, _ = _load(index_dir)
 
-    _, dense_idx = index.search(embed_query(query), depth)
+    _, dense_idx = index.search(embed_query(query, index_dir), depth)
     dense_order = [int(i) for i in dense_idx[0] if i >= 0]
 
     from build_index import bm25_tokenise
@@ -97,11 +126,11 @@ def search(query, k=10, depth=CANDIDATE_DEPTH):
             for i in order]
 
 
-def search_single(query, k=10, depth=CANDIDATE_DEPTH):
+def search_single(query, k=10, depth=CANDIDATE_DEPTH, index_dir=None):
     """Dense-only and BM25-only rankings, for showing whether fusion earns its place."""
-    _, chunk_ids, index, bm25, _, _ = _load()
+    _, chunk_ids, index, bm25, _, _ = _load(index_dir)
 
-    _, dense_idx = index.search(embed_query(query), depth)
+    _, dense_idx = index.search(embed_query(query, index_dir), depth)
     dense = [chunk_ids[int(i)] for i in dense_idx[0] if i >= 0][:k]
 
     from build_index import bm25_tokenise

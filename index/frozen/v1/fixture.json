@@ -1,0 +1,3163 @@
+{
+  "freeze_version": "v1",
+  "frozen_at": "2026-09-05",
+  "git_commit": "625218c55cbe38415925c34dd0a11f9f8f35847f",
+  "corpus": {
+    "n_documents": 29,
+    "n_pages": 507,
+    "n_chunks": 491
+  },
+  "chunking": {
+    "max_tokens": 512,
+    "overlap": 64,
+    "stride": 448,
+    "tokenizer": "BAAI/bge-small-en-v1.5"
+  },
+  "embedding": {
+    "model": "BAAI/bge-small-en-v1.5",
+    "revision": "5c38ec7c405ec4b44b94cc5a9bb96e735b38267a",
+    "dim": 384,
+    "pooling": "cls",
+    "normalisation": "l2",
+    "max_length": 512
+  },
+  "query_prefix": "Represent this sentence for searching relevant passages: ",
+  "query_prefix_applied_to": "queries only",
+  "dense_index": "faiss.IndexFlatIP",
+  "sparse": {
+    "impl": "rank_bm25.BM25Okapi",
+    "k1": 1.5,
+    "b": 0.75,
+    "tokenisation": "lowercase [0-9a-z]+, no stemming, no stopwords"
+  },
+  "fusion": {
+    "method": "rrf",
+    "k": 60,
+    "candidate_depth": 100,
+    "tie_break": "chunk_id"
+  },
+  "hashes": {
+    "faiss_index": "ab87f8018cfafde00bc90246ef575c821d4bfa366eea526784eade6d25d41b07",
+    "bm25": "afbd09c49fe8e96ae691e19b55e86b45cc102278e574db8f72bb2b95bcef7d82",
+    "embeddings": "f1125acad024e05e06bfff742724de0cecd1d40656623a9ac54561bcc3e4b316",
+    "chunk_ids": "08f127dfce78cf90497d258ce8734980b3354ca7bcf16aea3e1b85470e55594b",
+    "chunks": "902945fb4ca685ac32a225f5142b97689e4e4b33935165c9e282d912feec3b58"
+  },
+  "environment": {
+    "python": "3.12.10",
+    "torch": "2.13.0+cpu",
+    "faiss": "1.15.0",
+    "transformers": "5.5.4",
+    "numpy": "2.4.6"
+  },
+  "probes": {
+    "n": 194,
+    "k": 10,
+    "expected": [
+      {
+        "qid": "_conflicts::Q1",
+        "question": "Within how long after receiving the University's decision must a student appeal to the Vice Chancellor?",
+        "top_k": [
+          "part-a-academic-regulations::c0038",
+          "part-b-examination-rules-regulations::c0057",
+          "part-b-examination-rules-regulations::c0058",
+          "part-a-academic-regulations::c0039",
+          "galgotias-handbook-2026-27::c0084",
+          "part-b-examination-rules-regulations::c0059",
+          "galgotias-grievance-policy::c0001",
+          "part-a-academic-regulations::c0040",
+          "galgotias-handbook-2026-27::c0086",
+          "galgotias-handbook-2026-27::c0087"
+        ]
+      },
+      {
+        "qid": "_conflicts::Q2",
+        "question": "Who chairs the university-level body that hears student grievance appeals?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0086",
+          "part-b-examination-rules-regulations::c0057",
+          "galgotias-grievance-policy::c0001",
+          "galgotias-grievance-policy::c0000",
+          "part-a-academic-regulations::c0038",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0001",
+          "part-a-academic-regulations::c0039",
+          "part-b-examination-rules-regulations::c0058",
+          "final_mandatory_disclosure::c0001",
+          "galgotias-handbook-2026-27::c0113"
+        ]
+      },
+      {
+        "qid": "_conflicts::Q3",
+        "question": "How many days does a student have to appeal directly to the Vice Chancellor in a case alleging unlawful discrimination?",
+        "top_k": [
+          "part-a-academic-regulations::c0038",
+          "part-a-academic-regulations::c0040",
+          "part-b-examination-rules-regulations::c0057",
+          "part-b-examination-rules-regulations::c0059",
+          "part-b-examination-rules-regulations::c0058",
+          "part-a-academic-regulations::c0039",
+          "galgotias-grievance-policy::c0001",
+          "galgotias-handbook-2026-27::c0084",
+          "part-b-examination-rules-regulations::c0044",
+          "part-a-academic-regulations::c0037"
+        ]
+      },
+      {
+        "qid": "_conflicts::Q4",
+        "question": "According to the documents in this corpus, how many days does a student have to appeal a grievance decision to the next level?",
+        "top_k": [
+          "part-a-academic-regulations::c0040",
+          "part-b-examination-rules-regulations::c0057",
+          "part-b-examination-rules-regulations::c0059",
+          "part-a-academic-regulations::c0038",
+          "galgotias-grievance-policy::c0001",
+          "part-a-academic-regulations::c0039",
+          "final_mandatory_disclosure::c0001",
+          "part-b-examination-rules-regulations::c0058",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0002",
+          "part-a-academic-regulations::c0041"
+        ]
+      },
+      {
+        "qid": "_conflicts::Q5",
+        "question": "How long does the responsible committee have to resolve a grievance once it reaches them?",
+        "top_k": [
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0002",
+          "galgotias-grievance-policy::c0001",
+          "part-a-academic-regulations::c0039",
+          "galgotias-handbook-2026-27::c0086",
+          "part-b-examination-rules-regulations::c0058",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0001",
+          "part-b-examination-rules-regulations::c0034",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0003",
+          "part-b-examination-rules-regulations::c0036",
+          "final_mandatory_disclosure::c0001"
+        ]
+      },
+      {
+        "qid": "_conflicts::Q6",
+        "question": "Who hears the final appeal in a student grievance once internal avenues are exhausted?",
+        "top_k": [
+          "part-b-examination-rules-regulations::c0057",
+          "part-a-academic-regulations::c0038",
+          "part-b-examination-rules-regulations::c0059",
+          "part-a-academic-regulations::c0040",
+          "part-a-academic-regulations::c0039",
+          "part-b-examination-rules-regulations::c0058",
+          "final_mandatory_disclosure::c0001",
+          "galgotias-grievance-policy::c0001",
+          "part-a-academic-regulations::c0041",
+          "galgotias-handbook-2026-27::c0086"
+        ]
+      },
+      {
+        "qid": "_conflicts::Q7",
+        "question": "What minimum attendance is required, and what is the consequence of falling below it?",
+        "top_k": [
+          "part-a-academic-regulations::c0026",
+          "galgotias-handbook-2026-27::c0055",
+          "part-b-examination-rules-regulations::c0005",
+          "galgotias-academic-monitoring-v3::c0002",
+          "galgotias-handbook-2026-27::c0056",
+          "part-a-academic-regulations::c0025",
+          "part-b-examination-rules-regulations::c0004",
+          "part-a-academic-regulations::c0027",
+          "galgotias-handbook-2026-27::c0061",
+          "hostel rule booklet::c0019"
+        ]
+      },
+      {
+        "qid": "_conflicts::Q8",
+        "question": "What minimum attendance is required to appear in the Mid-Term Examination?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0056",
+          "galgotias-handbook-2026-27::c0057",
+          "galgotias-handbook-2026-27::c0055",
+          "galgotias-handbook-2026-27::c0061",
+          "galgotias-handbook-2026-27::c0049",
+          "galgotias-handbook-2026-27::c0054",
+          "part-a-academic-regulations::c0027",
+          "part-b-examination-rules-regulations::c0028",
+          "part-b-examination-rules-regulations::c0029",
+          "part-b-examination-rules-regulations::c0005"
+        ]
+      },
+      {
+        "qid": "_conflicts::Q9",
+        "question": "What attendance percentage must a student maintain during the summer term to sit its examination?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0061",
+          "part-b-examination-rules-regulations::c0028",
+          "galgotias-handbook-2026-27::c0055",
+          "galgotias-handbook-2026-27::c0052",
+          "galgotias-handbook-2026-27::c0056",
+          "part-a-academic-regulations::c0027",
+          "part-b-examination-rules-regulations::c0005",
+          "part-b-examination-rules-regulations::c0027",
+          "galgotias-handbook-2026-27::c0062",
+          "part-b-examination-rules-regulations::c0029"
+        ]
+      },
+      {
+        "qid": "_conflicts::Q10",
+        "question": "What is the registration limit for the summer term?",
+        "top_k": [
+          "part-a-academic-regulations::c0028",
+          "part-b-examination-rules-regulations::c0028",
+          "galgotias-handbook-2026-27::c0061",
+          "part-b-examination-rules-regulations::c0011",
+          "part-a-academic-regulations::c0027",
+          "part-b-examination-rules-regulations::c0027",
+          "part-b-examination-rules-regulations::c0010",
+          "galgotias-handbook-2026-27::c0052",
+          "galgotias-handbook-2026-27::c0062",
+          "galgotias-handbook-2026-27::c0044"
+        ]
+      },
+      {
+        "qid": "_conflicts::Q11",
+        "question": "Who is eligible to register for the summer term?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0061",
+          "part-b-examination-rules-regulations::c0028",
+          "part-a-academic-regulations::c0027",
+          "galgotias-handbook-2026-27::c0062",
+          "part-a-academic-regulations::c0028",
+          "part-b-examination-rules-regulations::c0010",
+          "galgotias-handbook-2026-27::c0052",
+          "part-b-examination-rules-regulations::c0027",
+          "galgotias-handbook-2026-27::c0044",
+          "part-b-examination-rules-regulations::c0013"
+        ]
+      },
+      {
+        "qid": "_conflicts::Q12",
+        "question": "Which authority may relax the minimum attendance requirement, and by how much?",
+        "top_k": [
+          "part-a-academic-regulations::c0026",
+          "part-b-examination-rules-regulations::c0005",
+          "galgotias-handbook-2026-27::c0056",
+          "galgotias-handbook-2026-27::c0055",
+          "galgotias-handbook-2026-27::c0057",
+          "part-b-examination-rules-regulations::c0004",
+          "part-a-academic-regulations::c0025",
+          "part-a-academic-regulations::c0027",
+          "h82fzupvsto2zjkfhcxjakjtqyphrhakgddvsm5e::c0003",
+          "galgotias-handbook-2026-27::c0054"
+        ]
+      },
+      {
+        "qid": "_conflicts::Q13",
+        "question": "What family circumstance qualifies a student for relaxation of the attendance requirement?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0056",
+          "part-a-academic-regulations::c0026",
+          "part-b-examination-rules-regulations::c0005",
+          "galgotias-handbook-2026-27::c0055",
+          "part-a-academic-regulations::c0027",
+          "galgotias-handbook-2026-27::c0057",
+          "part-b-examination-rules-regulations::c0004",
+          "part-a-academic-regulations::c0025",
+          "hostel rule booklet::c0016",
+          "part-b-examination-rules-regulations::c0028"
+        ]
+      },
+      {
+        "qid": "_conflicts::Q14",
+        "question": "Where is the list of students debarred from writing examinations published?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0061",
+          "part-b-examination-rules-regulations::c0045",
+          "part-a-academic-regulations::c0026",
+          "part-b-examination-rules-regulations::c0047",
+          "part-a-academic-regulations::c0027",
+          "galgotias-handbook-2026-27::c0053",
+          "galgotias-handbook-2026-27::c0057",
+          "part-b-examination-rules-regulations::c0005",
+          "part-b-examination-rules-regulations::c0042",
+          "part-b-examination-rules-regulations::c0055"
+        ]
+      },
+      {
+        "qid": "_conflicts::Q15",
+        "question": "How must a student notify the university of a medical emergency affecting attendance?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0055",
+          "part-b-examination-rules-regulations::c0004",
+          "part-a-academic-regulations::c0025",
+          "galgotias-handbook-2026-27::c0077",
+          "galgotias-handbook-2026-27::c0054",
+          "part-b-examination-rules-regulations::c0005",
+          "galgotias-handbook-2026-27::c0081",
+          "galgotias-handbook-2026-27::c0057",
+          "galgotias-academic-monitoring-v3::c0001",
+          "galgotias-handbook-2026-27::c0109"
+        ]
+      },
+      {
+        "qid": "_conflicts::Q16",
+        "question": "What is the permitted credit load for course registration in a semester?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0051",
+          "galgotias-handbook-2026-27::c0052",
+          "part-b-examination-rules-regulations::c0008",
+          "part-b-examination-rules-regulations::c0011",
+          "part-b-examination-rules-regulations::c0010",
+          "part-a-academic-regulations::c0028",
+          "part-a-academic-regulations::c0027",
+          "part-b-examination-rules-regulations::c0009",
+          "part-a-academic-regulations::c0035",
+          "galgotias-handbook-2026-27::c0025"
+        ]
+      },
+      {
+        "qid": "_conflicts::Q17",
+        "question": "What minimum attendance must a student have to be eligible for a university medal?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0063",
+          "galgotias-handbook-2026-27::c0062",
+          "galgotias-handbook-2026-27::c0056",
+          "part-b-examination-rules-regulations::c0005",
+          "part-a-academic-regulations::c0035",
+          "part-a-academic-regulations::c0030",
+          "part-a-academic-regulations::c0031",
+          "galgotias-handbook-2026-27::c0057",
+          "part-b-examination-rules-regulations::c0050",
+          "part-a-academic-regulations::c0026"
+        ]
+      },
+      {
+        "qid": "_conflicts::Q18",
+        "question": "At what level is a silver medal awarded, and is there a minimum cohort size?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0063",
+          "part-b-examination-rules-regulations::c0050",
+          "part-a-academic-regulations::c0030",
+          "galgotias-handbook-2026-27::c0062",
+          "part-a-academic-regulations::c0031",
+          "part-a-academic-regulations::c0029",
+          "part-b-examination-rules-regulations::c0051",
+          "part-a-academic-regulations::c0035",
+          "part-b-examination-rules-regulations::c0054",
+          "galgotias-handbook-2026-27::c0038"
+        ]
+      },
+      {
+        "qid": "_conflicts::Q19",
+        "question": "What is the award for the best outgoing student, and what does the recipient receive?",
+        "top_k": [
+          "part-b-examination-rules-regulations::c0050",
+          "part-a-academic-regulations::c0030",
+          "galgotias-handbook-2026-27::c0063",
+          "part-a-academic-regulations::c0031",
+          "part-a-academic-regulations::c0032",
+          "part-b-examination-rules-regulations::c0052",
+          "galgotias-handbook-2026-27::c0089",
+          "galgotias-handbook-2026-27::c0020",
+          "galgotias-handbook-2026-27::c0062",
+          "part-b-examination-rules-regulations::c0022"
+        ]
+      },
+      {
+        "qid": "_conflicts::Q20",
+        "question": "Which courses may a student drop, and within what period?",
+        "top_k": [
+          "part-b-examination-rules-regulations::c0011",
+          "part-a-academic-regulations::c0028",
+          "galgotias-handbook-2026-27::c0052",
+          "galgotias-handbook-2026-27::c0027",
+          "part-b-examination-rules-regulations::c0009",
+          "part-b-examination-rules-regulations::c0010",
+          "part-b-examination-rules-regulations::c0008",
+          "part-b-examination-rules-regulations::c0055",
+          "galgotias-handbook-2026-27::c0037",
+          "part-b-examination-rules-regulations::c0054"
+        ]
+      },
+      {
+        "qid": "_conflicts::Q21",
+        "question": "How many additional courses may a student take beyond their programme requirements?",
+        "top_k": [
+          "part-b-examination-rules-regulations::c0054",
+          "part-a-academic-regulations::c0035",
+          "galgotias-handbook-2026-27::c0052",
+          "part-b-examination-rules-regulations::c0011",
+          "part-a-academic-regulations::c0029",
+          "galgotias-handbook-2026-27::c0062",
+          "galgotias-handbook-2026-27::c0038",
+          "part-a-academic-regulations::c0028",
+          "galgotias-handbook-2026-27::c0027",
+          "part-b-examination-rules-regulations::c0015"
+        ]
+      },
+      {
+        "qid": "_conflicts::Q22",
+        "question": "On what basis are hostel rooms allotted?",
+        "top_k": [
+          "hostel rule booklet::c0016",
+          "galgotias-handbook-2026-27::c0097",
+          "hostel rule booklet::c0002",
+          "hostel rule booklet::c0003",
+          "hostel rule booklet::c0020",
+          "hostel rule booklet::c0017",
+          "hostel rule booklet::c0018",
+          "galgotias-handbook-2026-27::c0098",
+          "hostel rule booklet::c0000",
+          "hostel rule booklet::c0005"
+        ]
+      },
+      {
+        "qid": "_conflicts::Q23",
+        "question": "At what time is hostel attendance taken?",
+        "top_k": [
+          "h82fzupvsto2zjkfhcxjakjtqyphrhakgddvsm5e::c0003",
+          "galgotias-handbook-2026-27::c0098",
+          "galgotias-handbook-2026-27::c0097",
+          "hostel rule booklet::c0006",
+          "hostel rule booklet::c0019",
+          "hostel rule booklet::c0016",
+          "hostel rule booklet::c0003",
+          "hostel rule booklet::c0020",
+          "hostel rule booklet::c0013",
+          "hostel rule booklet::c0007"
+        ]
+      },
+      {
+        "qid": "_conflicts::Q24",
+        "question": "What penalty applies to a hosteller found using alcohol on campus?",
+        "top_k": [
+          "hostel rule booklet::c0005",
+          "hostel rule booklet::c0007",
+          "hostel rule booklet::c0013",
+          "galgotias-handbook-2026-27::c0080",
+          "hostel rule booklet::c0020",
+          "galgotias-handbook-2026-27::c0097",
+          "galgotias-handbook-2026-27::c0081",
+          "hostel rule booklet::c0006",
+          "galgotias-handbook-2026-27::c0077",
+          "hostel rule booklet::c0018"
+        ]
+      },
+      {
+        "qid": "_conflicts::Q25",
+        "question": "Is there a minimum credit requirement in the first year of an undergraduate programme?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0038",
+          "part-b-examination-rules-regulations::c0012",
+          "part-a-academic-regulations::c0035",
+          "part-b-examination-rules-regulations::c0015",
+          "galgotias-handbook-2026-27::c0052",
+          "galgotias-handbook-2026-27::c0025",
+          "galgotias-handbook-2026-27::c0042",
+          "galgotias-handbook-2026-27::c0037",
+          "part-b-examination-rules-regulations::c0011",
+          "galgotias-handbook-2026-27::c0056"
+        ]
+      },
+      {
+        "qid": "ABESEC_EOA_2026-27::Q1",
+        "question": "What is the Permanent Id of ABES Engineering College in the AICTE approval process?",
+        "top_k": [
+          "abesec_eoa_2026-27::c0000",
+          "abesec_eoa_2026-27::c0004",
+          "final_mandatory_disclosure::c0000",
+          "final_mandatory_disclosure::c0036",
+          "cse::c0007",
+          "final_mandatory_disclosure::c0009",
+          "hostel rule booklet::c0022",
+          "abesec_eoa_2026-27::c0003",
+          "cse::c0001",
+          "final_mandatory_disclosure::c0010"
+        ]
+      },
+      {
+        "qid": "ABESEC_EOA_2026-27::Q2",
+        "question": "On what date was the Extension of Approval for the 2026-27 academic year granted?",
+        "top_k": [
+          "abesec_eoa_2026-27::c0000",
+          "abesec_eoa_2026-27::c0002",
+          "abesec_eoa_2026-27::c0001",
+          "abesec_eoa_2026-27::c0003",
+          "part-b-examination-rules-regulations::c0013",
+          "galgotias-handbook-2026-27::c0037",
+          "part-a-academic-regulations::c0040",
+          "part-b-examination-rules-regulations::c0059",
+          "part-b-examination-rules-regulations::c0022",
+          "part-b-examination-rules-regulations::c0014"
+        ]
+      },
+      {
+        "qid": "ABESEC_EOA_2026-27::Q3",
+        "question": "Under which AICTE region is ABES Engineering College classified, and what is its institution type?",
+        "top_k": [
+          "final_mandatory_disclosure::c0000",
+          "abesec_eoa_2026-27::c0004",
+          "final_mandatory_disclosure::c0036",
+          "abesec_eoa_2026-27::c0000",
+          "final_mandatory_disclosure::c0034",
+          "cse::c0007",
+          "cse::c0001",
+          "cse::c0000",
+          "cse::c0005",
+          "final_mandatory_disclosure::c0009"
+        ]
+      },
+      {
+        "qid": "ABESEC_EOA_2026-27::Q4",
+        "question": "What is the approved intake for Computer Science & Engineering for the academic year 2026-27?",
+        "top_k": [
+          "abesec_eoa_2026-27::c0001",
+          "abesec_eoa_2026-27::c0002",
+          "abesec_eoa_2026-27::c0000",
+          "part-a-academic-regulations::c0000",
+          "final_mandatory_disclosure::c0034",
+          "cse::c0007",
+          "part-a-academic-regulations::c0011",
+          "final_mandatory_disclosure::c0010",
+          "cse::c0001",
+          "cse::c0000"
+        ]
+      },
+      {
+        "qid": "ABESEC_EOA_2026-27::Q5",
+        "question": "By how many seats did the approved intake for Computer Science & Engineering change between 2025-26 and 2026-27?",
+        "top_k": [
+          "abesec_eoa_2026-27::c0001",
+          "final_mandatory_disclosure::c0010",
+          "abesec_eoa_2026-27::c0002",
+          "abesec_eoa_2026-27::c0000",
+          "final_mandatory_disclosure::c0034",
+          "part-a-academic-regulations::c0000",
+          "cse::c0007",
+          "cse::c0009",
+          "cse::c0002",
+          "final_mandatory_disclosure::c0011"
+        ]
+      },
+      {
+        "qid": "ABESEC_EOA_2026-27::Q6",
+        "question": "What is the total approved undergraduate intake across all Engineering and Technology courses for 2026-27?",
+        "top_k": [
+          "abesec_eoa_2026-27::c0001",
+          "abesec_eoa_2026-27::c0002",
+          "abesec_eoa_2026-27::c0000",
+          "galgotias-handbook-2026-27::c0036",
+          "galgotias-handbook-2026-27::c0047",
+          "final_mandatory_disclosure::c0034",
+          "galgotias-handbook-2026-27::c0037",
+          "part-a-academic-regulations::c0000",
+          "galgotias-handbook-2026-27::c0038",
+          "galgotias-handbook-2026-27::c0024"
+        ]
+      },
+      {
+        "qid": "ABESEC_EOA_2026-27::Q7",
+        "question": "What is the total approved postgraduate intake for 2026-27 across all programmes?",
+        "top_k": [
+          "abesec_eoa_2026-27::c0002",
+          "abesec_eoa_2026-27::c0001",
+          "galgotias-handbook-2026-27::c0025",
+          "galgotias-handbook-2026-27::c0042",
+          "part-a-academic-regulations::c0000",
+          "galgotias-handbook-2026-27::c0062",
+          "part-b-examination-rules-regulations::c0012",
+          "galgotias-handbook-2026-27::c0033",
+          "abesec_eoa_2026-27::c0003",
+          "abesec_eoa_2026-27::c0000"
+        ]
+      },
+      {
+        "qid": "ABESEC_EOA_2026-27::Q8",
+        "question": "Which single course had its approved intake increased for 2026-27, and by how much?",
+        "top_k": [
+          "abesec_eoa_2026-27::c0001",
+          "abesec_eoa_2026-27::c0002",
+          "abesec_eoa_2026-27::c0000",
+          "galgotias-handbook-2026-27::c0024",
+          "galgotias-handbook-2026-27::c0052",
+          "part-b-examination-rules-regulations::c0006",
+          "galgotias-handbook-2026-27::c0036",
+          "glbitm-idp24-29::c0011",
+          "galgotias-handbook-2026-27::c0044",
+          "galgotias-handbook-2026-27::c0041"
+        ]
+      },
+      {
+        "qid": "ABESEC_EOA_2026-27::Q9",
+        "question": "Comparing the 2025-26 and 2026-27 intakes, which courses had their approved intake left unchanged?",
+        "top_k": [
+          "abesec_eoa_2026-27::c0001",
+          "abesec_eoa_2026-27::c0002",
+          "galgotias-handbook-2026-27::c0052",
+          "final_mandatory_disclosure::c0050",
+          "final_mandatory_disclosure::c0034",
+          "abesec_eoa_2026-27::c0000",
+          "galgotias-handbook-2026-27::c0024",
+          "part-a-academic-regulations::c0000",
+          "galgotias-handbook-2026-27::c0035",
+          "final_mandatory_disclosure::c0010"
+        ]
+      },
+      {
+        "qid": "ABESEC_EOA_2026-27::Q10",
+        "question": "Which new course was approved for ABES Engineering College for the academic year 2026-27?",
+        "top_k": [
+          "final_mandatory_disclosure::c0000",
+          "final_mandatory_disclosure::c0034",
+          "cse::c0007",
+          "abesec_eoa_2026-27::c0000",
+          "abesec_eoa_2026-27::c0002",
+          "cse::c0001",
+          "final_mandatory_disclosure::c0010",
+          "cse::c0014",
+          "abesec_eoa_2026-27::c0001",
+          "cse::c0005"
+        ]
+      },
+      {
+        "qid": "ABESEC_EOA_2026-27::Q11",
+        "question": "What is the combined approved intake for Working Professional programmes for 2026-27?",
+        "top_k": [
+          "abesec_eoa_2026-27::c0001",
+          "abesec_eoa_2026-27::c0002",
+          "part-a-academic-regulations::c0000",
+          "galgotias-handbook-2026-27::c0036",
+          "abesec_eoa_2026-27::c0000",
+          "part-b-examination-rules-regulations::c0016",
+          "abesec_eoa_2026-27::c0003",
+          "galgotias-handbook-2026-27::c0073",
+          "part-b-examination-rules-regulations::c0022",
+          "part-b-examination-rules-regulations::c0003"
+        ]
+      },
+      {
+        "qid": "ABESEC_EOA_2026-27::Q12",
+        "question": "On what basis is the approval of BBA, BCA and BMS courses granted, and what changes from next year?",
+        "top_k": [
+          "abesec_eoa_2026-27::c0002",
+          "galgotias-handbook-2026-27::c0046",
+          "part-a-academic-regulations::c0022",
+          "abesec_eoa_2026-27::c0003",
+          "part-b-examination-rules-regulations::c0011",
+          "galgotias-handbook-2026-27::c0024",
+          "part-a-academic-regulations::c0012",
+          "part-a-academic-regulations::c0028",
+          "part-b-examination-rules-regulations::c0014",
+          "part-b-examination-rules-regulations::c0022"
+        ]
+      },
+      {
+        "qid": "ABESEC_EOA_2026-27::Q13",
+        "question": "Up to what percentage are AICTE approved institutes encouraged to utilise SWAYAM PLUS courses?",
+        "top_k": [
+          "abesec_eoa_2026-27::c0003",
+          "abesec_eoa_2026-27::c0002",
+          "abesec_eoa_2026-27::c0004",
+          "abesec_eoa_2026-27::c0000",
+          "galgotias-handbook-2026-27::c0041",
+          "rnd-office-order-asperugc::c0006",
+          "glbitm-idp24-29::c0027",
+          "glbitm-idp24-29::c0033",
+          "part-b-examination-rules-regulations::c0003",
+          "part-b-examination-rules-regulations::c0006"
+        ]
+      },
+      {
+        "qid": "ABESEC_EOA_2026-27::Q14",
+        "question": "Summarise what an institution is required to disclose on its website under the mandatory disclosure requirements referenced in this approval letter.",
+        "top_k": [
+          "abesec_eoa_2026-27::c0003",
+          "galgotias-handbook-2026-27::c0026",
+          "galgotias-handbook-2026-27::c0110",
+          "galgotias-handbook-2026-27::c0041",
+          "abesec_eoa_2026-27::c0002",
+          "students-grievanceredressal-cell::c0003",
+          "galgotias-academic-monitoring-v3::c0004",
+          "part-b-examination-rules-regulations::c0017",
+          "final_mandatory_disclosure::c0000",
+          "part-a-academic-regulations::c0035"
+        ]
+      },
+      {
+        "qid": "amity-cg-brochure::Q1",
+        "question": "How many books and e-journals does the library hold?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0067",
+          "galgotias-handbook-2026-27::c0071",
+          "galgotias-handbook-2026-27::c0069",
+          "galgotias-handbook-2026-27::c0072",
+          "galgotias-handbook-2026-27::c0070",
+          "galgotias-handbook-2026-27::c0068",
+          "glbitm-idp24-29::c0022",
+          "galgotias-handbook-2026-27::c0066",
+          "final_mandatory_disclosure::c0037",
+          "glbitm-idp24-29::c0037"
+        ]
+      },
+      {
+        "qid": "amity-cg-brochure::Q2",
+        "question": "What is the seating capacity of the on-campus hostel and of the auditorium?",
+        "top_k": [
+          "hostel rule booklet::c0016",
+          "final_mandatory_disclosure::c0036",
+          "hostel rule booklet::c0020",
+          "h82fzupvsto2zjkfhcxjakjtqyphrhakgddvsm5e::c0003",
+          "galgotias-handbook-2026-27::c0097",
+          "hostel rule booklet::c0013",
+          "amity-cg-brochure::c0000",
+          "hostel rule booklet::c0017",
+          "hostel rule booklet::c0004",
+          "galgotias-handbook-2026-27::c0096"
+        ]
+      },
+      {
+        "qid": "amity-cg-brochure::Q3",
+        "question": "How many IPR filings, patents and copyrights have the faculty filed, and how many books or chapters have they published?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0068",
+          "glbitm-idp24-29::c0028",
+          "glbitm-idp24-29::c0029",
+          "rnd-office-order-asperugc::c0003",
+          "galgotias-handbook-2026-27::c0050",
+          "dspr8pxaam4tcygv1ldbmk27hgwexcr4hkxckjfd::c0001",
+          "galgotias-handbook-2026-27::c0067",
+          "glbitm-idp24-29::c0022",
+          "rnd-office-order-asperugc::c0005",
+          "glbitm-idp24-29::c0030"
+        ]
+      },
+      {
+        "qid": "amity-cg-brochure::Q4",
+        "question": "What is the campus area, the wi-fi speed, and the number of hi-tech labs and learning studios?",
+        "top_k": [
+          "glbitm-idp24-29::c0036",
+          "galgotias-handbook-2026-27::c0090",
+          "galgotias-handbook-2026-27::c0091",
+          "galgotias-it-policy::c0003",
+          "galgotias-handbook-2026-27::c0089",
+          "glbitm-idp24-29::c0006",
+          "galgotias-it-policy::c0007",
+          "glbitm-idp24-29::c0037",
+          "galgotias-handbook-2026-27::c0018",
+          "galgotias-handbook-2026-27::c0047"
+        ]
+      },
+      {
+        "qid": "amity-cg-brochure::Q5",
+        "question": "How many government funded research projects have been undertaken and how many student start-ups have been incubated at the campus incubator?",
+        "top_k": [
+          "glbitm-idp24-29::c0032",
+          "glbitm-idp24-29::c0027",
+          "galgotias-handbook-2026-27::c0065",
+          "glbitm-idp24-29::c0014",
+          "amity-cg-brochure::c0001",
+          "glbitm-idp24-29::c0013",
+          "glbitm-idp24-29::c0029",
+          "ugcpublicself-disclosure::c0008",
+          "amity-cg-brochure::c0002",
+          "glbitm-idp24-29::c0007"
+        ]
+      },
+      {
+        "qid": "amity-cg-brochure::Q6",
+        "question": "Across the Amity Education Group, how many students, faculty, university campuses and overseas campuses are there?",
+        "top_k": [
+          "placement-brochure-2025-26::c0000",
+          "amity-cg-brochure::c0003",
+          "amity-cg-brochure::c0001",
+          "placement-brochure-2025-26::c0001",
+          "amity-cg-brochure::c0002",
+          "amity-cg-brochure::c0000",
+          "public-self-disclosure::c0003",
+          "boardof-studies-2024-25::c0000",
+          "public-self-disclosure::c0000",
+          "qtmrve2p2esucuqliume4wzjnrb0uudsotwzpdzx::c0006"
+        ]
+      },
+      {
+        "qid": "amity-cg-brochure::Q7",
+        "question": "How long is the compulsory military training camp, and how many states and union territories are represented by students?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0095",
+          "galgotias-handbook-2026-27::c0096",
+          "galgotias-handbook-2026-27::c0025",
+          "galgotias-handbook-2026-27::c0044",
+          "part-b-examination-rules-regulations::c0055",
+          "part-b-examination-rules-regulations::c0000",
+          "galgotias-handbook-2026-27::c0056",
+          "part-b-examination-rules-regulations::c0006",
+          "part-b-examination-rules-regulations::c0058",
+          "qtmrve2p2esucuqliume4wzjnrb0uudsotwzpdzx::c0002"
+        ]
+      },
+      {
+        "qid": "amity-cg-brochure::Q8",
+        "question": "What scholarship levels are available to meritorious students?",
+        "top_k": [
+          "part-a-academic-regulations::c0021",
+          "part-a-academic-regulations::c0031",
+          "part-b-examination-rules-regulations::c0051",
+          "part-a-academic-regulations::c0020",
+          "part-a-academic-regulations::c0000",
+          "galgotias-handbook-2026-27::c0062",
+          "galgotias-handbook-2026-27::c0087",
+          "part-b-examination-rules-regulations::c0052",
+          "part-b-examination-rules-regulations::c0054",
+          "part-a-academic-regulations::c0029"
+        ]
+      },
+      {
+        "qid": "amity-cg-brochure::Q9",
+        "question": "How long is the Global Study Program, and how does it differ from the arrangement for earning a foreign university degree?",
+        "top_k": [
+          "qtmrve2p2esucuqliume4wzjnrb0uudsotwzpdzx::c0006",
+          "galgotias-handbook-2026-27::c0105",
+          "part-b-examination-rules-regulations::c0014",
+          "galgotias-handbook-2026-27::c0036",
+          "galgotias-handbook-2026-27::c0106",
+          "glbitm-idp24-29::c0026",
+          "galgotias-handbook-2026-27::c0018",
+          "galgotias-handbook-2026-27::c0062",
+          "students-grievanceredressal-cell::c0003",
+          "galgotias-handbook-2026-27::c0035"
+        ]
+      },
+      {
+        "qid": "amity-cg-brochure::Q10",
+        "question": "Which Centres of Excellence are supported by UNICEF Chhattisgarh, and which is supported by AIIMS Raipur?",
+        "top_k": [
+          "amity-cg-brochure::c0002",
+          "placement-brochure-2025-26::c0000",
+          "placement-brochure-2025-26::c0001",
+          "amity-cg-brochure::c0001",
+          "amity-cg-brochure::c0003",
+          "public-self-disclosure::c0000",
+          "placement-brochure-2025-26::c0002",
+          "amity-cg-brochure::c0000",
+          "public-self-disclosure::c0001",
+          "glbitm-idp24-29::c0002"
+        ]
+      },
+      {
+        "qid": "amity-cg-brochure::Q11",
+        "question": "How many law programmes of five years duration are offered, and which body approves them?",
+        "top_k": [
+          "part-a-academic-regulations::c0010",
+          "part-b-examination-rules-regulations::c0006",
+          "part-b-examination-rules-regulations::c0003",
+          "galgotias-handbook-2026-27::c0037",
+          "part-a-academic-regulations::c0000",
+          "part-b-examination-rules-regulations::c0000",
+          "details-of-academic-programme::c0001",
+          "part-a-academic-regulations::c0020",
+          "galgotias-handbook-2026-27::c0036",
+          "details-of-academic-programme::c0000"
+        ]
+      },
+      {
+        "qid": "amity-cg-brochure::Q12",
+        "question": "Which programmes are noted as approved by an external professional council, and which council approves each?",
+        "top_k": [
+          "abesec_eoa_2026-27::c0002",
+          "abesec_eoa_2026-27::c0003",
+          "part-b-examination-rules-regulations::c0035",
+          "part-b-examination-rules-regulations::c0031",
+          "part-b-examination-rules-regulations::c0000",
+          "part-a-academic-regulations::c0035",
+          "part-b-examination-rules-regulations::c0016",
+          "part-b-examination-rules-regulations::c0030",
+          "galgotias-handbook-2026-27::c0043",
+          "part-a-academic-regulations::c0029"
+        ]
+      },
+      {
+        "qid": "amity-cg-brochure::Q13",
+        "question": "How many specialisations are listed for the MBA programme?",
+        "top_k": [
+          "amity-cg-brochure::c0004",
+          "details-of-academic-programme::c0001",
+          "galgotias-handbook-2026-27::c0037",
+          "part-a-academic-regulations::c0022",
+          "part-a-academic-regulations::c0005",
+          "part-b-examination-rules-regulations::c0000",
+          "part-a-academic-regulations::c0015",
+          "galgotias-handbook-2026-27::c0038",
+          "galgotias-handbook-2026-27::c0046",
+          "amity-cg-brochure::c0005"
+        ]
+      },
+      {
+        "qid": "amity-cg-brochure::Q14",
+        "question": "Which two ministries of the Government of India are listed as supporting the university?",
+        "top_k": [
+          "abesec_eoa_2026-27::c0003",
+          "ugcpublicself-disclosure::c0010",
+          "glbitm-idp24-29::c0010",
+          "galgotias-handbook-2026-27::c0022",
+          "placement-brochure-2025-26::c0000",
+          "galgotias-it-policy::c0003",
+          "glbitm-idp24-29::c0012",
+          "qtmrve2p2esucuqliume4wzjnrb0uudsotwzpdzx::c0000",
+          "galgotias-handbook-2026-27::c0065",
+          "amity-cg-brochure::c0001"
+        ]
+      },
+      {
+        "qid": "amity-cg-brochure::Q15",
+        "question": "Summarise the placement and career support arrangements described in the brochure.",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0074",
+          "galgotias-handbook-2026-27::c0073",
+          "galgotias-handbook-2026-27::c0087",
+          "part-a-academic-regulations::c0033",
+          "glbitm-idp24-29::c0034",
+          "galgotias-handbook-2026-27::c0088",
+          "galgotias-handbook-2026-27::c0075",
+          "part-b-examination-rules-regulations::c0022",
+          "glbitm-idp24-29::c0018",
+          "placement-brochure-2025-26::c0001"
+        ]
+      },
+      {
+        "qid": "boardof-studies-2024-25::Q1",
+        "question": "What is the prescribed composition of a Board of Studies, and how many members does it have in total including the chairperson?",
+        "top_k": [
+          "boardof-studies-2024-25::c0000",
+          "part-b-examination-rules-regulations::c0003",
+          "part-b-examination-rules-regulations::c0031",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0001",
+          "part-a-academic-regulations::c0039",
+          "galgotias-handbook-2026-27::c0113",
+          "mandatory-disclosure::c0001",
+          "abesec_eoa_2026-27::c0003",
+          "rnd-office-order-asperugc::c0008",
+          "part-b-examination-rules-regulations::c0006"
+        ]
+      },
+      {
+        "qid": "boardof-studies-2024-25::Q2",
+        "question": "What is the tenure of Board of Studies members other than ex-officio members?",
+        "top_k": [
+          "boardof-studies-2024-25::c0000",
+          "glbitm-idp24-29::c0008",
+          "mandatory-disclosure::c0001",
+          "galgotias-handbook-2026-27::c0113",
+          "glbitm-idp24-29::c0007",
+          "mandatory-disclosure::c0002",
+          "part-b-examination-rules-regulations::c0058",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0001",
+          "part-a-academic-regulations::c0039",
+          "format-public-self-disclosure-15082026::c0002"
+        ]
+      },
+      {
+        "qid": "boardof-studies-2024-25::Q3",
+        "question": "Who proposes the composition of a Board of Studies, through whom, and whose approval is required?",
+        "top_k": [
+          "boardof-studies-2024-25::c0000",
+          "part-b-examination-rules-regulations::c0049",
+          "part-b-examination-rules-regulations::c0036",
+          "part-b-examination-rules-regulations::c0035",
+          "part-b-examination-rules-regulations::c0004",
+          "part-a-academic-regulations::c0039",
+          "part-b-examination-rules-regulations::c0057",
+          "part-a-academic-regulations::c0025",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0001",
+          "abesec_eoa_2026-27::c0004"
+        ]
+      },
+      {
+        "qid": "boardof-studies-2024-25::Q4",
+        "question": "Under which legislation and statute is the Board of Studies constituted?",
+        "top_k": [
+          "boardof-studies-2024-25::c0000",
+          "part-b-examination-rules-regulations::c0056",
+          "students-grievanceredressal-cell::c0003",
+          "students-grievanceredressal-cell::c0002",
+          "format-public-self-disclosure-15082026::c0002",
+          "galgotias-handbook-2026-27::c0113",
+          "part-b-examination-rules-regulations::c0003",
+          "galgotias-handbook-2026-27::c0085",
+          "glbitm-idp24-29::c0008",
+          "part-b-examination-rules-regulations::c0049"
+        ]
+      },
+      {
+        "qid": "boardof-studies-2024-25::Q5",
+        "question": "What is the Board of Studies responsible for?",
+        "top_k": [
+          "boardof-studies-2024-25::c0000",
+          "galgotias-handbook-2026-27::c0113",
+          "part-b-examination-rules-regulations::c0056",
+          "glbitm-idp24-29::c0008",
+          "part-b-examination-rules-regulations::c0049",
+          "glbitm-idp24-29::c0007",
+          "mandatory-disclosure::c0002",
+          "part-b-examination-rules-regulations::c0036",
+          "part-b-examination-rules-regulations::c0055",
+          "galgotias-handbook-2026-27::c0024"
+        ]
+      },
+      {
+        "qid": "boardof-studies-2024-25::Q6",
+        "question": "Which single person chairs the Boards of Studies for all four engineering departments as well as the Amity Institute of Information Technology?",
+        "top_k": [
+          "boardof-studies-2024-25::c0000",
+          "amity-cg-brochure::c0003",
+          "amity-cg-brochure::c0001",
+          "boardof-studies-2024-25::c0005",
+          "placement-brochure-2025-26::c0000",
+          "boardof-studies-2024-25::c0004",
+          "details-of-academic-programme::c0002",
+          "amity-cg-brochure::c0000",
+          "boardof-studies-2024-25::c0002",
+          "amity-cg-brochure::c0002"
+        ]
+      },
+      {
+        "qid": "boardof-studies-2024-25::Q7",
+        "question": "Which Boards of Studies list more internal subject experts than the four prescribed by the constitution?",
+        "top_k": [
+          "boardof-studies-2024-25::c0000",
+          "boardof-studies-2024-25::c0002",
+          "boardof-studies-2024-25::c0005",
+          "boardof-studies-2024-25::c0001",
+          "boardof-studies-2024-25::c0003",
+          "boardof-studies-2024-25::c0004",
+          "part-b-examination-rules-regulations::c0035",
+          "glbitm-idp24-29::c0008",
+          "part-b-examination-rules-regulations::c0049",
+          "galgotias-handbook-2026-27::c0026"
+        ]
+      },
+      {
+        "qid": "boardof-studies-2024-25::Q8",
+        "question": "Which two external subject experts serve on both the Computer Science and Engineering Board and the Amity Institute of Information Technology Board?",
+        "top_k": [
+          "boardof-studies-2024-25::c0004",
+          "boardof-studies-2024-25::c0002",
+          "boardof-studies-2024-25::c0005",
+          "boardof-studies-2024-25::c0000",
+          "boardof-studies-2024-25::c0001",
+          "boardof-studies-2024-25::c0003",
+          "placement-brochure-2025-26::c0000",
+          "amity-cg-brochure::c0003",
+          "amity-cg-brochure::c0001",
+          "placement-brochure-2025-26::c0001"
+        ]
+      },
+      {
+        "qid": "Final_Mandatory_Disclosure::Q1",
+        "question": "How many undergraduate and postgraduate courses does the institution list in total?",
+        "top_k": [
+          "part-a-academic-regulations::c0029",
+          "galgotias-handbook-2026-27::c0025",
+          "galgotias-handbook-2026-27::c0042",
+          "galgotias-handbook-2026-27::c0038",
+          "galgotias-handbook-2026-27::c0033",
+          "part-b-examination-rules-regulations::c0012",
+          "format-public-self-disclosure-manuu::c0002",
+          "galgotias-handbook-2026-27::c0062",
+          "galgotias-handbook-2026-27::c0037",
+          "part-a-academic-regulations::c0028"
+        ]
+      },
+      {
+        "qid": "Final_Mandatory_Disclosure::Q2",
+        "question": "How many classrooms and tutorial rooms are available, and what area does each group occupy?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0051",
+          "final_mandatory_disclosure::c0036",
+          "glbitm-idp24-29::c0036",
+          "galgotias-handbook-2026-27::c0052",
+          "glbitm-idp24-29::c0022",
+          "hostel rule booklet::c0003",
+          "hostel rule booklet::c0002",
+          "hostel rule booklet::c0020",
+          "glbitm-idp24-29::c0037",
+          "galgotias-handbook-2026-27::c0090"
+        ]
+      },
+      {
+        "qid": "Final_Mandatory_Disclosure::Q3",
+        "question": "How many laboratories are there and what is their combined area?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0089",
+          "galgotias-handbook-2026-27::c0065",
+          "final_mandatory_disclosure::c0036",
+          "galgotias-handbook-2026-27::c0078",
+          "galgotias-handbook-2026-27::c0088",
+          "glbitm-idp24-29::c0022",
+          "galgotias-handbook-2026-27::c0048",
+          "glbitm-idp24-29::c0016",
+          "glbitm-idp24-29::c0028",
+          "part-a-academic-regulations::c0024"
+        ]
+      },
+      {
+        "qid": "Final_Mandatory_Disclosure::Q4",
+        "question": "What is the combined area of the Computer Centre, Drawing Hall and Language Lab?",
+        "top_k": [
+          "glbitm-idp24-29::c0017",
+          "galgotias-handbook-2026-27::c0065",
+          "final_mandatory_disclosure::c0047",
+          "glbitm-idp24-29::c0016",
+          "final_mandatory_disclosure::c0043",
+          "galgotias-handbook-2026-27::c0089",
+          "galgotias-handbook-2026-27::c0106",
+          "cse::c0009",
+          "final_mandatory_disclosure::c0045",
+          "galgotias-it-policy::c0002"
+        ]
+      },
+      {
+        "qid": "Final_Mandatory_Disclosure::Q5",
+        "question": "How many LAN nodes are available and what is the internet bandwidth?",
+        "top_k": [
+          "galgotias-it-policy::c0000",
+          "galgotias-handbook-2026-27::c0090",
+          "galgotias-it-policy::c0003",
+          "galgotias-it-policy::c0002",
+          "part-b-examination-rules-regulations::c0040",
+          "final_mandatory_disclosure::c0036",
+          "galgotias-it-policy::c0001",
+          "galgotias-handbook-2026-27::c0068",
+          "galgotias-it-policy::c0008",
+          "glbitm-idp24-29::c0036"
+        ]
+      },
+      {
+        "qid": "Final_Mandatory_Disclosure::Q6",
+        "question": "Within how many days must the HOD submit a decision report on a grievance, and within how many days must the Grievance Redressal Committee grant final approval?",
+        "top_k": [
+          "final_mandatory_disclosure::c0001",
+          "part-a-academic-regulations::c0040",
+          "part-b-examination-rules-regulations::c0059",
+          "galgotias-grievance-policy::c0001",
+          "part-a-academic-regulations::c0039",
+          "part-b-examination-rules-regulations::c0058",
+          "galgotias-handbook-2026-27::c0086",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0002",
+          "part-b-examination-rules-regulations::c0057",
+          "part-a-academic-regulations::c0038"
+        ]
+      },
+      {
+        "qid": "Final_Mandatory_Disclosure::Q7",
+        "question": "Within how long may a person appeal to the Central Level Grievance Committee after receiving the HOD's reply?",
+        "top_k": [
+          "final_mandatory_disclosure::c0001",
+          "galgotias-grievance-policy::c0001",
+          "part-b-examination-rules-regulations::c0057",
+          "part-b-examination-rules-regulations::c0059",
+          "galgotias-handbook-2026-27::c0086",
+          "part-a-academic-regulations::c0039",
+          "part-a-academic-regulations::c0040",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0002",
+          "part-a-academic-regulations::c0038",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0001"
+        ]
+      },
+      {
+        "qid": "Final_Mandatory_Disclosure::Q8",
+        "question": "To whom may a complainant appeal if they remain unsatisfied after the Student Grievance Redressal Committee decision, and who appoints that person?",
+        "top_k": [
+          "galgotias-grievance-policy::c0001",
+          "part-b-examination-rules-regulations::c0057",
+          "galgotias-handbook-2026-27::c0086",
+          "final_mandatory_disclosure::c0001",
+          "part-a-academic-regulations::c0038",
+          "galgotias-grievance-policy::c0000",
+          "part-a-academic-regulations::c0039",
+          "part-b-examination-rules-regulations::c0059",
+          "part-a-academic-regulations::c0040",
+          "part-b-examination-rules-regulations::c0058"
+        ]
+      },
+      {
+        "qid": "Final_Mandatory_Disclosure::Q9",
+        "question": "Within how many days must the GRC send its report with recommendations, and to whom?",
+        "top_k": [
+          "final_mandatory_disclosure::c0001",
+          "part-b-examination-rules-regulations::c0058",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0002",
+          "part-a-academic-regulations::c0040",
+          "part-a-academic-regulations::c0039",
+          "part-b-examination-rules-regulations::c0019",
+          "part-b-examination-rules-regulations::c0059",
+          "part-b-examination-rules-regulations::c0024",
+          "galgotias-grievance-policy::c0001",
+          "part-b-examination-rules-regulations::c0034"
+        ]
+      },
+      {
+        "qid": "Final_Mandatory_Disclosure::Q10",
+        "question": "On what date was this Mandatory Disclosure issued?",
+        "top_k": [
+          "part-b-examination-rules-regulations::c0022",
+          "final_mandatory_disclosure::c0000",
+          "galgotias-academic-monitoring-v3::c0004",
+          "part-a-academic-regulations::c0040",
+          "abesec_eoa_2026-27::c0003",
+          "part-b-examination-rules-regulations::c0059",
+          "ugcpublicself-disclosure::c0000",
+          "galgotias-it-policy::c0015",
+          "galgotias-it-policy::c0021",
+          "format-public-self-disclosure-15082026::c0000"
+        ]
+      },
+      {
+        "qid": "Final_Mandatory_Disclosure::Q11",
+        "question": "Summarise the online grievance redressal mechanism, from registration of a complaint through to the final avenue of appeal.",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0086",
+          "galgotias-grievance-policy::c0001",
+          "galgotias-grievance-policy::c0000",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0000",
+          "final_mandatory_disclosure::c0001",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0001",
+          "part-b-examination-rules-regulations::c0057",
+          "part-a-academic-regulations::c0039",
+          "part-b-examination-rules-regulations::c0059",
+          "part-a-academic-regulations::c0040"
+        ]
+      },
+      {
+        "qid": "galgotias-academic-monitoring-v3::Q1",
+        "question": "What salary deduction applies at each stage of academic default, and at which default does termination occur?",
+        "top_k": [
+          "galgotias-academic-monitoring-v3::c0002",
+          "galgotias-academic-monitoring-v3::c0003",
+          "galgotias-academic-monitoring-v3::c0005",
+          "galgotias-academic-monitoring-v3::c0001",
+          "galgotias-academic-monitoring-v3::c0004",
+          "part-a-academic-regulations::c0033",
+          "part-b-examination-rules-regulations::c0005",
+          "part-a-academic-regulations::c0026",
+          "hostel rule booklet::c0009",
+          "dspr8pxaam4tcygv1ldbmk27hgwexcr4hkxckjfd::c0002"
+        ]
+      },
+      {
+        "qid": "galgotias-academic-monitoring-v3::Q2",
+        "question": "How many minutes before the scheduled start of a class are faculty expected to arrive?",
+        "top_k": [
+          "galgotias-academic-monitoring-v3::c0001",
+          "galgotias-academic-monitoring-v3::c0003",
+          "galgotias-academic-monitoring-v3::c0004",
+          "galgotias-handbook-2026-27::c0045",
+          "part-a-academic-regulations::c0024",
+          "galgotias-academic-monitoring-v3::c0000",
+          "galgotias-academic-monitoring-v3::c0005",
+          "part-a-academic-regulations::c0023",
+          "part-b-examination-rules-regulations::c0006",
+          "galgotias-academic-monitoring-v3::c0002"
+        ]
+      },
+      {
+        "qid": "galgotias-academic-monitoring-v3::Q3",
+        "question": "How many days in advance must a faculty member request a class substitution, and what is the maximum length of a substitution request?",
+        "top_k": [
+          "galgotias-academic-monitoring-v3::c0003",
+          "galgotias-academic-monitoring-v3::c0004",
+          "galgotias-academic-monitoring-v3::c0002",
+          "galgotias-academic-monitoring-v3::c0000",
+          "galgotias-academic-monitoring-v3::c0005",
+          "galgotias-handbook-2026-27::c0052",
+          "galgotias-academic-monitoring-v3::c0001",
+          "part-b-examination-rules-regulations::c0058",
+          "part-b-examination-rules-regulations::c0060",
+          "part-b-examination-rules-regulations::c0011"
+        ]
+      },
+      {
+        "qid": "galgotias-academic-monitoring-v3::Q4",
+        "question": "How many days of substitution leave may a faculty member take per semester, and what is the penalty for exceeding it?",
+        "top_k": [
+          "galgotias-academic-monitoring-v3::c0003",
+          "galgotias-academic-monitoring-v3::c0005",
+          "galgotias-academic-monitoring-v3::c0001",
+          "galgotias-academic-monitoring-v3::c0000",
+          "galgotias-academic-monitoring-v3::c0004",
+          "galgotias-handbook-2026-27::c0052",
+          "galgotias-handbook-2026-27::c0062",
+          "part-a-academic-regulations::c0024",
+          "galgotias-handbook-2026-27::c0051",
+          "part-b-examination-rules-regulations::c0058"
+        ]
+      },
+      {
+        "qid": "galgotias-academic-monitoring-v3::Q5",
+        "question": "What four discrepancies must Academic Monitoring Team members observe and report, and how do they report them?",
+        "top_k": [
+          "galgotias-academic-monitoring-v3::c0001",
+          "galgotias-academic-monitoring-v3::c0000",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0003",
+          "galgotias-academic-monitoring-v3::c0002",
+          "part-b-examination-rules-regulations::c0044",
+          "galgotias-academic-monitoring-v3::c0004",
+          "galgotias-handbook-2026-27::c0113",
+          "part-b-examination-rules-regulations::c0034",
+          "galgotias-it-policy::c0017",
+          "galgotias-handbook-2026-27::c0050"
+        ]
+      },
+      {
+        "qid": "galgotias-academic-monitoring-v3::Q6",
+        "question": "At what time is the timetable downloaded for surveillance, and at what time is the daily default report emailed?",
+        "top_k": [
+          "galgotias-academic-monitoring-v3::c0001",
+          "galgotias-academic-monitoring-v3::c0000",
+          "galgotias-academic-monitoring-v3::c0002",
+          "galgotias-academic-monitoring-v3::c0004",
+          "galgotias-academic-monitoring-v3::c0003",
+          "hostel rule booklet::c0019",
+          "galgotias-handbook-2026-27::c0091",
+          "galgotias-handbook-2026-27::c0045",
+          "part-b-examination-rules-regulations::c0022",
+          "part-b-examination-rules-regulations::c0024"
+        ]
+      },
+      {
+        "qid": "galgotias-academic-monitoring-v3::Q7",
+        "question": "To whom is the daily school-wise report of defaults sent?",
+        "top_k": [
+          "galgotias-academic-monitoring-v3::c0001",
+          "galgotias-academic-monitoring-v3::c0005",
+          "galgotias-academic-monitoring-v3::c0004",
+          "part-b-examination-rules-regulations::c0036",
+          "part-b-examination-rules-regulations::c0024",
+          "galgotias-academic-monitoring-v3::c0002",
+          "galgotias-academic-monitoring-v3::c0000",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0002",
+          "part-b-examination-rules-regulations::c0020",
+          "part-b-examination-rules-regulations::c0023"
+        ]
+      },
+      {
+        "qid": "galgotias-academic-monitoring-v3::Q8",
+        "question": "What is the consequence of falsifying attendance records, and how does it differ from repeatedly failing to mark attendance?",
+        "top_k": [
+          "galgotias-academic-monitoring-v3::c0002",
+          "galgotias-academic-monitoring-v3::c0003",
+          "galgotias-handbook-2026-27::c0080",
+          "galgotias-handbook-2026-27::c0081",
+          "galgotias-academic-monitoring-v3::c0001",
+          "galgotias-academic-monitoring-v3::c0000",
+          "part-b-examination-rules-regulations::c0005",
+          "galgotias-handbook-2026-27::c0055",
+          "part-b-examination-rules-regulations::c0056",
+          "galgotias-handbook-2026-27::c0056"
+        ]
+      },
+      {
+        "qid": "galgotias-academic-monitoring-v3::Q9",
+        "question": "How are students participating in school-authorized events marked in the attendance system?",
+        "top_k": [
+          "galgotias-academic-monitoring-v3::c0002",
+          "galgotias-handbook-2026-27::c0055",
+          "part-b-examination-rules-regulations::c0005",
+          "galgotias-handbook-2026-27::c0080",
+          "part-a-academic-regulations::c0027",
+          "part-a-academic-regulations::c0026",
+          "galgotias-academic-monitoring-v3::c0000",
+          "part-b-examination-rules-regulations::c0004",
+          "galgotias-academic-monitoring-v3::c0001",
+          "galgotias-handbook-2026-27::c0057"
+        ]
+      },
+      {
+        "qid": "galgotias-academic-monitoring-v3::Q10",
+        "question": "Within how long must a faculty member respond to an explanation request, and to whom must the response be addressed?",
+        "top_k": [
+          "galgotias-academic-monitoring-v3::c0004",
+          "part-b-examination-rules-regulations::c0058",
+          "galgotias-academic-monitoring-v3::c0001",
+          "galgotias-it-policy::c0016",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0002",
+          "galgotias-academic-monitoring-v3::c0003",
+          "part-b-examination-rules-regulations::c0059",
+          "part-a-academic-regulations::c0040",
+          "part-a-academic-regulations::c0039",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0001"
+        ]
+      },
+      {
+        "qid": "galgotias-academic-monitoring-v3::Q11",
+        "question": "How is a faculty member's absence counted when several classes are missed on the same day?",
+        "top_k": [
+          "galgotias-academic-monitoring-v3::c0004",
+          "galgotias-academic-monitoring-v3::c0003",
+          "galgotias-academic-monitoring-v3::c0001",
+          "galgotias-academic-monitoring-v3::c0000",
+          "galgotias-academic-monitoring-v3::c0002",
+          "galgotias-handbook-2026-27::c0055",
+          "part-a-academic-regulations::c0025",
+          "part-b-examination-rules-regulations::c0004",
+          "part-b-examination-rules-regulations::c0005",
+          "galgotias-handbook-2026-27::c0056"
+        ]
+      },
+      {
+        "qid": "galgotias-academic-monitoring-v3::Q12",
+        "question": "What accountability measures apply to Deans/HODs, Academic Monitoring Team members and ERP staff respectively?",
+        "top_k": [
+          "galgotias-academic-monitoring-v3::c0001",
+          "galgotias-academic-monitoring-v3::c0005",
+          "galgotias-academic-monitoring-v3::c0000",
+          "part-b-examination-rules-regulations::c0037",
+          "glbitm-idp24-29::c0011",
+          "galgotias-handbook-2026-27::c0113",
+          "glbitm-idp24-29::c0034",
+          "galgotias-academic-monitoring-v3::c0002",
+          "galgotias-handbook-2026-27::c0084",
+          "glbitm-idp24-29::c0007"
+        ]
+      },
+      {
+        "qid": "galgotias-academic-monitoring-v3::Q13",
+        "question": "Summarise the process from an observed class default through to a warning letter being issued.",
+        "top_k": [
+          "galgotias-academic-monitoring-v3::c0004",
+          "galgotias-academic-monitoring-v3::c0005",
+          "galgotias-academic-monitoring-v3::c0002",
+          "galgotias-academic-monitoring-v3::c0001",
+          "galgotias-academic-monitoring-v3::c0003",
+          "galgotias-handbook-2026-27::c0026",
+          "part-b-examination-rules-regulations::c0024",
+          "part-b-examination-rules-regulations::c0037",
+          "part-a-academic-regulations::c0040",
+          "galgotias-handbook-2026-27::c0025"
+        ]
+      },
+      {
+        "qid": "galgotias-academic-monitoring-v3::Q14",
+        "question": "Summarise the make-up schedule arrangements for missed classes.",
+        "top_k": [
+          "galgotias-academic-monitoring-v3::c0004",
+          "galgotias-academic-monitoring-v3::c0003",
+          "galgotias-academic-monitoring-v3::c0000",
+          "galgotias-handbook-2026-27::c0045",
+          "galgotias-academic-monitoring-v3::c0001",
+          "part-b-examination-rules-regulations::c0024",
+          "part-b-examination-rules-regulations::c0004",
+          "galgotias-handbook-2026-27::c0056",
+          "part-a-academic-regulations::c0025",
+          "part-b-examination-rules-regulations::c0042"
+        ]
+      },
+      {
+        "qid": "galgotias-grievance-policy::Q1",
+        "question": "Which two grievance redressal committees does the Vice Chancellor constitute, and what additional function does the higher one perform?",
+        "top_k": [
+          "galgotias-grievance-policy::c0000",
+          "galgotias-handbook-2026-27::c0086",
+          "galgotias-grievance-policy::c0001",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0003",
+          "galgotias-handbook-2026-27::c0085",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0001",
+          "galgotias-handbook-2026-27::c0084",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0000",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0002",
+          "part-a-academic-regulations::c0038"
+        ]
+      },
+      {
+        "qid": "galgotias-grievance-policy::Q2",
+        "question": "How many members make up the School Level Grievance Redressal Committee, and who chairs it?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0086",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0001",
+          "galgotias-grievance-policy::c0001",
+          "galgotias-grievance-policy::c0000",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0000",
+          "galgotias-handbook-2026-27::c0085",
+          "students-grievanceredressal-cell::c0000",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0002",
+          "final_mandatory_disclosure::c0001",
+          "galgotias-handbook-2026-27::c0113"
+        ]
+      },
+      {
+        "qid": "galgotias-grievance-policy::Q3",
+        "question": "How many members serve on the University level Grievance Redressal Committee, and who acts as Member Secretary?",
+        "top_k": [
+          "galgotias-grievance-policy::c0000",
+          "galgotias-handbook-2026-27::c0086",
+          "galgotias-grievance-policy::c0001",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0001",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0000",
+          "galgotias-handbook-2026-27::c0085",
+          "part-a-academic-regulations::c0040",
+          "part-a-academic-regulations::c0039",
+          "part-b-examination-rules-regulations::c0058",
+          "final_mandatory_disclosure::c0001"
+        ]
+      },
+      {
+        "qid": "galgotias-grievance-policy::Q4",
+        "question": "Trace the full escalation path of a student grievance from the first complaint to the final appeal, giving the time limit at each stage.",
+        "top_k": [
+          "part-a-academic-regulations::c0040",
+          "part-a-academic-regulations::c0039",
+          "galgotias-grievance-policy::c0001",
+          "part-b-examination-rules-regulations::c0059",
+          "final_mandatory_disclosure::c0001",
+          "part-b-examination-rules-regulations::c0057",
+          "part-b-examination-rules-regulations::c0058",
+          "part-a-academic-regulations::c0038",
+          "galgotias-handbook-2026-27::c0086",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0003"
+        ]
+      },
+      {
+        "qid": "galgotias-grievance-policy::Q5",
+        "question": "Within how long must a mentor resolve a grievance submitted to them in writing?",
+        "top_k": [
+          "part-a-academic-regulations::c0040",
+          "galgotias-grievance-policy::c0001",
+          "part-b-examination-rules-regulations::c0059",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0002",
+          "galgotias-handbook-2026-27::c0087",
+          "part-a-academic-regulations::c0039",
+          "part-b-examination-rules-regulations::c0058",
+          "galgotias-handbook-2026-27::c0086",
+          "part-b-examination-rules-regulations::c0057",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0001"
+        ]
+      },
+      {
+        "qid": "galgotias-grievance-policy::Q6",
+        "question": "What four categories of matters does the Grievance Redressal Committee deal with?",
+        "top_k": [
+          "galgotias-grievance-policy::c0000",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0001",
+          "galgotias-handbook-2026-27::c0086",
+          "galgotias-grievance-policy::c0001",
+          "galgotias-handbook-2026-27::c0085",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0000",
+          "students-grievanceredressal-cell::c0000",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0002",
+          "final_mandatory_disclosure::c0001",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0003"
+        ]
+      },
+      {
+        "qid": "galgotias-grievance-policy::Q7",
+        "question": "What action may the Vice Chancellor take after reviewing a grievance decision, beyond passing an order?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0086",
+          "part-a-academic-regulations::c0038",
+          "part-b-examination-rules-regulations::c0058",
+          "galgotias-grievance-policy::c0001",
+          "part-b-examination-rules-regulations::c0057",
+          "galgotias-handbook-2026-27::c0084",
+          "part-a-academic-regulations::c0040",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0003",
+          "part-a-academic-regulations::c0039",
+          "part-a-academic-regulations::c0041"
+        ]
+      },
+      {
+        "qid": "galgotias-grievance-policy::Q8",
+        "question": "Summarise the objectives of the Grievance Redressal Committee and its stated position on ragging.",
+        "top_k": [
+          "galgotias-grievance-policy::c0000",
+          "galgotias-handbook-2026-27::c0085",
+          "galgotias-handbook-2026-27::c0086",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0001",
+          "final_mandatory_disclosure::c0001",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0000",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0002",
+          "h82fzupvsto2zjkfhcxjakjtqyphrhakgddvsm5e::c0002",
+          "galgotias-grievance-policy::c0001",
+          "students-grievanceredressal-cell::c0000"
+        ]
+      },
+      {
+        "qid": "galgotias-handbook-2026-27::Q1",
+        "question": "What two criteria exempt a student from the minimum attendance requirement, and what reduced requirements apply instead?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0056",
+          "galgotias-handbook-2026-27::c0057",
+          "part-a-academic-regulations::c0026",
+          "part-b-examination-rules-regulations::c0005",
+          "galgotias-handbook-2026-27::c0055",
+          "part-a-academic-regulations::c0027",
+          "galgotias-handbook-2026-27::c0054",
+          "part-a-academic-regulations::c0035",
+          "part-a-academic-regulations::c0025",
+          "galgotias-handbook-2026-27::c0061"
+        ]
+      },
+      {
+        "qid": "galgotias-handbook-2026-27::Q2",
+        "question": "From which semester does the attendance exemption for extraordinary students apply, and what happens if the student's CGPA later drops?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0056",
+          "part-b-examination-rules-regulations::c0055",
+          "part-a-academic-regulations::c0036",
+          "galgotias-handbook-2026-27::c0060",
+          "part-b-examination-rules-regulations::c0012",
+          "galgotias-handbook-2026-27::c0057",
+          "part-a-academic-regulations::c0030",
+          "galgotias-handbook-2026-27::c0055",
+          "part-a-academic-regulations::c0029",
+          "part-b-examination-rules-regulations::c0013"
+        ]
+      },
+      {
+        "qid": "galgotias-handbook-2026-27::Q3",
+        "question": "Which CGPA is used to decide the attendance exemption, and does a revaluation change it?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0056",
+          "galgotias-handbook-2026-27::c0060",
+          "part-b-examination-rules-regulations::c0055",
+          "part-a-academic-regulations::c0036",
+          "part-b-examination-rules-regulations::c0006",
+          "part-a-academic-regulations::c0029",
+          "part-b-examination-rules-regulations::c0038",
+          "galgotias-handbook-2026-27::c0046",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0002",
+          "part-b-examination-rules-regulations::c0012"
+        ]
+      },
+      {
+        "qid": "galgotias-handbook-2026-27::Q4",
+        "question": "For On Duty credit, which authority grants sanction for academic requests as opposed to co-curricular ones?",
+        "top_k": [
+          "part-b-examination-rules-regulations::c0005",
+          "part-a-academic-regulations::c0026",
+          "students-grievanceredressal-cell::c0003",
+          "galgotias-handbook-2026-27::c0055",
+          "part-b-examination-rules-regulations::c0004",
+          "galgotias-handbook-2026-27::c0063",
+          "part-b-examination-rules-regulations::c0032",
+          "part-a-academic-regulations::c0025",
+          "students-grievanceredressal-cell::c0002",
+          "part-b-examination-rules-regulations::c0031"
+        ]
+      },
+      {
+        "qid": "galgotias-handbook-2026-27::Q5",
+        "question": "What three marks thresholds must a student fail to meet before being denied a second chance at an internal assessment component?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0057",
+          "part-b-examination-rules-regulations::c0037",
+          "galgotias-handbook-2026-27::c0049",
+          "part-b-examination-rules-regulations::c0028",
+          "galgotias-academic-monitoring-v3::c0002",
+          "part-b-examination-rules-regulations::c0054",
+          "galgotias-academic-monitoring-v3::c0003",
+          "part-b-examination-rules-regulations::c0029",
+          "part-b-examination-rules-regulations::c0024",
+          "part-b-examination-rules-regulations::c0025"
+        ]
+      },
+      {
+        "qid": "galgotias-handbook-2026-27::Q6",
+        "question": "What grade is awarded to a student who does not appear in the MTE, even if they meet the attendance criteria?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0056",
+          "galgotias-handbook-2026-27::c0057",
+          "part-a-academic-regulations::c0030",
+          "galgotias-handbook-2026-27::c0055",
+          "galgotias-handbook-2026-27::c0049",
+          "galgotias-handbook-2026-27::c0061",
+          "galgotias-handbook-2026-27::c0062",
+          "part-a-academic-regulations::c0027",
+          "part-a-academic-regulations::c0026",
+          "galgotias-handbook-2026-27::c0054"
+        ]
+      },
+      {
+        "qid": "galgotias-handbook-2026-27::Q7",
+        "question": "Apart from a shortfall in attendance, what two reasons make a registered student ineligible to write the SEE/ETE?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0057",
+          "galgotias-handbook-2026-27::c0056",
+          "part-b-examination-rules-regulations::c0005",
+          "galgotias-handbook-2026-27::c0054",
+          "part-a-academic-regulations::c0026",
+          "part-a-academic-regulations::c0027",
+          "galgotias-handbook-2026-27::c0055",
+          "part-b-examination-rules-regulations::c0028",
+          "galgotias-handbook-2026-27::c0062",
+          "part-b-examination-rules-regulations::c0004"
+        ]
+      },
+      {
+        "qid": "galgotias-handbook-2026-27::Q8",
+        "question": "How is unauthorised absence treated in the attendance calculation?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0055",
+          "part-a-academic-regulations::c0026",
+          "part-b-examination-rules-regulations::c0005",
+          "part-a-academic-regulations::c0025",
+          "part-b-examination-rules-regulations::c0004",
+          "galgotias-handbook-2026-27::c0054",
+          "galgotias-handbook-2026-27::c0057",
+          "galgotias-academic-monitoring-v3::c0002",
+          "galgotias-handbook-2026-27::c0060",
+          "hostel rule booklet::c0010"
+        ]
+      },
+      {
+        "qid": "galgotias-handbook-2026-27::Q9",
+        "question": "How early must students be seated in the examination hall, and what happens if they are not in proper formal attire?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0053",
+          "galgotias-handbook-2026-27::c0054",
+          "galgotias-handbook-2026-27::c0055",
+          "galgotias-handbook-2026-27::c0049",
+          "part-b-examination-rules-regulations::c0048",
+          "part-b-examination-rules-regulations::c0041",
+          "galgotias-handbook-2026-27::c0075",
+          "hostel rule booklet::c0018",
+          "galgotias-handbook-2026-27::c0056",
+          "galgotias-handbook-2026-27::c0048"
+        ]
+      },
+      {
+        "qid": "galgotias-handbook-2026-27::Q10",
+        "question": "Summarise the attendance relaxation policy for extraordinary students, including eligibility, the reduced requirements, and how the exempt list is maintained.",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0056",
+          "part-b-examination-rules-regulations::c0005",
+          "part-a-academic-regulations::c0026",
+          "part-a-academic-regulations::c0027",
+          "galgotias-handbook-2026-27::c0055",
+          "galgotias-handbook-2026-27::c0062",
+          "hostel rule booklet::c0002",
+          "part-b-examination-rules-regulations::c0028",
+          "hostel rule booklet::c0016",
+          "part-a-academic-regulations::c0025"
+        ]
+      },
+      {
+        "qid": "galgotias-handbook-2026-27::Q11",
+        "question": "Summarise the full set of eligibility conditions a student must satisfy to appear in university examinations.",
+        "top_k": [
+          "part-b-examination-rules-regulations::c0031",
+          "galgotias-handbook-2026-27::c0054",
+          "galgotias-handbook-2026-27::c0057",
+          "part-a-academic-regulations::c0031",
+          "part-b-examination-rules-regulations::c0041",
+          "galgotias-handbook-2026-27::c0056",
+          "part-b-examination-rules-regulations::c0030",
+          "galgotias-handbook-2026-27::c0062",
+          "galgotias-handbook-2026-27::c0061",
+          "part-b-examination-rules-regulations::c0057"
+        ]
+      },
+      {
+        "qid": "galgotias-handbook-2026-27::Q12",
+        "question": "Summarise how credits are defined and allocated across different types of course components.",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0051",
+          "galgotias-handbook-2026-27::c0043",
+          "galgotias-handbook-2026-27::c0040",
+          "galgotias-handbook-2026-27::c0026",
+          "galgotias-handbook-2026-27::c0060",
+          "galgotias-handbook-2026-27::c0025",
+          "galgotias-handbook-2026-27::c0005",
+          "galgotias-handbook-2026-27::c0052",
+          "part-b-examination-rules-regulations::c0038",
+          "galgotias-handbook-2026-27::c0038"
+        ]
+      },
+      {
+        "qid": "galgotias-handbook-2026-27::Q13",
+        "question": "Summarise the requirements for graduation and what happens after it.",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0062",
+          "galgotias-handbook-2026-27::c0026",
+          "part-a-academic-regulations::c0035",
+          "part-b-examination-rules-regulations::c0054",
+          "galgotias-handbook-2026-27::c0042",
+          "part-b-examination-rules-regulations::c0017",
+          "galgotias-handbook-2026-27::c0037",
+          "galgotias-handbook-2026-27::c0025",
+          "part-b-examination-rules-regulations::c0016",
+          "galgotias-handbook-2026-27::c0074"
+        ]
+      },
+      {
+        "qid": "galgotias-handbook-2026-27::Q14",
+        "question": "Summarise the Category I disciplinary offences and the penalty they attract.",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0084",
+          "galgotias-handbook-2026-27::c0081",
+          "galgotias-handbook-2026-27::c0085",
+          "galgotias-handbook-2026-27::c0082",
+          "h82fzupvsto2zjkfhcxjakjtqyphrhakgddvsm5e::c0000",
+          "part-b-examination-rules-regulations::c0046",
+          "galgotias-handbook-2026-27::c0050",
+          "galgotias-handbook-2026-27::c0080",
+          "h82fzupvsto2zjkfhcxjakjtqyphrhakgddvsm5e::c0001",
+          "part-b-examination-rules-regulations::c0037"
+        ]
+      },
+      {
+        "qid": "galgotias-handbook-2026-27::Q15",
+        "question": "Summarise the Category II disciplinary offences and how their punishment differs from Category I.",
+        "top_k": [
+          "h82fzupvsto2zjkfhcxjakjtqyphrhakgddvsm5e::c0000",
+          "galgotias-handbook-2026-27::c0084",
+          "galgotias-handbook-2026-27::c0085",
+          "galgotias-handbook-2026-27::c0080",
+          "h82fzupvsto2zjkfhcxjakjtqyphrhakgddvsm5e::c0001",
+          "galgotias-handbook-2026-27::c0046",
+          "galgotias-handbook-2026-27::c0081",
+          "galgotias-handbook-2026-27::c0082",
+          "hostel rule booklet::c0021",
+          "part-a-academic-regulations::c0022"
+        ]
+      },
+      {
+        "qid": "galgotias-handbook-2026-27::Q16",
+        "question": "Summarise the hostel admission guidelines, including duration of allotment and the consequences of leaving early.",
+        "top_k": [
+          "hostel rule booklet::c0016",
+          "hostel rule booklet::c0004",
+          "hostel rule booklet::c0002",
+          "hostel rule booklet::c0003",
+          "hostel rule booklet::c0021",
+          "hostel rule booklet::c0013",
+          "hostel rule booklet::c0020",
+          "hostel rule booklet::c0019",
+          "galgotias-handbook-2026-27::c0098",
+          "hostel rule booklet::c0001"
+        ]
+      },
+      {
+        "qid": "galgotias-handbook-2026-27::Q17",
+        "question": "Under what three conditions may a student from the third semester onwards register up to the maximum course load?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0052",
+          "part-a-academic-regulations::c0028",
+          "part-b-examination-rules-regulations::c0011",
+          "part-b-examination-rules-regulations::c0013",
+          "part-b-examination-rules-regulations::c0009",
+          "part-b-examination-rules-regulations::c0008",
+          "galgotias-handbook-2026-27::c0051",
+          "part-b-examination-rules-regulations::c0054",
+          "galgotias-handbook-2026-27::c0045",
+          "part-b-examination-rules-regulations::c0028"
+        ]
+      },
+      {
+        "qid": "galgotias-handbook-2026-27::Q18",
+        "question": "What conditions apply to additional courses beyond the credit cap?",
+        "top_k": [
+          "part-b-examination-rules-regulations::c0011",
+          "part-a-academic-regulations::c0028",
+          "part-a-academic-regulations::c0029",
+          "part-b-examination-rules-regulations::c0012",
+          "galgotias-handbook-2026-27::c0041",
+          "part-b-examination-rules-regulations::c0054",
+          "galgotias-handbook-2026-27::c0052",
+          "galgotias-handbook-2026-27::c0047",
+          "part-b-examination-rules-regulations::c0015",
+          "part-b-examination-rules-regulations::c0016"
+        ]
+      },
+      {
+        "qid": "galgotias-handbook-2026-27::Q19",
+        "question": "How are audit and value added courses treated in assessing academic performance?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0041",
+          "galgotias-handbook-2026-27::c0025",
+          "part-b-examination-rules-regulations::c0030",
+          "galgotias-handbook-2026-27::c0050",
+          "part-b-examination-rules-regulations::c0037",
+          "galgotias-handbook-2026-27::c0024",
+          "galgotias-handbook-2026-27::c0051",
+          "galgotias-handbook-2026-27::c0026",
+          "galgotias-handbook-2026-27::c0039",
+          "part-b-examination-rules-regulations::c0038"
+        ]
+      },
+      {
+        "qid": "galgotias-it-policy::Q1",
+        "question": "How many university desktop computers and laptops does IT Services support?",
+        "top_k": [
+          "galgotias-it-policy::c0002",
+          "galgotias-it-policy::c0005",
+          "galgotias-it-policy::c0003",
+          "galgotias-it-policy::c0006",
+          "galgotias-it-policy::c0007",
+          "galgotias-it-policy::c0000",
+          "galgotias-it-policy::c0001",
+          "galgotias-handbook-2026-27::c0090",
+          "galgotias-it-policy::c0008",
+          "galgotias-handbook-2026-27::c0089"
+        ]
+      },
+      {
+        "qid": "galgotias-it-policy::Q2",
+        "question": "What mailbox usage threshold should users stay within, and what happens if they exceed it?",
+        "top_k": [
+          "galgotias-it-policy::c0009",
+          "galgotias-it-policy::c0010",
+          "galgotias-handbook-2026-27::c0110",
+          "part-b-examination-rules-regulations::c0022",
+          "hostel rule booklet::c0019",
+          "galgotias-handbook-2026-27::c0078",
+          "galgotias-handbook-2026-27::c0054",
+          "galgotias-handbook-2026-27::c0075",
+          "galgotias-handbook-2026-27::c0098",
+          "hostel rule booklet::c0017"
+        ]
+      },
+      {
+        "qid": "galgotias-it-policy::Q3",
+        "question": "What constitutes illegal use of the university email facility, and what may result from it?",
+        "top_k": [
+          "galgotias-it-policy::c0009",
+          "galgotias-it-policy::c0013",
+          "galgotias-handbook-2026-27::c0110",
+          "galgotias-it-policy::c0008",
+          "galgotias-it-policy::c0010",
+          "galgotias-it-policy::c0002",
+          "galgotias-it-policy::c0001",
+          "galgotias-handbook-2026-27::c0081",
+          "galgotias-handbook-2026-27::c0108",
+          "galgotias-it-policy::c0012"
+        ]
+      },
+      {
+        "qid": "galgotias-it-policy::Q4",
+        "question": "How does a user obtain a university email id?",
+        "top_k": [
+          "galgotias-it-policy::c0009",
+          "galgotias-it-policy::c0010",
+          "galgotias-it-policy::c0008",
+          "galgotias-it-policy::c0003",
+          "galgotias-it-policy::c0007",
+          "galgotias-handbook-2026-27::c0090",
+          "galgotias-handbook-2026-27::c0109",
+          "galgotias-it-policy::c0012",
+          "format-public-self-disclosure-manuu::c0000",
+          "format-public-self-disclosure-manuu::c0001"
+        ]
+      },
+      {
+        "qid": "galgotias-it-policy::Q5",
+        "question": "What should a user do if they find another person's email account accidentally left open on a shared computer?",
+        "top_k": [
+          "galgotias-it-policy::c0010",
+          "galgotias-it-policy::c0009",
+          "galgotias-it-policy::c0016",
+          "galgotias-it-policy::c0008",
+          "galgotias-it-policy::c0007",
+          "galgotias-it-policy::c0003",
+          "galgotias-handbook-2026-27::c0109",
+          "galgotias-handbook-2026-27::c0110",
+          "galgotias-handbook-2026-27::c0090",
+          "galgotias-it-policy::c0012"
+        ]
+      },
+      {
+        "qid": "galgotias-it-policy::Q6",
+        "question": "Why must a user not share their email account, and how is impersonating another person's account treated?",
+        "top_k": [
+          "galgotias-it-policy::c0010",
+          "galgotias-it-policy::c0009",
+          "galgotias-handbook-2026-27::c0109",
+          "galgotias-it-policy::c0008",
+          "galgotias-it-policy::c0016",
+          "galgotias-it-policy::c0012",
+          "galgotias-it-policy::c0007",
+          "part-b-examination-rules-regulations::c0043",
+          "galgotias-handbook-2026-27::c0108",
+          "galgotias-it-policy::c0014"
+        ]
+      },
+      {
+        "qid": "galgotias-it-policy::Q7",
+        "question": "Summarise the email security guidance given to users regarding suspicious mail and attachments.",
+        "top_k": [
+          "galgotias-it-policy::c0009",
+          "galgotias-it-policy::c0010",
+          "galgotias-it-policy::c0001",
+          "galgotias-it-policy::c0008",
+          "part-b-examination-rules-regulations::c0040",
+          "galgotias-it-policy::c0016",
+          "galgotias-it-policy::c0014",
+          "galgotias-it-policy::c0012",
+          "galgotias-it-policy::c0013",
+          "part-b-examination-rules-regulations::c0034"
+        ]
+      },
+      {
+        "qid": "galgotias-it-policy::Q8",
+        "question": "Summarise the scope of services that IT Services is responsible for.",
+        "top_k": [
+          "galgotias-it-policy::c0002",
+          "galgotias-it-policy::c0003",
+          "galgotias-it-policy::c0018",
+          "galgotias-it-policy::c0004",
+          "galgotias-it-policy::c0017",
+          "galgotias-it-policy::c0007",
+          "galgotias-it-policy::c0001",
+          "galgotias-it-policy::c0000",
+          "galgotias-handbook-2026-27::c0113",
+          "galgotias-it-policy::c0006"
+        ]
+      },
+      {
+        "qid": "GLBITM-IDP24-29::Q1",
+        "question": "How many members make up the Board of Governors as constituted per AICTE guidelines, and how many of those are faculty members?",
+        "top_k": [
+          "glbitm-idp24-29::c0008",
+          "glbitm-idp24-29::c0007",
+          "abesec_eoa_2026-27::c0003",
+          "boardof-studies-2024-25::c0000",
+          "rnd-office-order-asperugc::c0008",
+          "students-grievanceredressal-cell::c0005",
+          "rnd-office-order-asperugc::c0006",
+          "part-b-examination-rules-regulations::c0000",
+          "mandatory-disclosure::c0001",
+          "glbitm-idp24-29::c0009"
+        ]
+      },
+      {
+        "qid": "GLBITM-IDP24-29::Q2",
+        "question": "Which three ex-officio positions sit on the Board of Governors?",
+        "top_k": [
+          "glbitm-idp24-29::c0008",
+          "boardof-studies-2024-25::c0000",
+          "glbitm-idp24-29::c0007",
+          "mandatory-disclosure::c0001",
+          "part-a-academic-regulations::c0038",
+          "part-b-examination-rules-regulations::c0013",
+          "part-b-examination-rules-regulations::c0002",
+          "part-a-academic-regulations::c0037",
+          "format-public-self-disclosure-manuu::c0001",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0002"
+        ]
+      },
+      {
+        "qid": "GLBITM-IDP24-29::Q3",
+        "question": "Summarise the governance objectives set out in the Institutional Development Plan.",
+        "top_k": [
+          "glbitm-idp24-29::c0005",
+          "glbitm-idp24-29::c0004",
+          "glbitm-idp24-29::c0007",
+          "glbitm-idp24-29::c0034",
+          "qtmrve2p2esucuqliume4wzjnrb0uudsotwzpdzx::c0001",
+          "glbitm-idp24-29::c0000",
+          "dspr8pxaam4tcygv1ldbmk27hgwexcr4hkxckjfd::c0001",
+          "glbitm-idp24-29::c0009",
+          "glbitm-idp24-29::c0010",
+          "glbitm-idp24-29::c0022"
+        ]
+      },
+      {
+        "qid": "GLBITM-IDP24-29::Q4",
+        "question": "What is the stated purpose and time span of this Institutional Development Plan, and which institution issued it?",
+        "top_k": [
+          "glbitm-idp24-29::c0005",
+          "glbitm-idp24-29::c0004",
+          "glbitm-idp24-29::c0007",
+          "students-grievanceredressal-cell::c0002",
+          "glbitm-idp24-29::c0000",
+          "rnd-office-order-asperugc::c0000",
+          "qtmrve2p2esucuqliume4wzjnrb0uudsotwzpdzx::c0006",
+          "dspr8pxaam4tcygv1ldbmk27hgwexcr4hkxckjfd::c0000",
+          "glbitm-idp24-29::c0002",
+          "glbitm-idp24-29::c0034"
+        ]
+      },
+      {
+        "qid": "HOSTEL-RULE-BOOKLET::Q1",
+        "question": "How do the Out Pass signing deadlines differ between the Girls' and Boys' hostels across summer and winter?",
+        "top_k": [
+          "hostel rule booklet::c0006",
+          "galgotias-handbook-2026-27::c0098",
+          "hostel rule booklet::c0019",
+          "hostel rule booklet::c0001",
+          "hostel rule booklet::c0016",
+          "hostel rule booklet::c0004",
+          "hostel rule booklet::c0018",
+          "hostel rule booklet::c0007",
+          "hostel rule booklet::c0013",
+          "hostel rule booklet::c0000"
+        ]
+      },
+      {
+        "qid": "HOSTEL-RULE-BOOKLET::Q2",
+        "question": "How does hostel attendance timing differ between first year and later year students in the Boys' Hostel?",
+        "top_k": [
+          "hostel rule booklet::c0016",
+          "hostel rule booklet::c0019",
+          "hostel rule booklet::c0002",
+          "hostel rule booklet::c0006",
+          "hostel rule booklet::c0003",
+          "galgotias-handbook-2026-27::c0097",
+          "hostel rule booklet::c0004",
+          "h82fzupvsto2zjkfhcxjakjtqyphrhakgddvsm5e::c0003",
+          "hostel rule booklet::c0001",
+          "galgotias-handbook-2026-27::c0098"
+        ]
+      },
+      {
+        "qid": "HOSTEL-RULE-BOOKLET::Q3",
+        "question": "What is the fine for taking a utensil or food outside the mess, and what is the fine for allowing a day scholar to stay in a hostel room?",
+        "top_k": [
+          "hostel rule booklet::c0005",
+          "hostel rule booklet::c0018",
+          "galgotias-handbook-2026-27::c0098",
+          "hostel rule booklet::c0007",
+          "hostel rule booklet::c0020",
+          "hostel rule booklet::c0013",
+          "galgotias-handbook-2026-27::c0097",
+          "galgotias-handbook-2026-27::c0099",
+          "hostel rule booklet::c0019",
+          "hostel rule booklet::c0011"
+        ]
+      },
+      {
+        "qid": "HOSTEL-RULE-BOOKLET::Q4",
+        "question": "What penalty applies to a student found drinking liquor in the hostel campus?",
+        "top_k": [
+          "hostel rule booklet::c0007",
+          "hostel rule booklet::c0005",
+          "hostel rule booklet::c0020",
+          "hostel rule booklet::c0008",
+          "hostel rule booklet::c0010",
+          "hostel rule booklet::c0021",
+          "galgotias-handbook-2026-27::c0097",
+          "hostel rule booklet::c0014",
+          "galgotias-handbook-2026-27::c0098",
+          "hostel rule booklet::c0016"
+        ]
+      },
+      {
+        "qid": "HOSTEL-RULE-BOOKLET::Q5",
+        "question": "How many boys' hostels and girls' hostel blocks are listed?",
+        "top_k": [
+          "hostel rule booklet::c0000",
+          "galgotias-handbook-2026-27::c0098",
+          "hostel rule booklet::c0016",
+          "hostel rule booklet::c0001",
+          "hostel rule booklet::c0014",
+          "hostel rule booklet::c0013",
+          "hostel rule booklet::c0020",
+          "final_mandatory_disclosure::c0036",
+          "hostel rule booklet::c0019",
+          "hostel rule booklet::c0017"
+        ]
+      },
+      {
+        "qid": "HOSTEL-RULE-BOOKLET::Q6",
+        "question": "Under what three circumstances will hostel accommodation not be allotted to a student?",
+        "top_k": [
+          "hostel rule booklet::c0016",
+          "galgotias-handbook-2026-27::c0097",
+          "hostel rule booklet::c0003",
+          "hostel rule booklet::c0002",
+          "galgotias-handbook-2026-27::c0098",
+          "hostel rule booklet::c0009",
+          "hostel rule booklet::c0018",
+          "hostel rule booklet::c0019",
+          "hostel rule booklet::c0014",
+          "hostel rule booklet::c0000"
+        ]
+      },
+      {
+        "qid": "HOSTEL-RULE-BOOKLET::Q7",
+        "question": "What is the cut-off date for preparing the hostel allotment merit list, and what happens to students with a back paper?",
+        "top_k": [
+          "hostel rule booklet::c0002",
+          "hostel rule booklet::c0016",
+          "hostel rule booklet::c0003",
+          "hostel rule booklet::c0021",
+          "hostel rule booklet::c0004",
+          "hostel rule booklet::c0008",
+          "hostel rule booklet::c0001",
+          "hostel rule booklet::c0007",
+          "part-b-examination-rules-regulations::c0030",
+          "galgotias-handbook-2026-27::c0098"
+        ]
+      },
+      {
+        "qid": "HOSTEL-RULE-BOOKLET::Q8",
+        "question": "What happens to a provisionally allotted student who fails the even semester?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0062",
+          "part-a-academic-regulations::c0038",
+          "part-b-examination-rules-regulations::c0057",
+          "galgotias-academic-monitoring-v3::c0003",
+          "galgotias-handbook-2026-27::c0056",
+          "galgotias-handbook-2026-27::c0057",
+          "hostel rule booklet::c0016",
+          "galgotias-handbook-2026-27::c0052",
+          "part-a-academic-regulations::c0036",
+          "part-b-examination-rules-regulations::c0055"
+        ]
+      },
+      {
+        "qid": "HOSTEL-RULE-BOOKLET::Q9",
+        "question": "Which first year students are considered for hostel accommodation only after rooms remain vacant?",
+        "top_k": [
+          "hostel rule booklet::c0002",
+          "hostel rule booklet::c0003",
+          "hostel rule booklet::c0016",
+          "galgotias-handbook-2026-27::c0097",
+          "hostel rule booklet::c0019",
+          "hostel rule booklet::c0009",
+          "hostel rule booklet::c0020",
+          "hostel rule booklet::c0001",
+          "hostel rule booklet::c0000",
+          "hostel rule booklet::c0005"
+        ]
+      },
+      {
+        "qid": "HOSTEL-RULE-BOOKLET::Q10",
+        "question": "What are the mess dinner timings on working days compared with Saturdays, Sundays and holidays?",
+        "top_k": [
+          "hostel rule booklet::c0007",
+          "hostel rule booklet::c0018",
+          "galgotias-handbook-2026-27::c0099",
+          "hostel rule booklet::c0008",
+          "hostel rule booklet::c0006",
+          "galgotias-handbook-2026-27::c0098",
+          "hostel rule booklet::c0004",
+          "galgotias-handbook-2026-27::c0066",
+          "galgotias-handbook-2026-27::c0044",
+          "part-a-academic-regulations::c0024"
+        ]
+      },
+      {
+        "qid": "HOSTEL-RULE-BOOKLET::Q11",
+        "question": "How much longer is lunch on working days than on Saturdays, Sundays and holidays?",
+        "top_k": [
+          "hostel rule booklet::c0018",
+          "galgotias-handbook-2026-27::c0045",
+          "hostel rule booklet::c0007",
+          "galgotias-handbook-2026-27::c0066",
+          "part-b-examination-rules-regulations::c0003",
+          "galgotias-handbook-2026-27::c0099",
+          "part-a-academic-regulations::c0024",
+          "galgotias-handbook-2026-27::c0044",
+          "hostel rule booklet::c0004",
+          "part-b-examination-rules-regulations::c0024"
+        ]
+      },
+      {
+        "qid": "HOSTEL-RULE-BOOKLET::Q12",
+        "question": "Where and at what times may hostellers celebrate a function such as a birthday?",
+        "top_k": [
+          "hostel rule booklet::c0005",
+          "hostel rule booklet::c0018",
+          "hostel rule booklet::c0004",
+          "galgotias-handbook-2026-27::c0097",
+          "hostel rule booklet::c0003",
+          "hostel rule booklet::c0000",
+          "galgotias-handbook-2026-27::c0099",
+          "h82fzupvsto2zjkfhcxjakjtqyphrhakgddvsm5e::c0001",
+          "hostel rule booklet::c0019",
+          "h82fzupvsto2zjkfhcxjakjtqyphrhakgddvsm5e::c0000"
+        ]
+      },
+      {
+        "qid": "HOSTEL-RULE-BOOKLET::Q13",
+        "question": "Within how long must students vacate their rooms after examinations are over?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0097",
+          "part-b-examination-rules-regulations::c0041",
+          "hostel rule booklet::c0016",
+          "hostel rule booklet::c0003",
+          "hostel rule booklet::c0004",
+          "part-a-academic-regulations::c0024",
+          "part-b-examination-rules-regulations::c0036",
+          "hostel rule booklet::c0002",
+          "galgotias-handbook-2026-27::c0054",
+          "galgotias-handbook-2026-27::c0049"
+        ]
+      },
+      {
+        "qid": "HOSTEL-RULE-BOOKLET::Q14",
+        "question": "What are the three steps of the room allotment procedure?",
+        "top_k": [
+          "hostel rule booklet::c0003",
+          "hostel rule booklet::c0002",
+          "hostel rule booklet::c0016",
+          "hostel rule booklet::c0004",
+          "h82fzupvsto2zjkfhcxjakjtqyphrhakgddvsm5e::c0003",
+          "hostel rule booklet::c0021",
+          "hostel rule booklet::c0001",
+          "hostel rule booklet::c0013",
+          "part-b-examination-rules-regulations::c0043",
+          "h82fzupvsto2zjkfhcxjakjtqyphrhakgddvsm5e::c0001"
+        ]
+      },
+      {
+        "qid": "HOSTEL-RULE-BOOKLET::Q15",
+        "question": "What medical documentation must a student submit at the time of hostel admission?",
+        "top_k": [
+          "hostel rule booklet::c0003",
+          "galgotias-handbook-2026-27::c0097",
+          "hostel rule booklet::c0016",
+          "hostel rule booklet::c0015",
+          "hostel rule booklet::c0013",
+          "hostel rule booklet::c0014",
+          "galgotias-handbook-2026-27::c0096",
+          "hostel rule booklet::c0002",
+          "hostel rule booklet::c0019",
+          "h82fzupvsto2zjkfhcxjakjtqyphrhakgddvsm5e::c0001"
+        ]
+      },
+      {
+        "qid": "HOSTEL-RULE-BOOKLET::Q16",
+        "question": "Summarise the rules governing electrical appliances, valuables and computers in hostel rooms, including where responsibility lies.",
+        "top_k": [
+          "hostel rule booklet::c0017",
+          "hostel rule booklet::c0020",
+          "galgotias-handbook-2026-27::c0098",
+          "galgotias-handbook-2026-27::c0097",
+          "hostel rule booklet::c0000",
+          "hostel rule booklet::c0005",
+          "hostel rule booklet::c0018",
+          "hostel rule booklet::c0016",
+          "hostel rule booklet::c0021",
+          "hostel rule booklet::c0003"
+        ]
+      },
+      {
+        "qid": "HOSTEL-RULE-BOOKLET::Q17",
+        "question": "Summarise the hostel's position on ragging, including the consequences and the legal basis cited.",
+        "top_k": [
+          "hostel rule booklet::c0021",
+          "h82fzupvsto2zjkfhcxjakjtqyphrhakgddvsm5e::c0003",
+          "hostel rule booklet::c0014",
+          "h82fzupvsto2zjkfhcxjakjtqyphrhakgddvsm5e::c0002",
+          "hostel rule booklet::c0000",
+          "h82fzupvsto2zjkfhcxjakjtqyphrhakgddvsm5e::c0001",
+          "hostel rule booklet::c0006",
+          "hostel rule booklet::c0020",
+          "hostel rule booklet::c0005",
+          "hostel rule booklet::c0003"
+        ]
+      },
+      {
+        "qid": "HOSTEL-RULE-BOOKLET::Q18",
+        "question": "Summarise how the mess is run, who is responsible for food quality, and what happens during holidays.",
+        "top_k": [
+          "hostel rule booklet::c0007",
+          "galgotias-handbook-2026-27::c0099",
+          "hostel rule booklet::c0018",
+          "hostel rule booklet::c0005",
+          "galgotias-handbook-2026-27::c0109",
+          "galgotias-handbook-2026-27::c0100",
+          "part-a-academic-regulations::c0024",
+          "galgotias-handbook-2026-27::c0098",
+          "galgotias-handbook-2026-27::c0113",
+          "hostel rule booklet::c0004"
+        ]
+      },
+      {
+        "qid": "PART-A-ACADEMIC-REGULATIONS::Q1",
+        "question": "What is the minimum attendance a student must maintain without having to produce any proof of absence?",
+        "top_k": [
+          "part-a-academic-regulations::c0026",
+          "part-b-examination-rules-regulations::c0005",
+          "part-b-examination-rules-regulations::c0004",
+          "part-a-academic-regulations::c0025",
+          "galgotias-handbook-2026-27::c0055",
+          "galgotias-handbook-2026-27::c0056",
+          "galgotias-handbook-2026-27::c0057",
+          "galgotias-handbook-2026-27::c0054",
+          "part-a-academic-regulations::c0027",
+          "part-b-examination-rules-regulations::c0028"
+        ]
+      },
+      {
+        "qid": "PART-A-ACADEMIC-REGULATIONS::Q2",
+        "question": "What must a student do to take leave when attendance would fall between 75% and 60%?",
+        "top_k": [
+          "part-b-examination-rules-regulations::c0005",
+          "part-a-academic-regulations::c0026",
+          "part-b-examination-rules-regulations::c0004",
+          "part-a-academic-regulations::c0025",
+          "galgotias-handbook-2026-27::c0055",
+          "part-b-examination-rules-regulations::c0019",
+          "galgotias-handbook-2026-27::c0056",
+          "galgotias-handbook-2026-27::c0054",
+          "galgotias-academic-monitoring-v3::c0003",
+          "galgotias-handbook-2026-27::c0057"
+        ]
+      },
+      {
+        "qid": "PART-A-ACADEMIC-REGULATIONS::Q3",
+        "question": "Within how long must a student obtain the Dean's consent in a medical emergency, and what happens if they do not?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0055",
+          "part-a-academic-regulations::c0025",
+          "part-b-examination-rules-regulations::c0004",
+          "part-b-examination-rules-regulations::c0005",
+          "part-a-academic-regulations::c0026",
+          "galgotias-handbook-2026-27::c0054",
+          "hostel rule booklet::c0003",
+          "galgotias-academic-monitoring-v3::c0004",
+          "part-b-examination-rules-regulations::c0057",
+          "galgotias-handbook-2026-27::c0057"
+        ]
+      },
+      {
+        "qid": "PART-A-ACADEMIC-REGULATIONS::Q4",
+        "question": "Which students are eligible for On Duty credit, and what must they do to obtain it?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0055",
+          "part-b-examination-rules-regulations::c0005",
+          "galgotias-handbook-2026-27::c0061",
+          "part-a-academic-regulations::c0026",
+          "galgotias-handbook-2026-27::c0057",
+          "part-b-examination-rules-regulations::c0054",
+          "galgotias-handbook-2026-27::c0041",
+          "galgotias-handbook-2026-27::c0062",
+          "galgotias-handbook-2026-27::c0075",
+          "part-b-examination-rules-regulations::c0004"
+        ]
+      },
+      {
+        "qid": "PART-A-ACADEMIC-REGULATIONS::Q5",
+        "question": "List the circumstances under which the Dean may bring a case for relaxation of the minimum attendance requirement.",
+        "top_k": [
+          "part-a-academic-regulations::c0026",
+          "part-b-examination-rules-regulations::c0005",
+          "galgotias-handbook-2026-27::c0055",
+          "galgotias-handbook-2026-27::c0056",
+          "part-a-academic-regulations::c0027",
+          "part-a-academic-regulations::c0025",
+          "part-b-examination-rules-regulations::c0004",
+          "galgotias-handbook-2026-27::c0057",
+          "hostel rule booklet::c0016",
+          "part-b-examination-rules-regulations::c0006"
+        ]
+      },
+      {
+        "qid": "PART-A-ACADEMIC-REGULATIONS::Q6",
+        "question": "How does the attendance requirement differ between the Mid Term Examination and the End Term Examination, and what relaxation can the Vice Chancellor grant?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0056",
+          "galgotias-handbook-2026-27::c0055",
+          "galgotias-handbook-2026-27::c0057",
+          "part-b-examination-rules-regulations::c0005",
+          "part-a-academic-regulations::c0026",
+          "part-b-examination-rules-regulations::c0030",
+          "galgotias-handbook-2026-27::c0049",
+          "galgotias-handbook-2026-27::c0061",
+          "part-a-academic-regulations::c0027",
+          "part-b-examination-rules-regulations::c0028"
+        ]
+      },
+      {
+        "qid": "PART-A-ACADEMIC-REGULATIONS::Q7",
+        "question": "Which officers make up the committee constituted in connection with attendance relaxation?",
+        "top_k": [
+          "part-b-examination-rules-regulations::c0004",
+          "part-b-examination-rules-regulations::c0005",
+          "part-a-academic-regulations::c0025",
+          "part-a-academic-regulations::c0027",
+          "part-a-academic-regulations::c0026",
+          "galgotias-handbook-2026-27::c0055",
+          "galgotias-handbook-2026-27::c0056",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0001",
+          "part-b-examination-rules-regulations::c0006",
+          "h82fzupvsto2zjkfhcxjakjtqyphrhakgddvsm5e::c0002"
+        ]
+      },
+      {
+        "qid": "PART-A-ACADEMIC-REGULATIONS::Q8",
+        "question": "What are the minimum and maximum credit limits for new course registration in each term?",
+        "top_k": [
+          "part-a-academic-regulations::c0028",
+          "part-b-examination-rules-regulations::c0011",
+          "part-a-academic-regulations::c0027",
+          "part-b-examination-rules-regulations::c0008",
+          "part-b-examination-rules-regulations::c0010",
+          "galgotias-handbook-2026-27::c0051",
+          "part-b-examination-rules-regulations::c0054",
+          "part-a-academic-regulations::c0035",
+          "part-b-examination-rules-regulations::c0039",
+          "part-b-examination-rules-regulations::c0012"
+        ]
+      },
+      {
+        "qid": "PART-A-ACADEMIC-REGULATIONS::Q9",
+        "question": "In which two situations does the minimum credit limit for course registration not apply?",
+        "top_k": [
+          "part-b-examination-rules-regulations::c0011",
+          "part-a-academic-regulations::c0028",
+          "part-b-examination-rules-regulations::c0008",
+          "part-a-academic-regulations::c0027",
+          "galgotias-handbook-2026-27::c0051",
+          "part-b-examination-rules-regulations::c0010",
+          "part-a-academic-regulations::c0035",
+          "part-b-examination-rules-regulations::c0012",
+          "part-b-examination-rules-regulations::c0054",
+          "galgotias-handbook-2026-27::c0056"
+        ]
+      },
+      {
+        "qid": "PART-A-ACADEMIC-REGULATIONS::Q10",
+        "question": "Within what period may a student drop a registered course, and how long do they then have to add another course?",
+        "top_k": [
+          "part-b-examination-rules-regulations::c0011",
+          "part-a-academic-regulations::c0028",
+          "galgotias-handbook-2026-27::c0052",
+          "part-b-examination-rules-regulations::c0010",
+          "part-b-examination-rules-regulations::c0009",
+          "part-b-examination-rules-regulations::c0054",
+          "part-b-examination-rules-regulations::c0030",
+          "part-b-examination-rules-regulations::c0008",
+          "galgotias-handbook-2026-27::c0061",
+          "part-b-examination-rules-regulations::c0028"
+        ]
+      },
+      {
+        "qid": "PART-A-ACADEMIC-REGULATIONS::Q11",
+        "question": "How many courses are required for a Certification, a Diploma and a Post-Diploma respectively under additional learning?",
+        "top_k": [
+          "part-b-examination-rules-regulations::c0011",
+          "part-a-academic-regulations::c0028",
+          "part-a-academic-regulations::c0029",
+          "galgotias-handbook-2026-27::c0043",
+          "part-b-examination-rules-regulations::c0054",
+          "part-b-examination-rules-regulations::c0008",
+          "galgotias-handbook-2026-27::c0041",
+          "part-a-academic-regulations::c0035",
+          "part-b-examination-rules-regulations::c0012",
+          "galgotias-handbook-2026-27::c0042"
+        ]
+      },
+      {
+        "qid": "PART-A-ACADEMIC-REGULATIONS::Q12",
+        "question": "What CGPA must an undergraduate student have to be permitted to credit a Post Graduate level course?",
+        "top_k": [
+          "part-a-academic-regulations::c0029",
+          "part-b-examination-rules-regulations::c0012",
+          "part-b-examination-rules-regulations::c0008",
+          "part-b-examination-rules-regulations::c0011",
+          "galgotias-handbook-2026-27::c0042",
+          "galgotias-handbook-2026-27::c0062",
+          "galgotias-handbook-2026-27::c0025",
+          "part-b-examination-rules-regulations::c0010",
+          "part-b-examination-rules-regulations::c0054",
+          "galgotias-handbook-2026-27::c0060"
+        ]
+      },
+      {
+        "qid": "PART-A-ACADEMIC-REGULATIONS::Q13",
+        "question": "Are additional courses and additional Post Graduate level courses counted towards SGPA or CGPA?",
+        "top_k": [
+          "part-a-academic-regulations::c0029",
+          "part-b-examination-rules-regulations::c0012",
+          "part-b-examination-rules-regulations::c0011",
+          "part-b-examination-rules-regulations::c0038",
+          "part-b-examination-rules-regulations::c0054",
+          "part-b-examination-rules-regulations::c0039",
+          "part-a-academic-regulations::c0035",
+          "galgotias-handbook-2026-27::c0043",
+          "part-b-examination-rules-regulations::c0008",
+          "galgotias-handbook-2026-27::c0059"
+        ]
+      },
+      {
+        "qid": "PART-A-ACADEMIC-REGULATIONS::Q14",
+        "question": "What are the two eligibility conditions a student must satisfy to be considered for a medal, and what happens if the topper does not satisfy them?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0063",
+          "part-a-academic-regulations::c0031",
+          "part-b-examination-rules-regulations::c0050",
+          "part-a-academic-regulations::c0030",
+          "part-b-examination-rules-regulations::c0051",
+          "part-a-academic-regulations::c0029",
+          "galgotias-handbook-2026-27::c0062",
+          "part-b-examination-rules-regulations::c0052",
+          "galgotias-handbook-2026-27::c0056",
+          "part-b-examination-rules-regulations::c0054"
+        ]
+      },
+      {
+        "qid": "PART-A-ACADEMIC-REGULATIONS::Q15",
+        "question": "Describe the sequence used to break a tie when awarding medals.",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0063",
+          "part-b-examination-rules-regulations::c0050",
+          "part-a-academic-regulations::c0030",
+          "part-a-academic-regulations::c0029",
+          "part-a-academic-regulations::c0031",
+          "part-b-examination-rules-regulations::c0047",
+          "part-b-examination-rules-regulations::c0051",
+          "part-b-examination-rules-regulations::c0049",
+          "galgotias-handbook-2026-27::c0079",
+          "part-a-academic-regulations::c0024"
+        ]
+      },
+      {
+        "qid": "PART-A-ACADEMIC-REGULATIONS::Q16",
+        "question": "How many days before the Convocation must the University announce the award of medals?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0063",
+          "part-a-academic-regulations::c0030",
+          "part-a-academic-regulations::c0031",
+          "galgotias-handbook-2026-27::c0062",
+          "part-b-examination-rules-regulations::c0050",
+          "part-b-examination-rules-regulations::c0051",
+          "part-b-examination-rules-regulations::c0052",
+          "part-a-academic-regulations::c0029",
+          "part-a-academic-regulations::c0000",
+          "part-a-academic-regulations::c0024"
+        ]
+      },
+      {
+        "qid": "PART-A-ACADEMIC-REGULATIONS::Q17",
+        "question": "What does a student receive on being named Achiever of the year?",
+        "top_k": [
+          "part-a-academic-regulations::c0030",
+          "part-b-examination-rules-regulations::c0050",
+          "part-b-examination-rules-regulations::c0054",
+          "galgotias-handbook-2026-27::c0063",
+          "part-a-academic-regulations::c0029",
+          "galgotias-handbook-2026-27::c0020",
+          "part-b-examination-rules-regulations::c0056",
+          "part-a-academic-regulations::c0036",
+          "part-a-academic-regulations::c0035",
+          "students-grievanceredressal-cell::c0001"
+        ]
+      },
+      {
+        "qid": "PART-A-ACADEMIC-REGULATIONS::Q18",
+        "question": "How many marks are allotted to curricular performance and to co-curricular activity in the criteria for the Achiever's Award, and what is the total?",
+        "top_k": [
+          "part-b-examination-rules-regulations::c0050",
+          "galgotias-handbook-2026-27::c0063",
+          "part-a-academic-regulations::c0030",
+          "part-b-examination-rules-regulations::c0032",
+          "part-b-examination-rules-regulations::c0031",
+          "galgotias-handbook-2026-27::c0058",
+          "part-b-examination-rules-regulations::c0029",
+          "part-a-academic-regulations::c0029",
+          "galgotias-handbook-2026-27::c0049",
+          "galgotias-handbook-2026-27::c0062"
+        ]
+      },
+      {
+        "qid": "PART-A-ACADEMIC-REGULATIONS::Q19",
+        "question": "Who chairs the Academic Programme Committee of a School of Studies, and how often must it meet?",
+        "top_k": [
+          "part-b-examination-rules-regulations::c0004",
+          "galgotias-handbook-2026-27::c0113",
+          "part-b-examination-rules-regulations::c0003",
+          "part-a-academic-regulations::c0024",
+          "part-a-academic-regulations::c0025",
+          "part-b-examination-rules-regulations::c0005",
+          "part-a-academic-regulations::c0027",
+          "galgotias-grievance-policy::c0001",
+          "part-a-academic-regulations::c0026",
+          "galgotias-handbook-2026-27::c0114"
+        ]
+      },
+      {
+        "qid": "PART-A-ACADEMIC-REGULATIONS::Q20",
+        "question": "Under what condition is no credit given for a course a student has attended?",
+        "top_k": [
+          "part-b-examination-rules-regulations::c0011",
+          "part-a-academic-regulations::c0028",
+          "part-a-academic-regulations::c0027",
+          "part-b-examination-rules-regulations::c0054",
+          "galgotias-handbook-2026-27::c0041",
+          "part-b-examination-rules-regulations::c0009",
+          "part-b-examination-rules-regulations::c0010",
+          "galgotias-handbook-2026-27::c0051",
+          "part-a-academic-regulations::c0026",
+          "galgotias-handbook-2026-27::c0043"
+        ]
+      },
+      {
+        "qid": "PART-A-ACADEMIC-REGULATIONS::Q21",
+        "question": "Which students are permitted to register for courses?",
+        "top_k": [
+          "part-a-academic-regulations::c0027",
+          "part-b-examination-rules-regulations::c0028",
+          "part-b-examination-rules-regulations::c0010",
+          "part-a-academic-regulations::c0028",
+          "part-b-examination-rules-regulations::c0011",
+          "part-b-examination-rules-regulations::c0009",
+          "galgotias-handbook-2026-27::c0061",
+          "galgotias-handbook-2026-27::c0052",
+          "part-b-examination-rules-regulations::c0008",
+          "part-b-examination-rules-regulations::c0013"
+        ]
+      },
+      {
+        "qid": "PART-A-ACADEMIC-REGULATIONS::Q22",
+        "question": "Summarise the attendance requirements and the process a student must follow to have an absence authorised.",
+        "top_k": [
+          "part-b-examination-rules-regulations::c0004",
+          "part-a-academic-regulations::c0025",
+          "galgotias-handbook-2026-27::c0055",
+          "galgotias-handbook-2026-27::c0057",
+          "part-b-examination-rules-regulations::c0005",
+          "part-a-academic-regulations::c0026",
+          "galgotias-handbook-2026-27::c0056",
+          "galgotias-handbook-2026-27::c0054",
+          "part-a-academic-regulations::c0027",
+          "part-b-examination-rules-regulations::c0019"
+        ]
+      },
+      {
+        "qid": "PART-B-Examination-Rules-Regulations::Q1",
+        "question": "From which academic session are these examination rules and regulations applicable, and which students remain under the earlier rules?",
+        "top_k": [
+          "part-b-examination-rules-regulations::c0000",
+          "part-b-examination-rules-regulations::c0055",
+          "part-a-academic-regulations::c0000",
+          "part-b-examination-rules-regulations::c0028",
+          "part-a-academic-regulations::c0036",
+          "part-b-examination-rules-regulations::c0031",
+          "hostel rule booklet::c0000",
+          "part-a-academic-regulations::c0037",
+          "galgotias-handbook-2026-27::c0053",
+          "students-grievanceredressal-cell::c0003"
+        ]
+      },
+      {
+        "qid": "PART-B-Examination-Rules-Regulations::Q2",
+        "question": "What grade point is awarded for a grade of B+, and what is its grade abbreviation?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0059",
+          "galgotias-handbook-2026-27::c0025",
+          "part-b-examination-rules-regulations::c0038",
+          "galgotias-handbook-2026-27::c0026",
+          "galgotias-handbook-2026-27::c0024",
+          "part-a-academic-regulations::c0020",
+          "part-b-examination-rules-regulations::c0054",
+          "galgotias-handbook-2026-27::c0076",
+          "part-b-examination-rules-regulations::c0037",
+          "galgotias-handbook-2026-27::c0027"
+        ]
+      },
+      {
+        "qid": "PART-B-Examination-Rules-Regulations::Q3",
+        "question": "What is the difference in grade points between an Outstanding grade and an Average grade?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0059",
+          "galgotias-handbook-2026-27::c0025",
+          "part-b-examination-rules-regulations::c0038",
+          "galgotias-handbook-2026-27::c0026",
+          "galgotias-handbook-2026-27::c0027",
+          "part-b-examination-rules-regulations::c0037",
+          "galgotias-handbook-2026-27::c0024",
+          "part-b-examination-rules-regulations::c0054",
+          "part-b-examination-rules-regulations::c0039",
+          "part-a-academic-regulations::c0035"
+        ]
+      },
+      {
+        "qid": "PART-B-Examination-Rules-Regulations::Q4",
+        "question": "How is an F grade treated differently in the calculation of SGPA compared with CGPA?",
+        "top_k": [
+          "part-b-examination-rules-regulations::c0038",
+          "galgotias-handbook-2026-27::c0059",
+          "part-b-examination-rules-regulations::c0039",
+          "part-b-examination-rules-regulations::c0012",
+          "part-b-examination-rules-regulations::c0037",
+          "galgotias-handbook-2026-27::c0060",
+          "galgotias-handbook-2026-27::c0025",
+          "part-a-academic-regulations::c0030",
+          "part-a-academic-regulations::c0029",
+          "part-b-examination-rules-regulations::c0011"
+        ]
+      },
+      {
+        "qid": "PART-B-Examination-Rules-Regulations::Q5",
+        "question": "What must a student do after receiving an F grade in a core course, and how does this differ for an elective course?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0026",
+          "part-b-examination-rules-regulations::c0010",
+          "galgotias-handbook-2026-27::c0027",
+          "part-b-examination-rules-regulations::c0037",
+          "part-b-examination-rules-regulations::c0030",
+          "part-b-examination-rules-regulations::c0008",
+          "galgotias-handbook-2026-27::c0042",
+          "galgotias-handbook-2026-27::c0025",
+          "part-b-examination-rules-regulations::c0009",
+          "part-b-examination-rules-regulations::c0054"
+        ]
+      },
+      {
+        "qid": "PART-B-Examination-Rules-Regulations::Q6",
+        "question": "To how many decimal places is the SGPA calculated?",
+        "top_k": [
+          "part-b-examination-rules-regulations::c0038",
+          "part-b-examination-rules-regulations::c0039",
+          "galgotias-handbook-2026-27::c0059",
+          "galgotias-handbook-2026-27::c0060",
+          "part-b-examination-rules-regulations::c0012",
+          "galgotias-handbook-2026-27::c0027",
+          "part-b-examination-rules-regulations::c0011",
+          "galgotias-handbook-2026-27::c0025",
+          "part-a-academic-regulations::c0030",
+          "part-b-examination-rules-regulations::c0037"
+        ]
+      },
+      {
+        "qid": "PART-B-Examination-Rules-Regulations::Q7",
+        "question": "What minimum CGPA must a student have to progress from the third year to the final year of a UG programme?",
+        "top_k": [
+          "part-b-examination-rules-regulations::c0012",
+          "galgotias-handbook-2026-27::c0060",
+          "part-a-academic-regulations::c0035",
+          "galgotias-handbook-2026-27::c0037",
+          "galgotias-handbook-2026-27::c0038",
+          "part-b-examination-rules-regulations::c0039",
+          "galgotias-handbook-2026-27::c0056",
+          "part-b-examination-rules-regulations::c0054",
+          "part-b-examination-rules-regulations::c0055",
+          "part-b-examination-rules-regulations::c0015"
+        ]
+      },
+      {
+        "qid": "PART-B-Examination-Rules-Regulations::Q8",
+        "question": "At what pace is the Summer Term conducted, and what does this mean in terms of contact hours?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0061",
+          "part-b-examination-rules-regulations::c0028",
+          "part-b-examination-rules-regulations::c0027",
+          "galgotias-handbook-2026-27::c0044",
+          "galgotias-handbook-2026-27::c0051",
+          "part-b-examination-rules-regulations::c0042",
+          "galgotias-handbook-2026-27::c0052",
+          "galgotias-handbook-2026-27::c0062",
+          "part-b-examination-rules-regulations::c0022",
+          "part-b-examination-rules-regulations::c0024"
+        ]
+      },
+      {
+        "qid": "PART-B-Examination-Rules-Regulations::Q9",
+        "question": "What attendance percentage is required during the Summer Term, and what is the consequence of falling below it?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0061",
+          "part-b-examination-rules-regulations::c0028",
+          "galgotias-handbook-2026-27::c0055",
+          "part-a-academic-regulations::c0026",
+          "galgotias-handbook-2026-27::c0052",
+          "part-b-examination-rules-regulations::c0005",
+          "part-a-academic-regulations::c0027",
+          "galgotias-handbook-2026-27::c0062",
+          "galgotias-academic-monitoring-v3::c0002",
+          "galgotias-handbook-2026-27::c0056"
+        ]
+      },
+      {
+        "qid": "PART-B-Examination-Rules-Regulations::Q10",
+        "question": "For how many courses may a student register in the Summer Term, and who is eligible to register?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0061",
+          "part-b-examination-rules-regulations::c0028",
+          "galgotias-handbook-2026-27::c0052",
+          "part-a-academic-regulations::c0027",
+          "part-a-academic-regulations::c0028",
+          "part-b-examination-rules-regulations::c0010",
+          "part-b-examination-rules-regulations::c0011",
+          "galgotias-handbook-2026-27::c0062",
+          "galgotias-handbook-2026-27::c0044",
+          "part-b-examination-rules-regulations::c0013"
+        ]
+      },
+      {
+        "qid": "PART-B-Examination-Rules-Regulations::Q11",
+        "question": "What undertaking must a student sign on registering for the Summer Term, and what does it mean for their earlier marks?",
+        "top_k": [
+          "part-b-examination-rules-regulations::c0028",
+          "galgotias-handbook-2026-27::c0061",
+          "part-b-examination-rules-regulations::c0027",
+          "galgotias-handbook-2026-27::c0062",
+          "part-b-examination-rules-regulations::c0054",
+          "part-b-examination-rules-regulations::c0042",
+          "hostel rule booklet::c0024",
+          "galgotias-handbook-2026-27::c0052",
+          "part-a-academic-regulations::c0028",
+          "part-a-academic-regulations::c0036"
+        ]
+      },
+      {
+        "qid": "PART-B-Examination-Rules-Regulations::Q12",
+        "question": "Which categories of courses is the Summer Term available for?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0061",
+          "part-b-examination-rules-regulations::c0028",
+          "galgotias-handbook-2026-27::c0052",
+          "part-b-examination-rules-regulations::c0027",
+          "galgotias-handbook-2026-27::c0044",
+          "part-a-academic-regulations::c0028",
+          "part-b-examination-rules-regulations::c0042",
+          "part-b-examination-rules-regulations::c0010",
+          "galgotias-handbook-2026-27::c0062",
+          "galgotias-handbook-2026-27::c0039"
+        ]
+      },
+      {
+        "qid": "PART-B-Examination-Rules-Regulations::Q13",
+        "question": "Once registered for a Summer Term, may a student withdraw?",
+        "top_k": [
+          "part-b-examination-rules-regulations::c0028",
+          "galgotias-handbook-2026-27::c0061",
+          "part-a-academic-regulations::c0028",
+          "part-a-academic-regulations::c0027",
+          "part-b-examination-rules-regulations::c0011",
+          "galgotias-handbook-2026-27::c0052",
+          "galgotias-handbook-2026-27::c0062",
+          "galgotias-handbook-2026-27::c0057",
+          "part-b-examination-rules-regulations::c0010",
+          "part-b-examination-rules-regulations::c0030"
+        ]
+      },
+      {
+        "qid": "PART-B-Examination-Rules-Regulations::Q14",
+        "question": "What two conditions cause a student to be detained and barred from the End Term Examination?",
+        "top_k": [
+          "part-b-examination-rules-regulations::c0028",
+          "galgotias-handbook-2026-27::c0061",
+          "part-b-examination-rules-regulations::c0055",
+          "part-b-examination-rules-regulations::c0042",
+          "part-b-examination-rules-regulations::c0029",
+          "galgotias-handbook-2026-27::c0057",
+          "part-a-academic-regulations::c0037",
+          "part-b-examination-rules-regulations::c0030",
+          "part-b-examination-rules-regulations::c0031",
+          "part-a-academic-regulations::c0038"
+        ]
+      },
+      {
+        "qid": "PART-B-Examination-Rules-Regulations::Q15",
+        "question": "Where is the detention list displayed and how often?",
+        "top_k": [
+          "part-b-examination-rules-regulations::c0029",
+          "galgotias-it-policy::c0014",
+          "part-b-examination-rules-regulations::c0005",
+          "part-b-examination-rules-regulations::c0028",
+          "galgotias-it-policy::c0016",
+          "part-a-academic-regulations::c0026",
+          "h82fzupvsto2zjkfhcxjakjtqyphrhakgddvsm5e::c0001",
+          "part-a-academic-regulations::c0027",
+          "part-b-examination-rules-regulations::c0036",
+          "hostel rule booklet::c0020"
+        ]
+      },
+      {
+        "qid": "PART-B-Examination-Rules-Regulations::Q16",
+        "question": "What fine must a student pay when applying for a semester drop?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0052",
+          "part-b-examination-rules-regulations::c0011",
+          "galgotias-handbook-2026-27::c0062",
+          "part-a-academic-regulations::c0036",
+          "part-a-academic-regulations::c0035",
+          "part-b-examination-rules-regulations::c0029",
+          "part-a-academic-regulations::c0028",
+          "part-b-examination-rules-regulations::c0054",
+          "galgotias-academic-monitoring-v3::c0003",
+          "galgotias-handbook-2026-27::c0098"
+        ]
+      },
+      {
+        "qid": "PART-B-Examination-Rules-Regulations::Q17",
+        "question": "For what CGPA range is the facility of grade improvement available?",
+        "top_k": [
+          "galgotias-handbook-2026-27::c0059",
+          "part-b-examination-rules-regulations::c0039",
+          "part-b-examination-rules-regulations::c0038",
+          "part-b-examination-rules-regulations::c0012",
+          "galgotias-handbook-2026-27::c0060",
+          "part-b-examination-rules-regulations::c0008",
+          "part-b-examination-rules-regulations::c0001",
+          "galgotias-handbook-2026-27::c0025",
+          "part-b-examination-rules-regulations::c0037",
+          "galgotias-handbook-2026-27::c0026"
+        ]
+      },
+      {
+        "qid": "PART-B-Examination-Rules-Regulations::Q18",
+        "question": "What minimum CGPA must a student acquire to complete the Dual Major?",
+        "top_k": [
+          "part-b-examination-rules-regulations::c0015",
+          "part-b-examination-rules-regulations::c0016",
+          "part-a-academic-regulations::c0035",
+          "part-b-examination-rules-regulations::c0012",
+          "part-b-examination-rules-regulations::c0054",
+          "part-b-examination-rules-regulations::c0008",
+          "part-b-examination-rules-regulations::c0014",
+          "part-a-academic-regulations::c0029",
+          "galgotias-handbook-2026-27::c0056",
+          "galgotias-handbook-2026-27::c0062"
+        ]
+      },
+      {
+        "qid": "PART-B-Examination-Rules-Regulations::Q19",
+        "question": "What CGPA allows a student to attend a complete semester at an esteemed academic institution of excellence?",
+        "top_k": [
+          "part-b-examination-rules-regulations::c0012",
+          "galgotias-handbook-2026-27::c0056",
+          "galgotias-handbook-2026-27::c0025",
+          "part-a-academic-regulations::c0035",
+          "galgotias-handbook-2026-27::c0060",
+          "part-b-examination-rules-regulations::c0054",
+          "part-a-academic-regulations::c0029",
+          "galgotias-handbook-2026-27::c0062",
+          "part-b-examination-rules-regulations::c0008",
+          "galgotias-handbook-2026-27::c0027"
+        ]
+      },
+      {
+        "qid": "PART-B-Examination-Rules-Regulations::Q20",
+        "question": "Which committee is responsible for grade moderation, and who convenes it for undergraduate programmes?",
+        "top_k": [
+          "part-b-examination-rules-regulations::c0038",
+          "part-a-academic-regulations::c0036",
+          "part-b-examination-rules-regulations::c0034",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0001",
+          "part-b-examination-rules-regulations::c0055",
+          "galgotias-handbook-2026-27::c0113",
+          "galgotias-handbook-2026-27::c0025",
+          "part-b-examination-rules-regulations::c0003",
+          "part-b-examination-rules-regulations::c0037",
+          "part-a-academic-regulations::c0025"
+        ]
+      },
+      {
+        "qid": "PART-B-Examination-Rules-Regulations::Q21",
+        "question": "Who awards grades initially, and on what basis may they be modified?",
+        "top_k": [
+          "part-b-examination-rules-regulations::c0037",
+          "part-b-examination-rules-regulations::c0038",
+          "part-a-academic-regulations::c0030",
+          "dspr8pxaam4tcygv1ldbmk27hgwexcr4hkxckjfd::c0002",
+          "part-a-academic-regulations::c0031",
+          "part-b-examination-rules-regulations::c0054",
+          "part-b-examination-rules-regulations::c0051",
+          "galgotias-handbook-2026-27::c0062",
+          "part-a-academic-regulations::c0036",
+          "part-b-examination-rules-regulations::c0050"
+        ]
+      },
+      {
+        "qid": "PART-B-Examination-Rules-Regulations::Q22",
+        "question": "Out of how many marks is the total for a course computed before conversion into grades, and on what scale are grades expressed?",
+        "top_k": [
+          "part-b-examination-rules-regulations::c0038",
+          "galgotias-handbook-2026-27::c0025",
+          "galgotias-handbook-2026-27::c0059",
+          "part-b-examination-rules-regulations::c0037",
+          "part-b-examination-rules-regulations::c0027",
+          "galgotias-handbook-2026-27::c0026",
+          "galgotias-handbook-2026-27::c0060",
+          "part-b-examination-rules-regulations::c0054",
+          "galgotias-handbook-2026-27::c0058",
+          "part-a-academic-regulations::c0036"
+        ]
+      },
+      {
+        "qid": "PART-B-Examination-Rules-Regulations::Q23",
+        "question": "Summarise the rules governing the Summer Term, including who may register, what limits apply, and what a student gives up by registering.",
+        "top_k": [
+          "part-b-examination-rules-regulations::c0028",
+          "galgotias-handbook-2026-27::c0061",
+          "part-a-academic-regulations::c0028",
+          "galgotias-handbook-2026-27::c0052",
+          "part-b-examination-rules-regulations::c0030",
+          "galgotias-handbook-2026-27::c0044",
+          "part-a-academic-regulations::c0027",
+          "galgotias-handbook-2026-27::c0062",
+          "part-b-examination-rules-regulations::c0011",
+          "part-b-examination-rules-regulations::c0027"
+        ]
+      },
+      {
+        "qid": "Students-GrievanceRedressal-Cell::Q1",
+        "question": "How many members does the Student Grievance Redressal Committee have, and what is the composition by category?",
+        "top_k": [
+          "galgotias-grievance-policy::c0000",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0001",
+          "galgotias-handbook-2026-27::c0086",
+          "galgotias-handbook-2026-27::c0085",
+          "students-grievanceredressal-cell::c0000",
+          "part-a-academic-regulations::c0039",
+          "galgotias-grievance-policy::c0001",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0000",
+          "part-b-examination-rules-regulations::c0058",
+          "final_mandatory_disclosure::c0001"
+        ]
+      },
+      {
+        "qid": "Students-GrievanceRedressal-Cell::Q2",
+        "question": "Under which reference number and on what date was the Student Grievance Redressal Committee office order issued?",
+        "top_k": [
+          "students-grievanceredressal-cell::c0000",
+          "final_mandatory_disclosure::c0001",
+          "galgotias-grievance-policy::c0000",
+          "galgotias-handbook-2026-27::c0086",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0001",
+          "part-b-examination-rules-regulations::c0059",
+          "part-a-academic-regulations::c0040",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0000",
+          "galgotias-grievance-policy::c0001",
+          "galgotias-handbook-2026-27::c0085"
+        ]
+      },
+      {
+        "qid": "Students-GrievanceRedressal-Cell::Q3",
+        "question": "Which departments are represented among the faculty members of the SGRC?",
+        "top_k": [
+          "students-grievanceredressal-cell::c0005",
+          "students-grievanceredressal-cell::c0004",
+          "students-grievanceredressal-cell::c0003",
+          "galgotias-it-policy::c0012",
+          "glbitm-idp24-29::c0008",
+          "students-grievanceredressal-cell::c0000",
+          "galgotias-handbook-2026-27::c0113",
+          "galgotias-it-policy::c0011",
+          "glbitm-idp24-29::c0014",
+          "galgotias-academic-monitoring-v3::c0001"
+        ]
+      },
+      {
+        "qid": "Students-GrievanceRedressal-Cell::Q4",
+        "question": "What email address is designated for the Student Grievance Redressal Committee?",
+        "top_k": [
+          "galgotias-grievance-policy::c0000",
+          "galgotias-handbook-2026-27::c0086",
+          "galgotias-grievance-policy::c0001",
+          "students-grievanceredressal-cell::c0000",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0001",
+          "galgotias-handbook-2026-27::c0085",
+          "final_mandatory_disclosure::c0001",
+          "final_mandatory_disclosure::c0000",
+          "jrlcl1ganbitmw1us4w2fvbopqhn1agsgbfxffrp::c0000",
+          "students-grievanceredressal-cell::c0003"
+        ]
+      },
+      {
+        "qid": "Students-GrievanceRedressal-Cell::Q5",
+        "question": "Which UGC regulations supersede the earlier ones, and which regulations do they replace?",
+        "top_k": [
+          "part-b-examination-rules-regulations::c0055",
+          "part-a-academic-regulations::c0036",
+          "h82fzupvsto2zjkfhcxjakjtqyphrhakgddvsm5e::c0000",
+          "students-grievanceredressal-cell::c0002",
+          "students-grievanceredressal-cell::c0000",
+          "part-b-examination-rules-regulations::c0000",
+          "students-grievanceredressal-cell::c0001",
+          "students-grievanceredressal-cell::c0003",
+          "galgotias-handbook-2026-27::c0111",
+          "h82fzupvsto2zjkfhcxjakjtqyphrhakgddvsm5e::c0001"
+        ]
+      }
+    ]
+  }
+}

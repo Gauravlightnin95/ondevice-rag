@@ -561,3 +561,91 @@ the work this project compares against. A high Recall@10 here is not evidence th
 solved, and it should be stated that way in the paper. H3's question about the optimal `k` for
 small models matters more than the absolute recall value, and the @1/@3 columns above are the ones
 that speak to it.
+
+---
+
+# Stage 5 — frozen retriever `v1`
+
+Scripts: `src/retrieval/freeze.py`, `verify_frozen.py`. Frozen at `index/frozen/v1/`, tagged
+`retriever-v1`. Full parameter record in `index/frozen/v1/FREEZE.md`.
+
+## What the tag pins, and why it isn't the artifacts
+
+The artifacts cannot go into git: `bm25.pkl` stores the tokenised corpus and `chunks.jsonl` the raw
+text, both carrying the named faculty/student rows, mobile numbers, roll numbers and the Wi-Fi
+credential that README §4 excludes from redistribution.
+
+So the **contract** is committed and tagged, not the data:
+
+| Tracked | Ignored |
+|---|---|
+| `FREEZE.md` — every parameter, human-readable | `faiss.index` |
+| `fixture.json` — parameters, 5 artifact hashes, 194 expected rankings | `bm25.pkl`, `embeddings.npy` |
+| | `chunk_ids.json`, `chunks.jsonl` |
+
+`.gitignore` had excluded `index/` as a directory, and git cannot re-include anything beneath an
+excluded directory. It now ignores the **data files by pattern** (`index/**/*.npy`, `*.index`,
+`*.pkl`, `*.jsonl`, `index/**/chunk_ids.json`, `index/*.json`), which leaves the two contract files
+trackable without a fragile negation chain. Checked with `git check-ignore` in both directions.
+
+The fixture is 140 KB and provably text-free. That is asserted at write time as a **positive
+whitelist** — every probe question must exactly equal a question in `evalset_v1.jsonl`, and every
+expected result must be a member of `chunk_ids.json` — because a whitelist cannot be fooled by text
+that merely looks safe, which a blacklist scan can. A belt-and-braces pass additionally confirms no
+60-character window of any chunk's text appears in the serialised fixture.
+
+## Verdicts
+
+| Verdict | Meaning | Stage 6 |
+|---|---|---|
+| `BYTE_IDENTICAL` | hashes and all 194 rankings match | proceed |
+| `BEHAVIOURALLY_IDENTICAL` | a hash moved, every ranking held | proceed, record `changed` in the run log |
+| `DRIFTED` | a ranking differs, or structure/parameters differ | **abort** |
+| `ARTIFACTS_MISSING` | contract present, binaries absent | abort, print the rebuild commands |
+
+`ARTIFACTS_MISSING` is a first-class verdict because it is the *expected* state of a fresh clone —
+the tag carries the contract, not the data. It must say "run `build_index.py` then `freeze.py`",
+not report drift that did not happen.
+
+Probes are **all 194 gold-passage questions**, not a sample, so "rankings identical" is a claim
+about the whole eval set. At 26 ms/query the whole verification costs ~12s, cheap enough for
+Stage 6 to run on every grid start.
+
+## The bug this stage's own testing caught
+
+The first verifier compared hashes of `index/frozen/v1/` while running its probes against
+`index/` — because `retrieve.py` hardcoded `INDEX = Path("index")`. It was verifying the hashes of
+one index and the behaviour of another, and would have reported a healthy freeze while the grid ran
+against a different retriever. Exactly the silent failure Stage 5 exists to prevent.
+
+Found by the deliberate-corruption test, not by reading the code. `retrieve.py` now takes an
+explicit `index_dir`, and `resolve_index_dir()` prefers the highest frozen version over the working
+index — so once a freeze exists it *is* the retriever, and the grid cannot read the unfrozen copy
+by omission. `search()` now resolves to `index/frozen/v1` by default; Stage 4's Recall output is
+byte-identical after the change.
+
+## Hash movement and behavioural drift are not the same thing
+
+Verified by deliberate corruption of a scratch copy:
+
+| Scenario | Verdict | Caught by |
+|---|---|---|
+| Untouched | `BYTE_IDENTICAL` | — |
+| Vector negated inside `faiss.index` | `DRIFTED` | hash **and** probes |
+| `k1` altered inside `bm25.pkl` | `DRIFTED` | hash **and** probes |
+| Two `chunk_ids` swapped | `DRIFTED` | hash **and** probes |
+| Query path stops applying the prefix, constant unchanged | `DRIFTED` | **probes only** |
+| `RRF_K` 60 → 10 | `DRIFTED` | parameter check, then probes |
+| Vector negated in `embeddings.npy` | `BEHAVIOURALLY_IDENTICAL` | hash only |
+| Binaries deleted, contract kept | `ARTIFACTS_MISSING` | presence check |
+
+Two results worth keeping:
+
+**The prefix case is why probes exist.** Removing the prefix from the query path while leaving
+`QUERY_PREFIX` in place changes no artifact byte and passes every parameter comparison. Only
+running the real `search()` catches it. Hashes cannot see code drift, structurally.
+
+**`embeddings.npy` is not on the retrieval path.** `retrieve.py` loads `faiss.index`, which holds
+its own copy of the vectors, so corrupting `embeddings.npy` moves a hash without changing any
+ranking. `BEHAVIOURALLY_IDENTICAL` is the literally correct verdict there, and the report names the
+file. It is kept in the freeze for inspection and rebuild, not for search.
