@@ -22,6 +22,14 @@ corpus/rejected/
 # personal data noted in README section 4 — it is not redistributed either.
 corpus/chunks.jsonl
 
+# The loaded eval set embeds gold passages copied from the extracted corpus, so it
+# falls under the same rule. The public release is the questions plus manifest.csv
+# (README section 4) — a passage-stripped export, not this file.
+evalset/evalset_v1.jsonl
+
+# Stage 3 passage->chunk map. Derived from both gitignored artifacts above.
+evalset/passage_locations.jsonl
+
 # Experiment outputs
 results/
 

@@ -272,8 +272,20 @@ contain the answer, rather than nothing. That is the harder and more informative
 refusal behaviour. State the choice in the paper.
 
 These live in `evalset/_absent.md`. Absence was verified by regex search across all 29 extracted
-documents (`verify_absent.py`); six candidates were flagged and five deleted after manual
-review.
+documents (`verify_absent.py`).
+
+Screening history, 36 candidates down to 29:
+
+- 36 type 5 candidates drafted
+- `verify_absent.py` flagged 6. Of those, 3 were deleted as genuine — the answer really was in the
+  corpus — and 3 kept after manual review as false positives
+- Q25 was deleted later, during passage assembly, when the MTE weightage of 30% turned up in the
+  handbook
+- 3 more trimmed to reach the target
+
+Question numbering in `_absent.md` preserves the original candidate numbers, so it has holes at
+9, 13, 25, 27, 28, 34 and 35. That is expected — IDs point at a fixed question rather than
+shifting when one is removed.
 
 ---
 

@@ -3,7 +3,7 @@
 - **question:** How many university desktop computers and laptops does IT Services support?
 - **answer:** Around 8,000.
 - **passage:** Support for around 8,000 University desktop computers/laptops.
-- **page:** 7
+- **page:** 8
 - **source:** galgotias-it-policy.pdf
 - **annotator:** GK
 - **contaminated:** unchecked
@@ -73,7 +73,7 @@
 - **question:** Summarise the scope of services that IT Services is responsible for.
 - **answer:** IT Services covers licensed desktop software under a central Microsoft agreement with other evaluated software available from a recommended list; desktop and laptop support for around 8,000 machines including software installation, network and email setup, fault diagnosis and application of fixes; management of university networks including the campus mobile network; management of core servers housed in secure temperature-controlled data centres, covering back-ups, upgrades, patches and service enhancements for main university systems, departmental systems, websites and network file space; telecommunications including cordless handsets, desk sets and mobile phones; IT security and virus protection; development and maintenance of standard and specialist software images for staff desktops, open access areas and IT teaching labs, plus a university-wide printer strategy; and day-to-day operation of existing systems covering support, enhancement and identity management.
 - **passage:** 4. License Software University's desktop software is licensed under a central license agreement form Microsoft. Other software, which has been properly evaluated, is available from a recommended software list. 5. Desktop/laptop support (including Audio Visual) Support for around 8,000 University desktop computers/laptops. Core support includes: Installation of relevant software, The setup of network connections, access to email, network file space and Internet, Fault diagnosis, Application of fixes on software and hardware, Central Computer Hardware and networks. 6. Networks Manages the University networks including the campus' mobile network. 7. Servers Management of the University's core servers housed in specially equipped data centers with secure, temperature-controlled environments. Key activities include server back-ups, upgrades, patches, and service enhancements. These servers host main University systems, departmental systems, web sites, and student and staff network file space. 8. Telecommunications IT Services are responsible for the management of the University's Telephone systems, which includes all cordless handsets, desk sets and mobile phones. Security Maintaining IT Security and virus protection and providing advice and guidance. 9. Developing and maintaining Standard and specialist software 'images' for staff desktops, open access areas and IT teaching lab. IT Services also maintains a University wide printer strategy including deployment of MFP & Scanner. 10. Day to day operation of existing systems a. Support b. Enhancement c. Identity Management.
-- **page:** 7-8
+- **page:** 8-9
 - **source:** galgotias-it-policy.pdf
 - **annotator:** GK
 - **contaminated:** unchecked

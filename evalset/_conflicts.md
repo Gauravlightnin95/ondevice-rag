@@ -33,7 +33,7 @@
 - **page:** 49
 - **source:** PART-A-ACADEMIC-REGULATIONS.pdf
 - **source2:** PART-A-ACADEMIC-REGULATIONS.pdf
-- **page2:** 55
+- **page2:** 51
 - **annotator:** GK
 - **contaminated:** unchecked
 ## Q4
@@ -96,7 +96,7 @@
 - **page:** 31
 - **source:** PART-A-ACADEMIC-REGULATIONS.pdf
 - **source2:** galgotias-handbook-2026-27.pdf
-- **page2:** 32
+- **page2:** 36
 - **annotator:** GK
 - **contaminated:** unchecked
 
@@ -106,7 +106,7 @@
 - **answer:** The two documents contradict each other. Part B of the Examination Rules states that a student whose attendance is less than 90% in any course or tutorial will not be permitted to take the summer term examination. The Student's Handbook 2026-27 states that students need at least 75% attendance to qualify for the end-of-semester examination in the summer semester.
 - **passage:** During summer term, students must attend all classes. If student's attendance is less than 90% in any course/tutorial then he/she will not be permitted to take the summer term examination of that course.
 - **passage2:** Attendance requirements in the summer semester are stringent, with students needing to achieve at least 75% attendance to qualify for the end-of-semester examination.
-- **page:** 31
+- **page:** 32
 - **source:** PART-B-Examination-Rules-Regulations.pdf
 - **source2:** galgotias-handbook-2026-27.pdf
 - **page2:** 34
@@ -119,7 +119,7 @@
 - **answer:** The two documents express the limit differently. Part B of the Examination Rules states that students may register for a maximum of four courses. The Student's Handbook 2026-27 states that students can register for a maximum of 16 credits and 40 contact hours per week.
 - **passage:** Students shall be allowed to register for maximum four courses. Those students who are willing to join the summer term will have to submit the "Willingness to join" in the prescribed format.
 - **passage2:** Students can register for a maximum of 16 credits and 40 contact hours per week.
-- **page:** 31
+- **page:** 32
 - **source:** PART-B-Examination-Rules-Regulations.pdf
 - **source2:** galgotias-handbook-2026-27.pdf
 - **page2:** 34
@@ -132,7 +132,7 @@
 - **answer:** The two documents differ. Part B of the Examination Rules restricts registration to students who have been detained in a course. The Student's Handbook 2026-27 describes the summer semester as assisting students who have either failed their examinations or were detained due to insufficient attendance, which is a broader group.
 - **passage:** Only those students who have been detained in any course can register.
 - **passage2:** The summer semester is designed to assist students who have either failed their examinations or were detained due to insufficient attendance This helps them avoid losing an academic year.
-- **page:** 31
+- **page:** 32
 - **source:** PART-B-Examination-Rules-Regulations.pdf
 - **source2:** galgotias-handbook-2026-27.pdf
 - **page2:** 34
@@ -148,7 +148,7 @@
 - **page:** 31
 - **source:** PART-A-ACADEMIC-REGULATIONS.pdf
 - **source2:** galgotias-handbook-2026-27.pdf
-- **page2:** 32
+- **page2:** 36
 - **annotator:** GK
 - **contaminated:** unchecked
 
@@ -161,7 +161,7 @@
 - **page:** 30
 - **source:** PART-A-ACADEMIC-REGULATIONS.pdf
 - **source2:** galgotias-handbook-2026-27.pdf
-- **page2:** 32
+- **page2:** 36
 - **annotator:** GK
 - **contaminated:** unchecked
 
@@ -174,7 +174,7 @@
 - **page:** 31
 - **source:** PART-A-ACADEMIC-REGULATIONS.pdf
 - **source2:** galgotias-handbook-2026-27.pdf
-- **page2:** 32
+- **page2:** 36
 - **annotator:** GK
 - **contaminated:** unchecked
 
@@ -187,7 +187,7 @@
 - **page:** 29
 - **source:** PART-A-ACADEMIC-REGULATIONS.pdf
 - **source2:** galgotias-handbook-2026-27.pdf
-- **page2:** 32
+- **page2:** 36
 - **annotator:** GK
 - **contaminated:** unchecked
 ## Q16
@@ -199,7 +199,7 @@
 - **page:** 33
 - **source:** PART-A-ACADEMIC-REGULATIONS.pdf
 - **source2:** galgotias-handbook-2026-27.pdf
-- **page2:** 29
+- **page2:** 33
 - **annotator:** GK
 - **contaminated:** unchecked
 
@@ -212,7 +212,7 @@
 - **page:** 35
 - **source:** PART-A-ACADEMIC-REGULATIONS.pdf
 - **source2:** galgotias-handbook-2026-27.pdf
-- **page2:** 37
+- **page2:** 42
 - **annotator:** GK
 - **contaminated:** unchecked
 
@@ -225,7 +225,7 @@
 - **page:** 35
 - **source:** PART-A-ACADEMIC-REGULATIONS.pdf
 - **source2:** galgotias-handbook-2026-27.pdf
-- **page2:** 37
+- **page2:** 42
 - **annotator:** GK
 - **contaminated:** unchecked
 
@@ -238,7 +238,7 @@
 - **page:** 36
 - **source:** PART-A-ACADEMIC-REGULATIONS.pdf
 - **source2:** galgotias-handbook-2026-27.pdf
-- **page2:** 38
+- **page2:** 42
 - **annotator:** GK
 - **contaminated:** unchecked
 
@@ -251,7 +251,7 @@
 - **page:** 32
 - **source:** PART-A-ACADEMIC-REGULATIONS.pdf
 - **source2:** galgotias-handbook-2026-27.pdf
-- **page2:** 30
+- **page2:** 34
 - **annotator:** GK
 - **contaminated:** unchecked
 
@@ -264,7 +264,7 @@
 - **page:** 34
 - **source:** PART-A-ACADEMIC-REGULATIONS.pdf
 - **source2:** galgotias-handbook-2026-27.pdf
-- **page2:** 30
+- **page2:** 34
 - **annotator:** GK
 - **contaminated:** unchecked
 
@@ -277,7 +277,7 @@
 - **page:** 4
 - **source:** HOSTEL RULE BOOKLET.pdf
 - **source2:** galgotias-handbook-2026-27.pdf
-- **page2:** 65
+- **page2:** 69
 - **annotator:** GK
 - **contaminated:** unchecked
 
@@ -290,7 +290,7 @@
 - **page:** 8
 - **source:** HOSTEL RULE BOOKLET.pdf
 - **source2:** galgotias-handbook-2026-27.pdf
-- **page2:** 65
+- **page2:** 69
 - **annotator:** GK
 - **contaminated:** unchecked
 
@@ -303,7 +303,7 @@
 - **page:** 9
 - **source:** HOSTEL RULE BOOKLET.pdf
 - **source2:** galgotias-handbook-2026-27.pdf
-- **page2:** 65
+- **page2:** 69
 - **annotator:** GK
 - **contaminated:** unchecked
 
@@ -316,7 +316,7 @@
 - **page:** 33
 - **source:** PART-A-ACADEMIC-REGULATIONS.pdf
 - **source2:** galgotias-handbook-2026-27.pdf
-- **page2:** 29
+- **page2:** 33
 - **annotator:** GK
 - **contaminated:** unchecked
 
