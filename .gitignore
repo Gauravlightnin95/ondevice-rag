@@ -57,3 +57,5 @@ Thumbs.db
 *.tmp
 *.log
 filled_passages_batch*.md
+#keys
+.env
