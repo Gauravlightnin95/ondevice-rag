@@ -335,9 +335,29 @@ testing.
 
 ### NPU power measurement
 
-Lunar Lake has no dedicated NPU power sensor. Power is estimated as a residual: total system
-power minus IA, GT, DRAM and system-agent rails, logged via HWiNFO. Baseline idle is around
-13 W. Document this method in the paper as a stated limitation.
+Lunar Lake has no dedicated NPU power sensor. Power is estimated as a residual.
+
+Rails are read from **Windows PDH performance counters**, not HWiNFO — `\Energy Meter(RAPL_Package0_*)\Energy`
+exposes PKG, PP0 (IA), PP1 (GT) and DRAM natively, with no install. This supersedes the original
+proposal's HWiNFO plan, which was written before the counters were checked. The deciding property
+is that the PDH counter is a **monotonic energy accumulator**, so per-query energy is an exact
+difference between two reads; HWiNFO's free-version CSV logging is ~1 s granularity and many
+queries here are shorter than that. Units are nanojoules and the accumulator quantises at 0.1 J.
+
+```
+residual = PKG - PP0 - PP1 = uncore + system agent + NPU
+```
+
+**PDH does not separate system agent, so the residual is an upper bound on NPU power, not a
+measurement of it.** State this in the paper as a limitation, and report energy as relative
+comparisons rather than absolute figures.
+
+Measured idle on this machine is **2.4-2.9 W package**, not the ~13 W in the original proposal;
+that figure predates the measurement and likely included the display. RAPL covers the SoC only, so
+all figures are SoC energy — display, SSD and WiFi excluded.
+
+Measure on AC. Battery changes power limits, and iGPU TTFT is thermally sensitive by up to ~50%,
+so measurement blocks cool to a settled package power first. See `docs/energy_notes.md`.
 
 ---
 

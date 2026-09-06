@@ -40,6 +40,7 @@ sys.path.insert(0, str(HERE.parent / "retrieval"))
 import prompts as P                                              # noqa: E402
 from pipeline import (build_prompt, clean, count_tokens,         # noqa: E402
                       make_config, make_pipeline, thinking_tokens)
+from power import power_state                                    # noqa: E402
 
 MODELS = {
     "qwen3-0.6b": "models/qwen3-0.6b-cw",
@@ -239,6 +240,11 @@ def execute(jobs, out_path, run_id, done, retrieve_fn, chunk_text, gold, no_thin
     """jobs: [(model_name, device, [(record, condition), ...]), ...] — model outer."""
     proc = psutil.Process()
     written, t_start = 0, time.time()
+    # AC vs battery changes power limits and therefore timings. Stage 6 did not record it,
+    # which is why Stage 7 opens with a check that its numbers were not throttled. Logged
+    # per row from here on: an uncontrolled variable that was not recorded is worse than
+    # one that was, because it cannot be checked later.
+    ps = power_state()
 
     for model_name, device, work in jobs:
         pending = [(r, c) for r, c in work
@@ -262,6 +268,7 @@ def execute(jobs, out_path, run_id, done, retrieve_fn, chunk_text, gold, no_thin
                           chunk_text, gold, model_name, MODELS[model_name], device, proc,
                           no_think=no_think)
             row["run_id"] = run_id
+            row["power_state"] = "AC" if ps.get("ac") else "battery"
             with out_path.open("a", encoding="utf-8", newline="\n") as fh:
                 fh.write(json.dumps(row, ensure_ascii=False) + "\n")
                 fh.flush()
@@ -431,7 +438,7 @@ def agreement(rows):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--mode", choices=["smoke", "agreement", "full", "recompute",
-                                       "diagnostic"], required=True)
+                                       "diagnostic", "acheck"], required=True)
     ap.add_argument("--resume", type=Path)
     ap.add_argument("--device", choices=["GPU", "NPU", "CPU"],
                     help="full mode: run one device only (default: GPU then NPU)")
@@ -452,6 +459,7 @@ def main():
     meta = {"run_id": run_id, "mode": args.mode, "started": datetime.now().isoformat(),
             "k": K, "max_new_tokens": MAX_NEW_TOKENS,
             "npu_max_prompt_len": NPU_MAX_PROMPT_LEN,
+            "power_state": power_state(),
             "environment": {"python": platform.python_version()}}
     gate_freeze(meta)
 
@@ -484,6 +492,15 @@ def main():
         probe = probe_questions(questions)
         work = [(q, P.CLOSED_BOOK) for q in probe]
         jobs = [(m, d, work) for m in AGREEMENT_MODELS for d in AGREEMENT_DEVICES]
+    elif args.mode == "acheck":
+        # Gate A. Stage 6's power state was never recorded, so if any of it ran on battery
+        # the TTFT/TPOT findings — including the ~650 ms NPU floor — could be throttling
+        # artifacts. Re-run a fixed subset on AC and compare medians. The 8B because it is
+        # the most power-hungry model and therefore the most sensitive throttling detector,
+        # and the model whose numbers carry the headline.
+        probe = probe_questions(questions)
+        work = [(q, c) for q in probe for c in P.CONDITIONS]
+        jobs = [("qwen3-8b", d, work) for d in GRID_DEVICES]
     elif args.mode == "diagnostic":
         # 0.6B without /no_think, Oracle-RAG, iGPU. STRICTLY OUTSIDE the main grid: it
         # uses a different prompt and must never enter the size comparison. It exists to
