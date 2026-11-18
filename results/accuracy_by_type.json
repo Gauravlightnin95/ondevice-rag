@@ -1,0 +1,686 @@
+{
+  "qwen3-0.6b|closed_book|GPU|5": {
+    "n": 24,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-0.6b|rag|GPU|5": {
+    "n": 16,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-0.6b|oracle|GPU|5": {
+    "n": 8,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-0.6b|closed_book|GPU|4": {
+    "n": 24,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-0.6b|rag|GPU|4": {
+    "n": 16,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-0.6b|oracle|GPU|4": {
+    "n": 3,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-0.6b|closed_book|GPU|1": {
+    "n": 44,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-0.6b|oracle|GPU|1": {
+    "n": 44,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-0.6b|closed_book|GPU|3": {
+    "n": 51,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-0.6b|rag|GPU|3": {
+    "n": 50,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-0.6b|oracle|GPU|3": {
+    "n": 51,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-0.6b|closed_book|GPU|2": {
+    "n": 47,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-0.6b|rag|GPU|2": {
+    "n": 47,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-0.6b|rag|GPU|1": {
+    "n": 44,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-0.6b|rag|GPU|6": {
+    "n": 7,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-0.6b|oracle|GPU|2": {
+    "n": 48,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-0.6b|closed_book|GPU|6": {
+    "n": 13,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-0.6b|oracle|GPU|6": {
+    "n": 1,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-4b|closed_book|GPU|4": {
+    "n": 11,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-4b|closed_book|GPU|3": {
+    "n": 51,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-0.6b|closed_book|NPU|5": {
+    "n": 21,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-0.6b|oracle|NPU|5": {
+    "n": 13,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-0.6b|rag|NPU|5": {
+    "n": 20,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-0.6b|closed_book|NPU|4": {
+    "n": 21,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-0.6b|rag|NPU|4": {
+    "n": 11,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-0.6b|oracle|NPU|4": {
+    "n": 15,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-0.6b|closed_book|NPU|1": {
+    "n": 44,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-0.6b|rag|NPU|1": {
+    "n": 44,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-0.6b|oracle|NPU|1": {
+    "n": 44,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-0.6b|closed_book|NPU|3": {
+    "n": 50,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-0.6b|rag|NPU|3": {
+    "n": 51,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-0.6b|oracle|NPU|3": {
+    "n": 51,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-0.6b|rag|NPU|2": {
+    "n": 48,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-0.6b|closed_book|NPU|6": {
+    "n": 17,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-0.6b|closed_book|NPU|2": {
+    "n": 48,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-0.6b|oracle|NPU|2": {
+    "n": 47,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-0.6b|rag|NPU|6": {
+    "n": 7,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-0.6b|oracle|NPU|6": {
+    "n": 6,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-1.7b|closed_book|NPU|5": {
+    "n": 8,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-1.7b|rag|NPU|5": {
+    "n": 12,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-1.7b|oracle|NPU|5": {
+    "n": 8,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-1.7b|closed_book|NPU|4": {
+    "n": 14,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-1.7b|rag|NPU|4": {
+    "n": 18,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-1.7b|oracle|NPU|4": {
+    "n": 7,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-1.7b|closed_book|NPU|1": {
+    "n": 44,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-1.7b|closed_book|NPU|3": {
+    "n": 51,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-1.7b|oracle|NPU|3": {
+    "n": 51,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-1.7b|oracle|NPU|2": {
+    "n": 47,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-1.7b|oracle|NPU|1": {
+    "n": 44,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-1.7b|closed_book|NPU|6": {
+    "n": 11,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-1.7b|rag|NPU|6": {
+    "n": 13,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-1.7b|rag|NPU|3": {
+    "n": 51,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-1.7b|rag|NPU|1": {
+    "n": 44,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-1.7b|closed_book|NPU|2": {
+    "n": 48,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-1.7b|rag|NPU|2": {
+    "n": 47,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-1.7b|oracle|NPU|6": {
+    "n": 3,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-4b|closed_book|NPU|2": {
+    "n": 48,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-4b|closed_book|NPU|3": {
+    "n": 51,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-8b|oracle|GPU|1": {
+    "n": 44,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-8b|closed_book|NPU|1": {
+    "n": 44,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-8b|rag|NPU|1": {
+    "n": 44,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-4b|rag|GPU|1": {
+    "n": 44,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-4b|rag|NPU|1": {
+    "n": 44,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-4b|closed_book|GPU|1": {
+    "n": 44,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-4b|closed_book|NPU|1": {
+    "n": 44,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-1.7b|closed_book|GPU|1": {
+    "n": 44,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-4b|oracle|NPU|1": {
+    "n": 44,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-4b|oracle|GPU|1": {
+    "n": 44,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-1.7b|oracle|GPU|1": {
+    "n": 44,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-8b|closed_book|GPU|1": {
+    "n": 44,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-8b|oracle|NPU|1": {
+    "n": 44,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-8b|rag|GPU|1": {
+    "n": 44,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-1.7b|rag|GPU|1": {
+    "n": 44,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-1.7b|oracle|GPU|2": {
+    "n": 47,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-4b|oracle|NPU|2": {
+    "n": 48,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-8b|oracle|GPU|2": {
+    "n": 47,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-8b|closed_book|GPU|2": {
+    "n": 48,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-1.7b|rag|GPU|2": {
+    "n": 48,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-8b|oracle|NPU|2": {
+    "n": 48,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-8b|rag|NPU|2": {
+    "n": 46,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-1.7b|closed_book|GPU|2": {
+    "n": 48,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-8b|rag|GPU|2": {
+    "n": 47,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-4b|oracle|GPU|2": {
+    "n": 47,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-4b|rag|NPU|2": {
+    "n": 48,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-4b|rag|GPU|2": {
+    "n": 48,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-4b|closed_book|GPU|2": {
+    "n": 47,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-8b|closed_book|NPU|2": {
+    "n": 48,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-4b|rag|GPU|3": {
+    "n": 50,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-8b|oracle|GPU|3": {
+    "n": 50,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-1.7b|closed_book|GPU|3": {
+    "n": 51,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-8b|rag|NPU|3": {
+    "n": 51,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-8b|closed_book|NPU|3": {
+    "n": 51,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-4b|oracle|NPU|3": {
+    "n": 51,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-4b|rag|NPU|3": {
+    "n": 50,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-8b|closed_book|GPU|3": {
+    "n": 51,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-4b|oracle|GPU|3": {
+    "n": 51,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-1.7b|rag|GPU|3": {
+    "n": 51,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-8b|rag|GPU|3": {
+    "n": 49,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-1.7b|oracle|GPU|3": {
+    "n": 51,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-8b|oracle|NPU|3": {
+    "n": 51,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-8b|oracle|GPU|4": {
+    "n": 7,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-8b|closed_book|NPU|4": {
+    "n": 9,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-1.7b|closed_book|GPU|4": {
+    "n": 8,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-4b|rag|GPU|4": {
+    "n": 5,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-8b|closed_book|GPU|4": {
+    "n": 9,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-4b|oracle|NPU|4": {
+    "n": 4,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-8b|oracle|NPU|4": {
+    "n": 5,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-8b|rag|NPU|4": {
+    "n": 6,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-4b|closed_book|NPU|4": {
+    "n": 5,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-1.7b|oracle|GPU|4": {
+    "n": 9,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-4b|oracle|GPU|4": {
+    "n": 4,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-1.7b|rag|GPU|4": {
+    "n": 5,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-4b|rag|NPU|4": {
+    "n": 5,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  },
+  "qwen3-8b|rag|GPU|4": {
+    "n": 5,
+    "acc_lenient": 0.0,
+    "acc_strict": 0.0,
+    "refusal_rate": null
+  }
+}
