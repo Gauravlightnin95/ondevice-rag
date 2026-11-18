@@ -1,0 +1,21 @@
+{
+  "judge_model": "gemini-3.5-flash-lite",
+  "judge_model_version": "gemini-3.5-flash-lite",
+  "model_versions_seen": [
+    "gemini-3.5-flash-lite"
+  ],
+  "keys_used": [
+    "GEMINI_API_KEY_4",
+    "GEMINI_API_KEY_5",
+    "GEMINI_API_KEY_6",
+    "GEMINI_API_KEY_7",
+    "GEMINI_API_KEY_8",
+    "GEMINI_API_KEY_9"
+  ],
+  "batch_size": 1,
+  "seed": 20260906,
+  "graded": 3847,
+  "calls": 2922,
+  "retries": 1622,
+  "key_rotations": 5
+}

@@ -1,0 +1,79 @@
+{
+  "judge_model": "gemini-3.5-flash-lite",
+  "judge_model_version": "gemini-3.5-flash-lite",
+  "model_versions_seen": [
+    "gemini-3.5-flash-lite"
+  ],
+  "keys_used": [
+    "GEMINI_API_KEY_3",
+    "GEMINI_API_KEY_4"
+  ],
+  "key_rotations": 2,
+  "passes": 3,
+  "screened": 194,
+  "rule": "delete on majority score 2; score 1 flagged for review; type 5 excluded",
+  "contaminated_qids": [
+    "ABESEC_EOA_2026-27::Q13",
+    "ABESEC_EOA_2026-27::Q3",
+    "galgotias-it-policy::Q5",
+    "galgotias-it-policy::Q6"
+  ],
+  "contaminated_detail": [
+    {
+      "qid": "ABESEC_EOA_2026-27::Q3",
+      "type": 1,
+      "scores": [
+        2,
+        2,
+        2
+      ]
+    },
+    {
+      "qid": "ABESEC_EOA_2026-27::Q13",
+      "type": 1,
+      "scores": [
+        2,
+        2,
+        2
+      ]
+    },
+    {
+      "qid": "galgotias-it-policy::Q5",
+      "type": 2,
+      "scores": [
+        2,
+        2,
+        2
+      ]
+    },
+    {
+      "qid": "galgotias-it-policy::Q6",
+      "type": 2,
+      "scores": [
+        2,
+        2,
+        2
+      ]
+    }
+  ],
+  "review_detail": [
+    {
+      "qid": "amity-cg-brochure::Q6",
+      "type": 3,
+      "scores": [
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "qid": "Final_Mandatory_Disclosure::Q8",
+      "type": 2,
+      "scores": [
+        2,
+        0,
+        1
+      ]
+    }
+  ]
+}
