@@ -1,0 +1,95 @@
+{
+  "n_questions": 194,
+  "ks": [
+    1,
+    3,
+    5,
+    10
+  ],
+  "by_type": {
+    "1": {
+      "any@1": 0.587,
+      "any@3": 0.7174,
+      "any@5": 0.913,
+      "any@10": 0.9565,
+      "n": 46
+    },
+    "2": {
+      "any@1": 0.58,
+      "any@3": 0.72,
+      "any@5": 0.88,
+      "any@10": 0.94,
+      "n": 50
+    },
+    "3": {
+      "any@1": 0.451,
+      "any@3": 0.6863,
+      "any@5": 0.7255,
+      "any@10": 0.8431,
+      "n": 51
+    },
+    "4": {
+      "any@1": 0.24,
+      "any@3": 0.76,
+      "any@5": 0.92,
+      "any@10": 1.0,
+      "n": 25
+    },
+    "6": {
+      "any@1": 0.5,
+      "any@3": 0.6364,
+      "any@5": 0.8182,
+      "any@10": 0.9091,
+      "n": 22
+    }
+  },
+  "supplementary": {
+    "composite_any@1": 0.4667,
+    "composite_all@1": 0.0,
+    "composite_any@3": 0.5333,
+    "composite_all@3": 0.2,
+    "composite_any@5": 0.6667,
+    "composite_all@5": 0.2667,
+    "composite_any@10": 0.8667,
+    "composite_all@10": 0.4,
+    "type4_both@1": 0.0,
+    "type4_both@3": 0.16,
+    "type4_both@5": 0.36,
+    "type4_both@10": 0.84,
+    "type4_cross_doc_both@1": 0.0,
+    "type4_cross_doc_both@3": 0.125,
+    "type4_cross_doc_both@5": 0.3333,
+    "type4_cross_doc_both@10": 0.8333,
+    "type4_same_doc_both@1": 0.0,
+    "type4_same_doc_both@3": 1.0,
+    "type4_same_doc_both@5": 1.0,
+    "type4_same_doc_both@10": 1.0
+  },
+  "single_retriever": {
+    "1": {
+      "dense": 0.8261,
+      "sparse": 0.9348,
+      "fused": 0.9565
+    },
+    "2": {
+      "dense": 0.88,
+      "sparse": 0.94,
+      "fused": 0.94
+    },
+    "3": {
+      "dense": 0.7059,
+      "sparse": 0.9412,
+      "fused": 0.8431
+    },
+    "4": {
+      "dense": 0.96,
+      "sparse": 0.92,
+      "fused": 1.0
+    },
+    "6": {
+      "dense": 0.9545,
+      "sparse": 0.9091,
+      "fused": 0.9091
+    }
+  }
+}

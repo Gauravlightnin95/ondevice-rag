@@ -1,0 +1,26 @@
+{
+  "judge_model": "gemini-3.5-flash-lite",
+  "judge_model_version": "gemini-3.5-flash-lite",
+  "n": 136,
+  "kappa_three_way": 0.4522019334049408,
+  "ci95_three_way": [
+    0.3389306230667256,
+    0.5591151792524791
+  ],
+  "raw_agreement": 0.6691176470588235,
+  "kappa_binary": 0.45206611570247934,
+  "ci95_binary": [
+    0.32495948136142616,
+    0.5759717314487632
+  ],
+  "raw_agreement_binary": 0.7132352941176471,
+  "human_ones": 6,
+  "mean_human": 1.1764705882352942,
+  "mean_judge": 0.7941176470588235,
+  "judge_higher_rows": 6,
+  "judge_lower_rows": 39,
+  "lenience_skew": 0.13333333333333333,
+  "direction": "judge is systematically HARSHER",
+  "verdict": "MODERATE",
+  "limitation": "The annotator authored the gold answers. This is judge-versus-annotator agreement, not independent inter-annotator agreement, and is an upper bound on what independent double-grading would produce."
+}

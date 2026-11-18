@@ -1,0 +1,20 @@
+{
+  "run_id": "grid_full_20260905_181202",
+  "mode": "full",
+  "started": "2026-09-05T22:48:44.798373",
+  "k": 5,
+  "max_new_tokens": 512,
+  "npu_max_prompt_len": 4608,
+  "environment": {
+    "python": "3.12.10"
+  },
+  "freeze": {
+    "verdict": "BYTE_IDENTICAL",
+    "freeze_version": "v1",
+    "changed": {},
+    "failures": []
+  },
+  "finished": "2026-09-06T03:28:49.906310",
+  "rows": 5352,
+  "written_this_run": 2676
+}
