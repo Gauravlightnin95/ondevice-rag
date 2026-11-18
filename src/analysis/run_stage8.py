@@ -7,15 +7,21 @@ starts, and a phase that cannot finish is not begun.
 
 Order matters:
 
-  A  contamination re-grade   ~17 calls   must precede grading; the neutral-prompt run
-                                          only graded 12 of 194 before the quota died
-  B  batch check             ~106 calls   its verdict decides how everything else is graded
-  C  full grading            ~239 calls   only started if the whole phase fits
-  D  kappa                      0 calls   local join, needs the human grades already filed
+  A  contamination passes 2-3  ~435 calls  the majority rule needs 3 passes; pass 1 alone
+                                           would delete from a frozen eval set on one roll
+  C  full grading UNBATCHED   ~4326 calls  the batch check said batching changes the
+                                           measurement, so one call per row
+  D  kappa                       0 calls   local join, needs the human grades already filed
 
-Phase C is deliberately all-or-nothing on the budget check. It is resumable, so a stall is
-recoverable, but restarting mid-grade means the batch composition differs between runs and
-the batch-position analysis stops being interpretable.
+Phase B (the batch check) has run and is not repeated. Its verdict was GRADE UNBATCHED:
+87.0% agreement with a -0.030 mean difference overall, but agreement by batch position ran
+0.625 / 0.750 / 0.333 - collapsing in the last third of each batch. See
+docs/grading_notes.md.
+
+Budget gating differs by phase. Phase A is all-or-nothing because a partial set of passes
+cannot support a majority verdict. Phase C is NOT: unbatched grading has no batches, so
+every row is independent, a stall costs only time, and --resume continues exactly where it
+stopped. Demanding all 4,326 calls up front would simply stop the job ever starting.
 
 Run from C:\\ondevice-rag
     .venv\\Scripts\\python.exe src\\analysis\\run_stage8.py
@@ -31,18 +37,25 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
-from judge import Budget, Judge, RPD                           # noqa: E402
+from judge import (Budget, Judge, RPD, _load_keys,             # noqa: E402
+                   reconcile_budget)
 
 PY = sys.executable
 RESULTS = Path("results")
 
+# (label, estimated calls, command, all_or_nothing)
+#
+# Phase C is NO LONGER all-or-nothing. That rule existed because restarting a BATCHED
+# grade mid-run changes batch composition and breaks the position analysis. Unbatched
+# grading has no batches: every row is an independent call, so a stall costs only time and
+# --resume picks up exactly where it stopped. Requiring the full 4,326 calls up front
+# would just prevent the job from ever starting.
 PHASES = [
-    ("A  contamination re-grade", 17,
-     [PY, "src/analysis/screen_contamination.py", "--passes", "1", "--resume"]),
-    ("B  batch check", 106,
-     [PY, "src/analysis/grade.py", "--mode", "batchcheck"]),
-    ("C  full grading", 239,
-     [PY, "src/analysis/grade.py", "--mode", "full"]),
+    ("A  contamination passes 2-3", 435,
+     [PY, "src/analysis/screen_contamination.py", "--passes", "3", "--resume"], True),
+    ("C  full grading (UNBATCHED)", 4326,
+     [PY, "src/analysis/grade.py", "--mode", "full", "--batch-size", "1", "--resume"],
+     False),
 ]
 
 
@@ -55,9 +68,17 @@ def quota_available():
         return False, str(exc)[:160]
 
 
+KEY_NAMES = [n for n, _ in _load_keys()]
+
+
 def show(b, label=""):
-    print(f"  budget: {b.used}/{RPD} used, {b.remaining} remaining"
+    live = [n for n in KEY_NAMES if not b.is_exhausted(n)]
+    print(f"  ring: {b.total_remaining(KEY_NAMES)} calls remaining across "
+          f"{len(live)}/{len(KEY_NAMES)} live keys"
           + (f"   {label}" if label else ""))
+    for n in KEY_NAMES:
+        flag = "  EXHAUSTED" if b.is_exhausted(n) else ""
+        print(f"      {n:<20} {b.used(n):>4}/{RPD}{flag}")
 
 
 def main():
@@ -69,9 +90,8 @@ def main():
     args = ap.parse_args()
 
     b = Budget()
-    print(f"Stage 8 orchestrator — cap {RPD}/day")
-    show(b, f"(exhausted at {b.state.get('exhausted_at')})"
-            if b.state.get("exhausted_at") else "")
+    print(f"Stage 8 orchestrator — {RPD}/day per key, {len(KEY_NAMES)} keys")
+    show(b)
 
     ok, err = quota_available()
     if not ok and args.wait_for_reset:
@@ -93,22 +113,29 @@ def main():
     print()
     show(b, "after reset probe")
 
-    for label, cost, cmd in PHASES:
-        b = Budget()
-        print(f"\n{'='*66}\n{label}   estimated {cost} calls")
+    for label, cost, cmd, all_or_nothing in PHASES:
+        # Clear stale exhaustion flags before gating. The ledger only self-heals on a
+        # successful call, but the gate runs first, so after a rollover it would refuse a
+        # phase the ring can afford.
+        b = reconcile_budget()
+        print(f"\n{'='*66}\n{label}   estimated {cost} calls"
+              + ("" if all_or_nothing else "  (resumable — partial progress is kept)"))
         show(b)
-        if not b.can_afford(cost):
-            print(f"  SKIPPED — {b.remaining} remaining cannot finish a {cost}-call "
-                  f"phase (margin included).")
+        need = cost if all_or_nothing else 50
+        if not b.can_afford(KEY_NAMES, need):
+            print(f"  SKIPPED — {b.total_remaining(KEY_NAMES)} remaining, needs {need}.")
             print("  Not started: a partial phase spends calls on work that must be "
-                  "redone.")
+                  "redone." if all_or_nothing else
+                  "  Ring is spent; rerun after a key rolls over.")
             break
 
         # phase A resumes into whatever contamination file already exists
         run = list(cmd)
         if run[-1] == "--resume":
-            existing = sorted(p for p in RESULTS.glob("contamination_2*.jsonl")
-                              if "graded" not in p.name)
+            pat = ("contamination_2*.jsonl" if "screen_contamination.py" in run[1]
+                   else "grades_*.jsonl")
+            existing = sorted(p for p in RESULTS.glob(pat)
+                              if "graded" not in p.name and "meta" not in p.name)
             if existing:
                 run.append(str(existing[-1]))
             else:
@@ -124,21 +151,7 @@ def main():
         print(f"  ({time.time()-t0:.0f}s)")
 
         after = Budget()
-        show(after, f"— phase used ~{after.used - b.used}")
-
-        # Phase B's verdict decides how phase C grades. Surface it explicitly.
-        if label.startswith("B"):
-            bc = sorted(RESULTS.glob("batchcheck_*.json"))
-            if bc:
-                v = json.loads(bc[-1].read_text(encoding="utf-8"))
-                print(f"\n  BATCH CHECK VERDICT: {v.get('verdict')}   "
-                      f"agreement {v.get('exact_agreement', 0):.3f}, "
-                      f"mean diff {v.get('mean_score_diff_batched_minus_unbatched', 0):+.3f}")
-                if v.get("verdict") != "BATCH":
-                    print("  Batched grading changes the measurement. At 500/day the "
-                          "unbatched\n  alternative is ~9 days, so this needs a decision "
-                          "before phase C runs.")
-                    break
+        show(after, f"— phase used ~{b.total_remaining(KEY_NAMES) - after.total_remaining(KEY_NAMES)}")
 
     print(f"\n{'='*66}")
     final = Budget()

@@ -35,6 +35,7 @@ Run from C:\\ondevice-rag
 
 import argparse
 import json
+import re
 import sys
 from collections import Counter, defaultdict
 from datetime import datetime
@@ -43,13 +44,24 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 
-from judge import Judge, assert_no_key_in                      # noqa: E402
+from judge import (Judge, assert_no_key_in,                    # noqa: E402
+                   assert_single_model_version)
 from rubric import assert_blind, build_item, build_prompt      # noqa: E402
 
 EVALSET = Path("evalset/evalset_v1.jsonl")
 RESULTS = Path("results")
 PASSES = 3
-GRADE_BATCH = 12
+# Contamination grading runs UNBATCHED, like the main grade: the batch check found
+# batched grading disagrees with unbatched 13% of the time and collapses to 0.333
+# agreement in late batch positions. Deleting questions from a frozen eval set using a
+# grading method we just rejected would be indefensible.
+#
+# Most of the cost is avoided instead by a deterministic rule: an explicit "I do not know"
+# cannot be a correct answer to a factual question, so it scores 0 without a call. 92% of
+# closed-book answers are refusals, so this removes ~9 calls in 10 while leaving every
+# answer that could possibly indicate memorisation to the judge.
+GRADE_BATCH = 1
+REFUSAL_RE = re.compile(r"^\s*i (do not|don't) know", re.I)
 
 # NEUTRAL BY DESIGN. The first version of this prompt said "Do not guess. Do not
 # speculate. A wrong confident answer is worse than admitting ignorance." That produced
@@ -113,7 +125,8 @@ def main():
                 text, err = "", j.safe(exc)
             row = {"qid": q["qid"], "type": q["type"], "pass": p,
                    "question": q["question"], "gold": q["answer"],
-                   "judge_answer": text.strip(), "error": err}
+                   "judge_answer": text.strip(), "error": err,
+                   "judge_model_version": j.model_version, "judge_key": j.key_name}
             done[(q["qid"], p)] = row
             with out.open("a", encoding="utf-8", newline="\n") as fh:
                 fh.write(json.dumps(row, ensure_ascii=False) + "\n")
@@ -129,6 +142,20 @@ def main():
         for line in graded_path.open(encoding="utf-8"):
             r = json.loads(line)
             graded[(r["qid"], r["pass"])] = r
+
+    # Deterministic 0 for explicit refusals - never sent to the judge.
+    refusals = [row for (qid, p), row in sorted(done.items())
+                if (qid, p) not in graded and not row["error"]
+                and REFUSAL_RE.match(row["judge_answer"] or "")]
+    if refusals:
+        with graded_path.open("a", encoding="utf-8", newline="\n") as fh:
+            for r in refusals:
+                g = {"qid": r["qid"], "pass": r["pass"], "type": r["type"],
+                     "accuracy": 0, "reason": "explicit refusal - scored 0 without judge",
+                     "judge_model_version": None, "judge_key": None}
+                graded[(r["qid"], r["pass"])] = g
+                fh.write(json.dumps(g, ensure_ascii=False) + "\n")
+        print(f"  {len(refusals)} explicit refusals scored 0 without a judge call")
 
     by_type = defaultdict(list)
     for (qid, p), row in sorted(done.items()):
@@ -152,7 +179,9 @@ def main():
                 for r in chunk:
                     sc = lookup.get(f"{r['qid']}#{r['pass']}", {})
                     g = {"qid": r["qid"], "pass": r["pass"], "type": r["type"],
-                         "accuracy": sc.get("accuracy"), "reason": sc.get("reason", "")}
+                         "accuracy": sc.get("accuracy"), "reason": sc.get("reason", ""),
+                         "judge_model_version": j.model_version,
+                         "judge_key": j.key_name}
                     graded[(r["qid"], r["pass"])] = g
                     fh.write(json.dumps(g, ensure_ascii=False) + "\n")
             print(f"    type {qtype}: {min(s+GRADE_BATCH, len(rows))}/{len(rows)}")
@@ -175,8 +204,13 @@ def main():
         elif twos + ones > len(scores) / 2:
             review.append({"qid": q["qid"], "type": q["type"], "scores": scores})
 
+    version = assert_single_model_version(list(graded.values()))
     verdict = {
-        "judge_model": j.model, "judge_model_version": j.model_version,
+        "judge_model": j.model, "judge_model_version": version,
+        "model_versions_seen": sorted(j.model_versions),
+        "keys_used": sorted({g.get("judge_key") for g in graded.values()
+                             if g.get("judge_key")}),
+        "key_rotations": j.rotations,
         "passes": args.passes, "screened": len(screened),
         "rule": "delete on majority score 2; score 1 flagged for review; type 5 excluded",
         "contaminated_qids": sorted(c["qid"] for c in contaminated),
@@ -198,7 +232,9 @@ def main():
         print(f"  type {t}: {ct.get(t,0):>3}/{tt[t]:<3} = {100*ct.get(t,0)/tt[t]:>5.1f}%")
     print(f"\n-> results/contaminated_qids.json  (evalset/ NOT modified)")
     assert_no_key_in(RESULTS / "contaminated_qids.json")
-    print(f"judge calls: {j.calls}, retries: {j.retries}")
+    print(f"judge calls: {j.calls}, retries: {j.retries}, "
+          f"key rotations: {j.rotations}")
+    print(f"judge version (verified single): {version}")
 
 
 if __name__ == "__main__":

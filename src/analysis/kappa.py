@@ -186,7 +186,20 @@ def compute():
     kb, pob = kappa(hb, mb, categories=(0, 1))
     lob, hib = boot_ci(hb, mb)
 
-    jm = json.loads(latest("grades_*.meta.json").read_text(encoding="utf-8"))
+    # The meta file is only written when a grading run finishes. An interrupted run still
+    # has complete, usable per-row grades, so the judge identity is recovered from the rows
+    # themselves rather than refusing to report kappa over work that was actually done.
+    try:
+        jm = json.loads(latest("grades_*.meta.json").read_text(encoding="utf-8"))
+    except SystemExit:
+        vers = sorted({g.get("judge_model_version") for g in grades.values()
+                       if g.get("judge_model_version")})
+        assert len(vers) <= 1, f"grades span multiple judge versions: {vers}"
+        jm = {"judge_model": "gemini-3.5-flash-lite",
+              "judge_model_version": vers[0] if vers else None,
+              "note": "meta reconstructed from rows; grading run did not finish"}
+        print("NOTE: no meta file (grading incomplete) — judge identity taken from the "
+              "graded rows, verified single-version.\n")
     print(f"Cohen's kappa — judge vs human, {len(pairs)} rows")
     print(f"  judge model      : {jm.get('judge_model')} "
           f"({jm.get('judge_model_version')})")

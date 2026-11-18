@@ -40,12 +40,17 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 
-from judge import Judge, assert_no_key_in                      # noqa: E402
+from judge import (Judge, assert_no_key_in,                    # noqa: E402
+                   assert_single_model_version)
 from rubric import assert_blind, build_item, build_prompt      # noqa: E402
 
 RESULTS = Path("results")
 EVALSET = Path("evalset/evalset_v1.jsonl")
 CHUNKS = Path("corpus/chunks.jsonl")
+# Default batch size for the batch CHECK only. The full grade runs UNBATCHED (size 1):
+# the check measured 87.0% agreement against unbatched with a -0.030 mean difference, and
+# agreement collapsed to 0.333 in the last batch positions. Unbatched removes both the
+# position effect and the cross-row influence, at the cost of one call per row.
 BATCH = 18
 SEED = 20260906
 
@@ -106,7 +111,7 @@ def score_empty(row):
             "model": row["model"], "device": row["device"],
             "condition": row["condition"], "accuracy": 0, "groundedness": None,
             "cited": [], "citation_correct": None, "empty_output": True,
-            "judged": False, "reason": "empty cleaned output — scored 0 without the judge"}
+            "judged": False, "judge_model_version": None, "judge_key": None, "reason": "empty cleaned output — scored 0 without the judge"}
 
 
 def grade_batch(j, qtype, rows, batch_index=None):
@@ -135,6 +140,11 @@ def grade_batch(j, qtype, rows, batch_index=None):
         out.append({"row_id": r["row_id"], "qid": r["qid"], "type": r["type"],
                     "model": r["model"], "device": r["device"],
                     "condition": r["condition"],
+                    # Stamped per row so it can be verified afterwards that the whole
+                    # dataset was graded by one judge version. Two versions pooled would
+                    # be a confound invisible in the aggregate.
+                    "judge_model_version": j.model_version,
+                    "judge_key": j.key_name,
                     "accuracy": s.get("accuracy"),
                     "groundedness": s.get("groundedness"),
                     "cited": cited, "citation_correct": cit,
@@ -144,7 +154,7 @@ def grade_batch(j, qtype, rows, batch_index=None):
     return out
 
 
-def run_full(j, rows, out, done):
+def run_full(j, rows, out, done, batch_size=1):
     empties = [r for r in rows if not r["answer"] and r["row_id"] not in done]
     if empties:
         with out.open("a", encoding="utf-8", newline="\n") as fh:
@@ -162,14 +172,15 @@ def run_full(j, rows, out, done):
         by_type[r["type"]].append(r)
 
     total = sum(len(v) for v in by_type.values())
-    n_batches = sum((len(v) + BATCH - 1) // BATCH for v in by_type.values())
-    print(f"{total} rows to grade in {n_batches} batches of {BATCH} "
+    n_batches = sum((len(v) + batch_size - 1) // batch_size for v in by_type.values())
+    mode = "UNBATCHED (one row per call)" if batch_size == 1 else f"batches of {batch_size}"
+    print(f"{total} rows to grade, {mode} = {n_batches} calls "
           f"(~{n_batches*j.min_interval/60:.0f} min at {60/j.min_interval:.0f} RPM)")
 
     bi = 0
     for qtype, group in sorted(by_type.items()):
-        for s in range(0, len(group), BATCH):
-            chunk = group[s:s + BATCH]
+        for s in range(0, len(group), batch_size):
+            chunk = group[s:s + batch_size]
             rng.shuffle(chunk)              # randomise position within the batch
             bi += 1
             try:
@@ -181,8 +192,9 @@ def run_full(j, rows, out, done):
                 for g in res:
                     done[g["row_id"]] = g
                     fh.write(json.dumps(g, ensure_ascii=False) + "\n")
-            if bi % 10 == 0 or bi == n_batches:
-                print(f"  {bi}/{n_batches} batches, {len(done)} graded")
+            if bi % 50 == 0 or bi == n_batches:
+                print(f"  {bi}/{n_batches} calls, {len(done)} graded, "
+                      f"key {j.key_name}")
 
 
 def run_batchcheck(j, rows, out):
@@ -297,6 +309,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--mode", choices=["full", "batchcheck"], required=True)
     ap.add_argument("--resume", type=Path)
+    ap.add_argument("--batch-size", type=int, default=1,
+                    help="1 = unbatched, the verdict of the batch check")
     args = ap.parse_args()
     RESULTS.mkdir(exist_ok=True)
     ts = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -316,10 +330,16 @@ def main():
                 g = json.loads(line)
                 done[g["row_id"]] = g
             print(f"resuming: {len(done)} already graded")
-        run_full(j, rows, out, done)
-        meta = {"judge_model": j.model, "judge_model_version": j.model_version,
-                "batch_size": BATCH, "seed": SEED, "graded": len(done),
-                "calls": j.calls, "retries": j.retries}
+        run_full(j, rows, out, done, batch_size=args.batch_size)
+        version = assert_single_model_version(list(done.values()))
+        meta = {"judge_model": j.model, "judge_model_version": version,
+                "model_versions_seen": sorted(j.model_versions),
+                "keys_used": sorted({g.get("judge_key") for g in done.values()
+                                     if g.get("judge_key")}),
+                "batch_size": args.batch_size, "seed": SEED, "graded": len(done),
+                "calls": j.calls, "retries": j.retries,
+                "key_rotations": j.rotations}
+        print(f"\njudge version across all rows: {version}  (single version verified)")
         mp = out.with_suffix(".meta.json")
         mp.write_text(json.dumps(meta, indent=2) + "\n", encoding="utf-8")
         assert_no_key_in(mp)
